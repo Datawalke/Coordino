@@ -1,0 +1,92 @@
+/* -------------------------------------------------------------- 
+  The CSS in this file will override all other elements on the site. 
+-------------------------------------------------------------- */
+
+
+/* -------------------------------------------------------------- 
+  Global Elements
+-------------------------------------------------------------- */
+a {
+	color: #FF4200;
+}
+
+a:hover { 
+	text-decoration: underline;
+}
+
+/* -------------------------------------------------------------- 
+  Header Elements 
+-------------------------------------------------------------- */
+#header { border-bottom: 1px solid #ddd;}
+#header .top_actions { background-color: #efefef; float: right; display: inline;}
+#header .tabs {}
+#header .tabs li {}
+#header .tabs a { font-weight: bold; background: #555; color: #fff; text-decoration: none; }
+#header .tabs a:hover {background-color: #ff2800;}
+
+#admin_header { border-bottom: 1px solid #ddd; }
+#admin_header .tabs {}
+#admin_header .tabs li {}
+#admin_header .tabs a {  font-weight: bold; background: #f8f8f8; color: #000; text-decoration: none; border: 1px solid #ddd; border-width: 1px 1px 0px 1px; }
+#admin_header .tabs a:hover {background-color: #f2f2f2;}
+#admin_header .selected a { background: #fff !important;}
+#admin_header h2 {}
+
+#top_actions .tabs {}
+#top_actions input {}
+#top_actions .tabs li {}
+#top_actions .tabs a {  color: #555; background: transparent; font-weight: normal; }
+#top_actions .tabs a:hover { text-decoration: underline; background: transparent;}
+#PostDisplayForm {}
+
+/* -------------------------------------------------------------- 
+  Main Question Display Pages
+-------------------------------------------------------------- */
+.list_answers_answered {
+	background-color:#99CC33;
+	color:#FFFFFF;
+}
+
+.list_answers_unanswered {
+	background-color:#CC3333;
+	color:#FFFFFF;
+}
+
+.list_views {}
+
+/* -------------------------------------------------------------- 
+  Viewing an Individual Question
+-------------------------------------------------------------- */
+.user_info {
+	background-color: #ffece5;
+}
+
+.answered .user_info {
+	background-color:#FAFFF2;
+}
+/* -------------------------------------------------------------- 
+  Widgets
+-------------------------------------------------------------- */
+.widget_box {background-color: #efefef; font-size: 13px; padding: 5px; margin-bottom: 5px;}
+.widget_box h3 {color: #000 !important; padding: 0px; margin-bottom: 5px;}
+.widget_box p {font-size: 15px; color: #222;}
+
+/* -------------------------------------------------------------- 
+  Tags
+-------------------------------------------------------------- */
+.tags {}
+.tag {}
+.tag a {
+	background-color: #FFECE5;
+	border-bottom: 1px solid #fcd6c9;
+	border-right: 1px solid #fcd6c9;
+	margin-right: 5px;
+	color: #d05024;
+}
+.tag a:hover {
+	text-decoration: none;
+	color: #fff;
+	background-color: #d05024;
+	border-bottom: 1px solid #FFECE5;
+	border-right: 1px solid #FFECE5;
+}

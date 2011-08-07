@@ -1,0 +1,529 @@
+/* -------------------------------------------------------------- 
+  
+   Boilerplate Screen Styles
+   * Version:   0.5 (2007-11-19)
+   
+-------------------------------------------------------------- */
+
+@import "lib/reset.css";
+@import "lib/typography.css";
+@import "lib/forms.css";
+@import "lib/plugins/tabs.css";
+
+
+/* Page
+-------------------------------------------------------------- */
+
+#page { margin: 0 auto; width: 950px; }
+
+
+/* Header
+-------------------------------------------------------------- */
+#header { }
+#header .top_actions { text-align: right; float: right; display: inline;}
+#header .tabs { float: left; margin-top: 10px; display: inline;}
+#header .tabs li { margin-left: 5px; }
+#header .tabs a { padding: 5px 15px; }
+#header .tabs a:hover {}
+
+#admin_header { margin-bottom: 5px;}
+#admin_header .tabs { float: right; margin-top: 10px; display: inline;}
+#admin_header .tabs li { margin-right: 5px; }
+#admin_header .tabs a { padding: 5px 15px; }
+#admin_header .tabs a:hover {}
+#admin_header .selected a {position: relative; top: 1px; }
+#admin_header h2 { float: left; margin: 0px; }
+
+#top_actions .tabs { margin-top: 0px;}
+#top_actions input {margin-top: 5px;}
+#top_actions .tabs li { margin: 0px 5px 0px 0px; }
+#top_actions .tabs a { padding: 3px 7px;  }
+#top_actions .tabs a:hover { }
+#PostDisplayForm { float: right; margin: 2px 5px 0px 0px; display: inline;}
+#logo { float: left; display: inline; }
+
+/* Body
+-------------------------------------------------------------- */
+
+#body { margin-top: 20px; }
+
+#content { float: left; width: 685px; margin-right: 15px; display: inline; }
+#fullWidth { float:left; display: inline;}
+
+#sidebar { float: left; width: 250px; display: inline;}
+#sidebar h3 { color: #888; }
+#sidebar ul, #resources ol { color: #888; }
+#sidebar ul a { color: #555; }
+
+
+/* Footer
+-------------------------------------------------------------- */
+#footer { border-top: 1px solid #eee; margin-top: 20px; }
+
+#footer .tabs { width: 405px; }
+#footer .tabs a { padding: 10px 30px 10px 0; color: #666; text-decoration: none; }
+
+#footer p.quiet { color: #ccc; }
+
+/* Flash
+---------------------------------------------------------------*/
+
+#alert {
+    margin: 10px 0px 10px 0px;
+	background-color: #ffece5;
+	padding: 5px;
+	font-weight: bold;
+	font-family: Tahoma;
+	line-height: 1.3em;
+	border: 2px solid #ff4200;
+}
+
+
+/* Errors
+---------------------------------------------------------------*/
+/* Notices and Errors */
+.error, .notice, .success {
+	border:2px solid #DDDDDD;
+	margin-bottom: 5px;
+	display: block;
+	padding:0.8em;
+}
+.error {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:#FBE3E4 none repeat scroll 0 0;
+	border-color:#FBC2C4;
+	color:#8A1F11;
+}
+.notice {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:#FFF6BF none repeat scroll 0 0;
+	border-color:#FFD324;
+	color:#514721;
+}
+.success {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:#E6EFC2 none repeat scroll 0 0;
+	border-color:#C6D880;
+	color:#264409;
+}
+.error a {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent none repeat scroll 0 0;
+	color:#8A1F11;
+	margin:0;
+	padding:0;
+}
+.notice a {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent none repeat scroll 0 0;
+	color:#514721;
+	margin:0;
+	padding:0;
+}
+.success a {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent none repeat scroll 0 0;
+	color:#264409;
+	margin:0;
+	padding:0;
+}
+.promote, .demote {
+	background-color: #222;
+	color: #ffc000;
+	padding: 2px;
+}
+.demote { color: #ccc;}
+.big_input, .big_submit {
+	padding: 2px;
+	font-size: 12px;
+}
+
+.large_input, .comment_input {
+	padding: 3px;
+	font-size: 13px;
+	width: 400px;
+	margin-bottom: 5px;
+}
+.comment_area {
+	margin-top: 5px;
+}
+.comment_input {
+	float: left; 
+	display: inline;
+	margin-right: 5px;
+	font-size: 14px;
+	padding: 4px;
+}
+
+.comment {
+	padding: 5px 0px 0px 0px;
+	border-top: 1px dotted #ccc;
+	margin-top: 10px;
+}
+
+.comment p, .comment ol, .comment li, .comment ul {display: inline;}
+.medium_input {
+	width: 200px;
+}
+
+div.detailed_inputs { padding: 5px; background-color:  #f8f8f8;}
+div.detailed_inputs input, div.detailed_inputs textarea {padding: 7px 5px; width: 250px; border: 1px solid #efefef; margin-bottom: 10px;}
+div.detailed_inputs textarea { width: 450px; font-size: 11px; height: 70px; }
+
+.submit input {
+	border: 1px solid #ccc !important;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 15px;
+	background-color: #eee;
+	cursor: pointer;
+}
+
+/* Login Panel
+---------------------------------------------------------------*/
+.block_label label {
+	width: 75px;
+	display: block;
+}
+/* Question Statuses
+---------------------------------------------------------------*/
+.question, .answer, .answered { margin-bottom: 10px; padding: 5px; border-bottom: 1px solid #ccc; }
+.answered { background-color: #edf3e1; } 
+.answered .user_info { background-color: #fafff2; }
+.list_question {
+	border-bottom: 1px dotted #ccc;
+	padding: 5px 0px;
+}
+.list_question .green { background-color: #99cc33; color: #fff; }
+.list_question .red { background-color: #cc3333; color: #fff;}
+
+.list_answers, .list_views {
+	float: left;
+	display: inline;
+	padding: 5px;
+	text-align: center;
+	margin-right: 5px;
+	font-weight: bold;
+	font-size: 13px;
+	line-height: 1;
+	width: 52px;
+	height: 51px;
+}
+
+.list_answers span, .list_views span {
+	display: block;
+}
+.list_detail_text {
+	float: left; width: 550px;
+}
+.large_text {
+	font-size: 30px;
+}
+
+.checkmark a {
+	display: block;
+	height: 34px;
+	width: 44px;
+	background-image: url('../img/checkmark_gray.png');
+	margin: 5px 0px 0px 5px;
+}
+
+.left, .right { float: left; display: inline; }
+.right { float: right;}
+
+.checkmark a:hover { background-image: url('../img/checkmark_green.png');}
+.tags { clear: both; float: left; display: block;}
+.tag {float: left; display: inline;}
+.tag a {
+	display: block;
+	float: left;
+	padding: 2px 3px;
+
+}
+.tag a:hover {
+
+}
+
+.list_title {
+	font-size: 16px;
+	font-weight: bold;
+	float: left;
+	width: 400px;
+}
+
+.list_question .author {
+	float: right;
+	display: inline;
+}
+
+.list_title_mini {
+	font-size: 12px;
+	font-weight: bold;
+	float: left;
+	display: inline;
+}
+
+.list_answers_mini, .list_views_mini {
+	float: left;
+	display: inline;
+	padding: 5px;
+	text-align: center;
+	margin-right: 5px;
+	font-weight: bold;
+	font-size: 11px;
+	line-height: 1;
+	width: 32px;
+	height: 31px;
+}
+
+.welcome, .widget_box {font-size: 13px; padding: 5px; margin-bottom: 5px;}
+.welcome h3, .widget_box h3 {padding: 0px; margin-bottom: 5px;}
+.welcome p, .widget_box p {font-size: 15px;}
+
+.widget_box {background-color: #f1f1f1; }
+.widget_box h3 { color: #363636 !important;}
+
+hr { color: #ccc; border: 1px solid #ccc; }
+
+#resultsContainer {
+	max-height: 150px;
+	width: 660px;
+	overflow: auto;
+}
+
+.red { color: #cc3333; }
+
+
+.content_actions {text-align: center; line-height: 1;}
+/* User Info
+---------------------------------------------------------------*/
+.user_info {
+	float: right;
+	display: inline;
+	width: 175px;
+	padding: 5px 10px;
+}
+
+.thumb_with_border {
+	float: left;
+	margin: 2px 4px 2px 2px;
+	display: inline;
+}
+
+.thumb_with_border img {
+	float: left;
+	border: 1px solid;
+	border-color: gray;
+}
+
+/* Cake
+---------------------------------------------------------------*/
+.cake-sql-log {
+	width: 950px;
+	margin: 0px auto;
+	border: 1px solid #ddd;
+}
+
+/* user profiles
+---------------------------------------------------------------*/
+
+#userAvatar, #userInfo{
+	float:left;
+	display: inline;
+	height: 130px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+
+#userAvatar img{
+	float:left;
+	display: inline;
+}
+
+#userInfo{
+	padding:10px;
+	float: left;
+	display: inline;
+	width: 468px;
+	background-color: #efefef;
+}
+
+#tab-1 td {
+	height: 24px;
+	width:120px;
+}
+
+#tabs{
+	float: left;
+	display: inline;
+	margin-top: 35px;
+}
+
+#tabs ul{
+	margin-left: 0px;
+	margin-right:0px;
+	float: left;
+	display: inline;
+		
+}
+
+#tabs div{
+	float: left;
+	display: inline;
+}
+
+#tabs li{
+	margin-bottom: 3px;
+	list-style: none;
+	text-align: center;
+}
+
+#tabs li a{
+	text-decoration: none;
+	display: block;
+	padding-top: 20px;
+	padding-bottom: 5px;
+}
+#tabs span a {
+	padding: 0px;
+}
+#tabs li a:hover{
+	background-color:#ddd;
+}
+
+.active {
+	width: 65px;
+	background-color: #ffffff;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px solid #000;
+	position: relative;
+	left: 2px;
+	-webkit-box-shadow: -0.35em 0.35em 0.55em rgba(0,0,0,0.25);
+	-moz-box-shadow: rgba(0,0,0,0.25) -0.35em 0.35em 0.55em;
+}
+
+#tabs li.active a:hover{
+	background-color: #ffffff;
+}
+
+.inactive {
+	margin-left: 4px;
+	width: 60px;
+	background-color: #eee;
+	margin-right: 3px;
+}
+
+.inactive a {
+	color: #000;
+}
+
+.ui-tabs .ui-tabs-hide {
+     display: none;
+}
+
+.tabPanel {
+	font-size: 1.25em;
+	padding: 15px;
+	border: 1px solid #000;
+	height: 308px;
+	width: 550px;
+	overflow: auto;
+}
+
+.profileAd{
+	margin-left: 60px;
+}
+
+/************** custom file upload button *********************/
+/**
+ * The styling for the <div> that wraps around the input field.  You can edit this if
+ * you'd like, but the ones that are marked DONT EDIT in the line-level comments
+ * probably shouldn't be edited.  Or you could.  Or whatever.
+ */
+div.pick_file_wrapper {
+	position: relative; /* DONT EDIT */
+	overflow: hidden; /* DONT EDIT */ 
+	width: 65px; /* DONT EDIT */ 
+	height: 18px; /* DONT EDIT */ 
+	display: block; /* DONT EDIT */
+}
+
+/**
+ * Styling for the image overlay.
+ */
+.pick_file_overlay {
+	z-index: 1; /* DONT EDIT */
+	position: absolute; /* DONT EDIT */
+	top: 0;
+	left: 0;
+    display: inline;
+	float: left; }
+
+/**
+ * The styling for the <div> that wraps around the input field.  I wouldn't edit any of
+ * this.
+ */
+input.pick_file {
+	z-index: 2; 
+	position: absolute;
+	top: 0;
+	right: 0px;
+	display: inline;
+	float: right;
+	opacity: 0;
+    -moz-opacity: 0;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);	
+}
+
+/**
+ * The styling for the span for name of the file, if it is used.  The only
+ * things I would add to this (or edit) is width.
+ */
+span.pick_file_name {
+	display: inline;
+	float: left;
+	position: relative;
+	top: -18px;
+	left: 70px;
+}
+
+table.entry_summary td {
+	font-size: 12px; 
+	font-weight: normal;
+	padding: 5px;
+}
+
+table.entry_summary td.heavy {
+	font-weight: bold;
+}
+
+table.entry_summary td.header {
+	padding-top: 15px;
+	padding-left: 15px;
+	font-size: 16px;
+}
+
+font.error_text {
+	color: red;
+	font-weight: bold; 
+}
+/**
+ * Do not edit
+ */
+#coordino_logo {
+	margin-top: 10px;
+}

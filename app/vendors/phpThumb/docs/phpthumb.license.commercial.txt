@@ -1,0 +1,27 @@
+                 phpThumb() Commercial License
+                 =============================
+
+phpThumb() is licensed under the "GNU Public License" (GPL) and/or the
+"phpThumb() Commercial License" (pTCL). This document describes the pTCL.
+
+---------------------------------------------------------------------
+
+The license is non-exclusively granted to a single person or company,
+per payment of the license fee, for the lifetime of that person or
+company. The license is non-transferrable.
+
+The pTCL grants the licensee the right to use phpThumb() in commercial
+closed-source projects. Modifications may be made to phpThumb() with no
+obligation to release the modified source code. phpThumb() (or pieces
+thereof) may be included in any number of projects authored (in whole
+or in part) by the licensee.
+
+The licensee may use any version of phpThumb(), past, present or future,
+as is most convenient. This license does not entitle the licensee to
+receive any technical support, updates or bugfixes, except as such are
+made publicly available to all phpThumb() users.
+
+The licensee may not sub-license phpThumb() itself, meaning that any
+commercially released product containing all or parts of phpThumb() must
+have added functionality beyond what is available in phpThumb();
+phpThumb() itself may not be re-licensed by the licensee.
