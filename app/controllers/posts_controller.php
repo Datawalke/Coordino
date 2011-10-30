@@ -373,7 +373,8 @@ class PostsController extends AppController {
 	 * @return void
 	 */
 	public function view($public_key) {
-        /**
+
+                /**
 		 * Set the Post model to recursive 2 so we can pull back the User's information with each comment.
 		 */
 		$this->Post->recursive = 2;
