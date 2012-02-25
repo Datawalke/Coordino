@@ -7,7 +7,7 @@ However the best-case conditions:
 	- MySQL 5.1+
 	
 ==================================
-How to Install
+How to Install Coordino
 ==================================
 Unzip the Coordino package your root working www directory.
 	ex: /var/www/htdocs/test.com
