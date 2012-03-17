@@ -90,3 +90,19 @@ a:hover {
 	border-bottom: 1px solid #FFECE5;
 	border-right: 1px solid #FFECE5;
 }
+
+
+/* -------------------------------------------------------------- 
+  RSS Feed
+-------------------------------------------------------------- */
+div.questionFeed { 
+    float: right;
+    margin-top: 50px;
+}
+
+div.questionFeed a {
+    color: #666;
+    background: transparent url(/img/rss.gif) no-repeat;
+    padding-left:  22px;
+    height: 18px;
+}
