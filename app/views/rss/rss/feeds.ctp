@@ -35,9 +35,9 @@
         ?>
             <entry>
                 <id><?php echo $questionLink; ?></id>
-                <title type="text"><?php echo $question['Post']['title']; ?></title>
+                <title type="text"><?php echo htmlspecialchars($question['Post']['title']); ?></title>
                 <author>
-                    <name><?php echo $question['User']['username']; ?></name>
+                    <name><?php echo  htmlspecialchars($question['User']['username']); ?></name>
                     <uri><?php echo $userLink; ?></uri>
                 </author>
                 <link rel="alternate" href="<?php echo $questionLink; ?>" />
