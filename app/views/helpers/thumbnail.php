@@ -62,7 +62,32 @@ class ThumbnailHelper extends Helper    {
         }
     }
     
-    private function show_image_tag()    {
+    /**
+     * Print image tag for thumbnail. If the thumbnail doesn't exist, it will be created.
+     * @param array $options
+     * @param array $tag_options
+     */
+    public function show(array $options = array(),array $tag_options = array())    {
+        echo $this->get($options, $tag_options);
+    }
+    
+    /**
+     * Return image tag for thumbnail. If the thumbnail doesn't exist, il will be created
+     * @param array $options
+     * @param array $tag_options
+     */
+    public function get(array $options = array(), array $tag_options = array()) {
+        $this->init($options, $tag_options);
+        if(!$this->image_is_cached())    {
+            $this->create_thumb();
+        }
+        return $this->get_image_tag();
+    }
+    
+    /**
+     * Create image tag based on the current conf.
+     */
+    private function get_image_tag() {
         if($this->error != '')    {
             $src = $this->options['error_image_path'];
             //$this->tag_options['alt'] = $this->error;
@@ -83,18 +108,7 @@ class ThumbnailHelper extends Helper    {
             $img_tag .= ' ' . $key . '="' . $value . '"';
         }
         $img_tag .=  ' />';
-        
-        echo $img_tag;
-    }
-    
-    public function show($options = array(), $tag_options = array())    {
-        $this->init($options, $tag_options);
-        if($this->image_is_cached())    {
-            $this->show_image_tag();
-        } else    {
-            $this->create_thumb();
-            $this->show_image_tag();
-        }
+        return $img_tag;
     }
     
 }
