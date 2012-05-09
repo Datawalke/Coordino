@@ -11,7 +11,7 @@
 		<?=$thumbnail->show(array(
 						        'save_path' => $_SERVER['DOCUMENT_ROOT'] . '/app/webroot/img/thumbs',
 						        'display_path' => '/img/thumbs',
-						        'error_image_path' => '/img/answerAvatar.png',
+						        'error_image_path' => $this->webroot. 'img/answerAvatar.png',
 						        'src' => '/app/webroot' . $user['User']['image'],
 						        'w' => 25,
 								'h' => 25,

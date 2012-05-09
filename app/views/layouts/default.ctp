@@ -26,7 +26,6 @@
 <div id="page">
 
 <div class="wrapper" id="header">
-
 	<div class="wrapper">
 		<div id="top_actions" class="top_actions">
 			<? 
@@ -139,24 +138,20 @@
 	</div>
 
 	<div class="wrapper">
-        <a href="/"><?php echo $html->image('logo.png', array('alt' => 'Logo', 'id' => 'logo')); ?></a>
+        <a href="<?=$this->webroot; ?>"><?php echo $html->image('logo.png', array('alt' => 'Logo', 'id' => 'logo')); ?></a>
 
 		  <ul class="tabs">
 		    <li>
-		    	<?=$html->link(
-						'Questions',
-						'/'
-					);
-				?>
+		    	<?=$html->link(_('Questions'),'/');?>
 		    </li>
-		    <li><a href="/tags">Tags</a></li>
-		    <li><a href="/questions/unanswered">Unsolved</a></li>
-		    <li><a href="/users">Users</a></li>
+		    <li><?=$html->link(_('Tags'),'/tags');?></li>
+		    <li><?=$html->link(_('Unsolved'),'/questions/unanswered');?></li>
+		    <li><?=$html->link(_('Users'),'/users');?></li>
 		  </ul>
 		  <ul class="tabs" style="float: right;">
 			<li>
 				<?=$html->link(
-						'Ask a Question',
+						_('Ask a Question'),
 						array('controller' => 'posts', 'action' => 'ask')
 					);
 				?>
