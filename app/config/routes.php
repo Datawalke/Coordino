@@ -33,6 +33,8 @@
  */
 
 if (file_exists(TMP.'installed.txt')) {
+    Router::connect('/lang/*', array('controller' => 'p28n', 'action' => 'change'));
+    
 	Router::connect('/', array('controller' => 'posts', 'action' => 'display', 'recent'));
 	Router::connect('/maintenance', array('controller' => 'posts', 'action' => 'maintenance'));
 	
