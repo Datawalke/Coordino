@@ -5,3 +5,5 @@ app/config/database.php
 !empty
 .buildpath
 .project
+app/webroot/img/thumbs/*
+app/webroot/img/uploads/*
