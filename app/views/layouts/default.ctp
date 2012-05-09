@@ -207,10 +207,13 @@
   <div id="footer" class="wrapper">
 	<div class="left">
     <ul class="tabs">
-      <li><a href="/"><?php __('home'); ?></a></li>
-	  <li><a href="/questions/ask"><?php __('ask a question'); ?></a></li>
+      <li>
+      <?=$html->link(__('home',true),'/');?></li>
+	  <li>
+      <?=$html->link(__('ask a question',true),'/questions/ask');?></li>
 
-      <li><a href="/about"><?php __('about'); ?></a></li>
+      <li>
+      <?=$html->link(__('about',true),'/about');?></li>
     </ul>
 
 	</div>
