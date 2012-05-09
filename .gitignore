@@ -6,5 +6,6 @@ app/config/database.php
 .buildpath
 .project
 .settings/*
+
 app/webroot/img/thumbs/*
 app/webroot/img/uploads/*

@@ -44,7 +44,7 @@
 		<div style="width: 100px; float: left;">
         <? if($question['Post']['user_id'] != $session->read('Auth.User.id')) { ?>
         <?=$html->link(
-				'flag',
+				__('flag',true),
 				'/flag/' . $question['Post']['public_key']
 			 );
         ?>
@@ -52,13 +52,15 @@
         if($question['Post']['user_id'] == $session->read('Auth.User.id') || isset($rep_rights) || $admin) { ?>
 		| 
 		<?=$html->link(
-				'edit',
+				__('edit',true),
 				'/questions/' . $question['Post']['public_key'] . '/' . $question['Post']['url_title'] . '/edit');
 		}
 		?>
 
         <?php if($admin): ?>
-               | <a href="/posts/delete/<?php echo $question['Post']['id'];?>">del</a>
+               | <?=$html->link(
+                       __('del',true),
+               '/posts/delete/'.$question['Post']['id']); ?></a>
         <?php endif; ?>
 
 		</div>
@@ -141,7 +143,7 @@
 	</div>
 	<div class="comment_actions">
 	<?=$html->link(
-			'add comment',
+			__('add comment',true),
 			'#');
 	?>
 	</div>
@@ -149,7 +151,7 @@
 </div>
 
 <div id="answers">
-	<h2>Answers</h2>
+	<h2><?php __n('answer','answers',count($answers));?></h2>
 	<hr/>
 	<? foreach($answers as $answer) { ?>
 	<div class="<?=($answer['Answer']['status'] == 'correct') ? 'answered' : 'answer';?>" id="a_<?=$answer['Answer']['public_key']?>">
@@ -232,7 +234,7 @@
 			<? if($answer['Answer']['user_id'] == $session->read('Auth.User.id') || isset($rep_rights)) { ?>
 			<span class="quiet">|</span>
 			<?=$html->link(
-					'edit',
+					__('edit',true),
 					'/answers/' . $answer['Answer']['public_key'] . '/edit');
 			}
 			?>
@@ -283,7 +285,7 @@
 			}
 		}
 	?>
-	<h3>Your Answer</h3>
+	<h3><?php __('your answer'); ?></h3>
 	<?=$form->create(null, array(
 			'url' => '/questions/' . $question['Post']['public_key'] . '/' . $question['Post']['url_title'] . '/answer')
 		); ?>
@@ -307,5 +309,5 @@
 	<?$recaptcha->display_form('echo');?>
 	
 	<br/>
-	<?=$form->end('Answer');?>
+	<?=$form->end(__d('verb','Answer',true));?>
 </div>

@@ -1,15 +1,15 @@
 <?php
 foreach($questions as $question) { ?>
 <div class="list_question wrapper">
-	
+	<?php //var_dump($question); die(count($question['Answer'])); ?>
 	<div class="wrapper" style="float: left;">
 	<div class="list_answers <?= (count($question['Answer']) < 1) ? 'list_answers_unanswered' : 'list_answers_answered';?>">
 		<span class="large_text"><?=count($question['Answer']);?></span>
-		<span>answer<?=(count($question['Answer']) == 1) ? '' : 's';?></span>
+		<span><?php __n('answer','answers',count($question['Answer']))?></span>
 	</div>
 	<div class="list_views quiet">
 		<span class="large_text"><?=$question['Post']['views'];?></span>
-		<span>view<?=($question['Post']['views'] == 1) ? '' : 's';?></span>
+		<span><?php __n('view','views',$question['Post']['views']);?></span>
 	</div>
 	</div>
 	
