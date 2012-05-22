@@ -26,7 +26,6 @@
 <div id="page">
 
 <div class="wrapper" id="header">
-
 	<div class="wrapper">
 		<div id="top_actions" class="top_actions">
 			<? 
@@ -47,7 +46,7 @@
 				<? if(!$session->check('Auth.User.id')) { ?>
 					<li>
 					<?=$html->link(
-							'login',
+							__('login',true),
 							array('controller' => 'users', 'action' => 'login')
 						);
 					?>
@@ -56,7 +55,7 @@
 				<? if(!$session->check('Auth.User.id') || $session->read('Auth.User.registered') == 0) { ?>
 				<li>
 					<?=$html->link(
-							'register',
+							__('register',true),
 							array('controller' => 'users', 'action' => 'register')
 						);
 					?>
@@ -64,7 +63,7 @@
 				<? } ?>
 				<li>
 					<?=$html->link(
-							'about',
+							__('about',true),
 							array('controller' => 'pages', 'action' => 'display', 'about')
 						);
 					?>
@@ -72,51 +71,59 @@
 				<? if($session->read('Auth.User.id')) { ?>
 				<li>
 					<?=$html->link(
-							'settings',
+							__('settings',true),
 							'/users/settings/' . $session->read('Auth.User.public_key')
 						);
 					?>
 				</li>
 				<? } ?>
+				<li>
+				    <a href='#'><?php __('change language'); ?></a>
+				    <ul>
+				        <li><?=$html->link(__('english',true),'/lang/eng')?></li>
+				        <li><?=$html->link(__('french',true),'/lang/fre')?></li>
+				        <li><?=$html->link(__('chinese',true),'/lang/chi')?></li>
+				    </ul>
+				</li>
 				<? if($session->check('Auth.User.id') && $session->read('Auth.User.permission') != '') { ?>
 				<li>
 					<?=$html->link(
-							'admin',
+							__('admin',true),
 							array('controller' => 'users', 'action' => 'admin')
 						);
 					?>
 					<ul>
 						<li>
 							<?=$html->link(
-									'Settings',
+									ucfirst(__('settings',true)),
 									array('controller' => 'users', 'action' => 'admin')
 								);
 							?>
 						</li>
 						<li>
 							<?=$html->link(
-									'Flagged Posts',
+									ucfirst(__('Flagged Posts',true)),
 									array('controller' => 'users', 'action' => 'flagged')
 								);
 							?>
 						</li>
 						<li>
 							<?=$html->link(
-									'User Management',
+									ucfirst(__('User Management',true)),
 									array('controller' => 'users', 'action' => 'admin_list')
 								);
 							?>
 						</li>
 						<li>
 							<?=$html->link(
-									'Blacklist',
+									ucfirst(__('Blacklist',true)),
 									array('controller' => 'users', 'action' => 'list_blacklist')
 							);
 							?>
 						</li>
 						<li>
 							<?=$html->link(
-									'Remote Settings',
+									ucfirst(__('Remote Settings',true)),
 									array('controller' => 'users', 'action' => 'remote_settings')
 							);
 							?>
@@ -128,7 +135,7 @@
 				<? if($session->check('Auth.User.id') && $session->read('Auth.User.registered') == 1) { ?>
 				<li>
 					<?=$html->link(
-							'logout',
+							__('logout',true),
 							array('controller' => 'users', 'action' => 'logout')
 						);
 					?>
@@ -139,24 +146,20 @@
 	</div>
 
 	<div class="wrapper">
-        <a href="/"><?php echo $html->image('logo.png', array('alt' => 'Logo', 'id' => 'logo')); ?></a>
+        <a href="<?=$this->webroot; ?>"><?php echo $html->image('logo.png', array('alt' => 'Logo', 'id' => 'logo')); ?></a>
 
 		  <ul class="tabs">
 		    <li>
-		    	<?=$html->link(
-						'Questions',
-						'/'
-					);
-				?>
+		    	<?=$html->link(__('Questions',true),'/');?>
 		    </li>
-		    <li><a href="/tags">Tags</a></li>
-		    <li><a href="/questions/unanswered">Unsolved</a></li>
-		    <li><a href="/users">Users</a></li>
+		    <li><?=$html->link(__('Tags',true),'/tags');?></li>
+		    <li><?=$html->link(__('Unsolved',true),'/questions/unanswered');?></li>
+		    <li><?=$html->link(__('Users',true),'/users');?></li>
 		  </ul>
 		  <ul class="tabs" style="float: right;">
 			<li>
 				<?=$html->link(
-						'Ask a Question',
+						__('ask a question',true),
 						array('controller' => 'posts', 'action' => 'ask')
 					);
 				?>
@@ -183,8 +186,8 @@
 			<? } ?>
 			<?=$widget['Widget']['content'];?>
 		<? if(isset($admin) && $admin) { ?>
-			<a href="/widgets/edit/<?=$widget['Widget']['id'];?>" title="Edit this Widget">edit</a>	| 
-			<a href="/widgets/delete/<?=$widget['Widget']['id'];?>" title="Delete Widget">del</a>	
+			<a href="/widgets/edit/<?=$widget['Widget']['id'];?>" title="Edit this Widget"><?php __('edit'); ?></a>	| 
+			<a href="/widgets/delete/<?=$widget['Widget']['id'];?>" title="Delete Widget"><?php __('del'); ?></a>	
 		<? } ?>
 		  </div>
 		<?
@@ -194,7 +197,7 @@
 	    if(isset($admin) && $admin):
     ?>
         <a href="/widgets/add<?php echo $_SERVER['REQUEST_URI']; ?>">
-            <img src="/img/icons/plugin_edit.png" alt="Edit"/> add widgets to this page.
+            <img src="/img/icons/plugin_edit.png" alt="Edit"/><?php __('add widgets to this page'); ?>.
         </a>
         <? endif; ?>
 
@@ -205,10 +208,13 @@
   <div id="footer" class="wrapper">
 	<div class="left">
     <ul class="tabs">
-      <li><a href="/">home</a></li>
-	  <li><a href="/questions/ask">ask a question</a></li>
+      <li>
+      <?=$html->link(__('home',true),'/');?></li>
+	  <li>
+      <?=$html->link(__('ask a question',true),'/questions/ask');?></li>
 
-      <li><a href="/about">about</a></li>
+      <li>
+      <?=$html->link(__('about',true),'/about');?></li>
     </ul>
 
 	</div>

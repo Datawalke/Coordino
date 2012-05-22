@@ -10,8 +10,8 @@ class InstallerController extends AppController {
 		//$this->Auth->allow('*');
 	}
 	
-	public function start() {
-		$this->set('write_config', is_writable(APP.'/config'));
+        public function start() {
+           $this->set('write_config', is_writable(APP.'/config'));
 		$this->set('write_tmp', is_writable(TMP));
 		$this->set('write_uploads', is_writable(APP.'/webroot/img/uploads/users'));
 		$this->set('write_thumbs', is_writable(APP.'/webroot/img/thumbs'));

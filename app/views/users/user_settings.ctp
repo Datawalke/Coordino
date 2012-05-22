@@ -1,24 +1,25 @@
 <div>
-		<h3>Profile Image</h3>
+		<h3><?php __('Profile Image'); ?></h3>
 		<?=$thumbnail->show(array(
-						        'save_path' => $_SERVER['DOCUMENT_ROOT'] . '/app/webroot/img/thumbs',
-						        'display_path' => '/img/thumbs',
-						        'error_image_path' => '/img/answerAvatar.png',
-						        'src' => '/app/webroot' . $user_info['User']['image'],
+						        'save_path' => WWW_ROOT . 'img/thumbs',
+						        'display_path' => $this->webroot.  'img/thumbs',
+						        'error_image_path' => $this->webroot. 'img/answerAvatar.png',
+						        'src' => WWW_ROOT .  $user_info['User']['image'],
 						        'w' => 75,
 								'h' => 75,
-								'q' => 100)
+								'q' => 100,
+		                        'alt' => $user_info['User']['username'] . 'picture' )
 			);
 		?>
 	<?=$trickyFileInput->draw('picker', array(
 								'form' => array(
 									'id' => 'User' . $user_info['User']['public_key'] . 'ImageChangeForm',
 									'name' => 'User' . $user_info['User']['public_key'] . 'ImageChangeForm',
-									'action' => '/users/' . $user_info['User']['public_key'] . '/upload'),
+									'action' => $this->webroot.'users/' . $user_info['User']['public_key'] . '/upload'),
 								'input' => array(
 									'name' => 'data[Upload][file]',
 									'submitOnChange' => true),
-								'image' => '/img/buttons/choose_image.gif'));
+								'image' => $this->webroot.'img/buttons/choose_image.gif'));
 	?>
 	</div>
 <form action="?" method="post" >

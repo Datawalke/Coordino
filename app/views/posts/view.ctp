@@ -44,21 +44,23 @@
 		<div style="width: 100px; float: left;">
         <? if($question['Post']['user_id'] != $session->read('Auth.User.id')) { ?>
         <?=$html->link(
-				'flag',
+				__('flag',true),
 				'/flag/' . $question['Post']['public_key']
 			 );
         ?>
-        <? } ?>
-		<? if($question['Post']['user_id'] == $session->read('Auth.User.id') || isset($rep_rights) || $admin) { ?>
+        <?php } 
+        if($question['Post']['user_id'] == $session->read('Auth.User.id') || isset($rep_rights) || $admin) { ?>
 		| 
 		<?=$html->link(
-				'edit',
+				__('edit',true),
 				'/questions/' . $question['Post']['public_key'] . '/' . $question['Post']['url_title'] . '/edit');
 		}
 		?>
 
         <?php if($admin): ?>
-               | <a href="/posts/delete/<?php echo $question['Post']['id'];?>">del</a>
+               | <?=$html->link(
+                       __('del',true),
+               '/posts/delete/'.$question['Post']['id']); ?></a>
         <?php endif; ?>
 
 		</div>
@@ -72,18 +74,16 @@
 		<div class="user_info wrapper">
 			<div style="float: left;">
 				<div class="thumb_with_border">
-			<a href="/users/<?=$question['User']['public_key'];?>/<?=$question['User']['username'];?>"><?
-				$thumbnail->show(array(
-						        'save_path' => $_SERVER['DOCUMENT_ROOT'] . '/app/webroot/img/thumbs',
-						        'display_path' => '/img/thumbs',
-						        'error_image_path' => '/img/answerAvatar.png',
-						        'src' => '/app/webroot' . $question['User']['image'],
+				<?php echo $html->link( $thumbnail->get(array(
+						        'save_path' => WWW_ROOT . 'img/thumbs',
+						        'display_path' => $this->webroot.  'img/thumbs',
+						        'error_image_path' => $this->webroot. 'img/answerAvatar.png',
+						        'src' => WWW_ROOT .  $question['User']['image'],
 						        'w' => 25,
 								'h' => 25,
 								'q' => 100,
-								'border' => '1px solid gray')
-				); 
-			?></a>
+		                        'alt' => $question['User']['username'] . ' picture' )
+			),'/users/' .$question['User']['public_key'].'/'.$question['User']['username'], array('escape' => false));?>
 				</div>
 				<div style="float: left; line-height: .9;">
 					<div>
@@ -143,7 +143,7 @@
 	</div>
 	<div class="comment_actions">
 	<?=$html->link(
-			'add comment',
+			__('add comment',true),
 			'#');
 	?>
 	</div>
@@ -151,7 +151,7 @@
 </div>
 
 <div id="answers">
-	<h2>Answers</h2>
+	<h2><?php __n('answer','answers',count($answers));?></h2>
 	<hr/>
 	<? foreach($answers as $answer) { ?>
 	<div class="<?=($answer['Answer']['status'] == 'correct') ? 'answered' : 'answer';?>" id="a_<?=$answer['Answer']['public_key']?>">
@@ -190,18 +190,16 @@
 			<div class="user_info wrapper">
 				<div style="float: left;">
 				<div class="thumb_with_border">
-			<a href="/users/<?=$answer['User']['public_key'];?>/<?=$answer['User']['username'];?>"><?
-				$thumbnail->show(array(
-						        'save_path' => $_SERVER['DOCUMENT_ROOT'] . '/app/webroot/img/thumbs',
-						        'display_path' => '/img/thumbs',
-						        'error_image_path' => '/img/answerAvatar.png',
-						        'src' => '/app/webroot' . $answer['User']['image'],
+				<?php echo $html->link( $thumbnail->get(array(
+						        'save_path' => WWW_ROOT . 'img/thumbs',
+						        'display_path' => $this->webroot.  'img/thumbs',
+						        'error_image_path' => $this->webroot. 'img/answerAvatar.png',
+						        'src' => WWW_ROOT .  $answer['User']['image'],
 						        'w' => 25,
 								'h' => 25,
 								'q' => 100,
-								'border' => '1px solid gray')
-				); 
-			?></a>
+		                        'alt' => $answer['User']['username'] . 'picture' )
+			),'/users/' .$answer['User']['public_key'].'/'.$answer['User']['username'], array('escape' => false));?>
 				</div>
 				<div style="float: left; line-height: .9;">
 					<div>
@@ -236,7 +234,7 @@
 			<? if($answer['Answer']['user_id'] == $session->read('Auth.User.id') || isset($rep_rights)) { ?>
 			<span class="quiet">|</span>
 			<?=$html->link(
-					'edit',
+					__('edit',true),
 					'/answers/' . $answer['Answer']['public_key'] . '/edit');
 			}
 			?>
@@ -287,7 +285,7 @@
 			}
 		}
 	?>
-	<h3>Your Answer</h3>
+	<h3><?php __('your answer'); ?></h3>
 	<?=$form->create(null, array(
 			'url' => '/questions/' . $question['Post']['public_key'] . '/' . $question['Post']['url_title'] . '/answer')
 		); ?>
@@ -311,5 +309,5 @@
 	<?$recaptcha->display_form('echo');?>
 	
 	<br/>
-	<?=$form->end('Answer');?>
+	<?=$form->end(__d('verb','Answer',true));?>
 </div>
