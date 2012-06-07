@@ -1,0 +1,3 @@
+2012-05-09 04:56:05 Notice: Notice (8): Undefined variable: count in [/home/dev/public_html/Coordino/app/views/posts/display.ctp, line 12]
+2012-05-09 05:39:58 Notice: Notice (8): Use of undefined constant DEFAULT_LANGUAGE - assumed 'DEFAULT_LANGUAGE' in [/home/dev/public_html/Coordino/app/controllers/components/p28n.php, line 7]
+2012-05-09 06:04:49 Notice: Notice (8): Undefined variable: questions in [/home/dev/public_html/Coordino/app/models/tag.php, line 89]

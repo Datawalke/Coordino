@@ -1,15 +1,15 @@
-<?
+<?php
 foreach($questions as $question) { ?>
 <div class="list_question wrapper">
-	
+	<?php //var_dump($question); die(count($question['Answer'])); ?>
 	<div class="wrapper" style="float: left;">
 	<div class="list_answers <?= (count($question['Answer']) < 1) ? 'list_answers_unanswered' : 'list_answers_answered';?>">
 		<span class="large_text"><?=count($question['Answer']);?></span>
-		<span>answer<?=(count($question['Answer']) == 1) ? '' : 's';?></span>
+		<span><?php __n('answer','answers',count($question['Answer']))?></span>
 	</div>
 	<div class="list_views quiet">
 		<span class="large_text"><?=$question['Post']['views'];?></span>
-		<span>view<?=($question['Post']['views'] == 1) ? '' : 's';?></span>
+		<span><?php __n('view','views',$question['Post']['views']);?></span>
 	</div>
 	</div>
 	
@@ -25,19 +25,17 @@ foreach($questions as $question) { ?>
 		<div class="wrapper">
 			<div style="float: right;">
 				<div class="thumb_with_border">
-			<a href="/users/<?=$question['User']['public_key'];?>/<?=$question['User']['username'];?>"><?
-				$thumbnail->show(array(
-						        'save_path' => $_SERVER['DOCUMENT_ROOT'] . '/app/webroot/img/thumbs',
-						        'display_path' => '/img/thumbs',
-						        'error_image_path' => '/img/answerAvatar.png',
-						        'src' => '/app/webroot' . $question['User']['image'],
+		
+				<?php echo $html->link( $thumbnail->get(array(
+						        'save_path' => WWW_ROOT . 'img/thumbs',
+						        'display_path' => $this->webroot.  'img/thumbs',
+						        'error_image_path' => $this->webroot. 'img/answerAvatar.png',
+						        'src' => WWW_ROOT .  $question['User']['image'],
 						        'w' => 25,
 								'h' => 25,
 								'q' => 100,
-								'border' => '1px solid gray',
-								'alt' => $question['User']['username'])
-				); 
-			?></a>
+		                        'alt' => $question['User']['username'] . 'picture' )
+			),'/users/' .$question['User']['public_key'].'/'.$question['User']['username'], array('escape' => false));?>
 				</div>
 				<div style="float: left; line-height: .9;">
 					<div>

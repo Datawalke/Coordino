@@ -1,5 +1,5 @@
 <p>
-	You are currently an anonymous user. Login below to sign into your account.
+	<?php __("You are currently an anonymous user. Login below to sign into your account"); ?>.
 </p>
 <p>
 	Want to get an account? 

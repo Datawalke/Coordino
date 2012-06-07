@@ -32,7 +32,7 @@
 </ul>
 
 <?	if($continue) { ?>
-	<p>Looks like you are good to go. <a href="/install/database-config">Lets Continue!</a></p>
+	<p>Looks like you are good to go. <a href="install/database-config">Lets Continue!</a></p>
 <? } else { ?>
 	<p><span class="error">Look above for errors you must fix.</span></p>
 <? } ?>

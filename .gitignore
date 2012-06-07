@@ -1,0 +1,11 @@
+tmp/*
+config/database.php
+app/tmp/*
+app/config/database.php
+!empty
+.buildpath
+.project
+.settings/*
+
+app/webroot/img/thumbs/*
+app/webroot/img/uploads/*

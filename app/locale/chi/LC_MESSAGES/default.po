@@ -1,0 +1,145 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2012-05-09 05:47+0200\n"
+"PO-Revision-Date: 2012-05-09 08:16+0100\n"
+"Last-Translator: Romain DARY <romain.dary@eoko.fr>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=0; plural=1;\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Country: CHINA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: /views/layouts/default.ctp:49
+msgid "login"
+msgstr ""
+
+#: /views/layouts/default.ctp:58
+msgid "register"
+msgstr ""
+
+#: /views/layouts/default.ctp:66;213
+msgid "about"
+msgstr ""
+
+#: /views/layouts/default.ctp:74;97
+msgid "settings"
+msgstr ""
+
+#: /views/layouts/default.ctp:81
+msgid "change language"
+msgstr ""
+
+#: /views/layouts/default.ctp:83
+msgid "english"
+msgstr ""
+
+#: /views/layouts/default.ctp:84
+msgid "french"
+msgstr ""
+
+#: /views/layouts/default.ctp:90
+msgid "admin"
+msgstr ""
+
+#: /views/layouts/default.ctp:104
+msgid "Flagged Posts"
+msgstr ""
+
+#: /views/layouts/default.ctp:111
+msgid "User Management"
+msgstr ""
+
+#: /views/layouts/default.ctp:118
+msgid "Blacklist"
+msgstr ""
+
+#: /views/layouts/default.ctp:125
+msgid "Remote Settings"
+msgstr ""
+
+#: /views/layouts/default.ctp:137
+msgid "logout"
+msgstr ""
+
+#: /views/layouts/default.ctp:152
+msgid "Questions"
+msgstr ""
+
+#: /views/layouts/default.ctp:154
+msgid "Tags"
+msgstr ""
+
+#: /views/layouts/default.ctp:155
+msgid "Unsolved"
+msgstr ""
+
+#: /views/layouts/default.ctp:156
+msgid "Users"
+msgstr "用户"
+
+#: /views/layouts/default.ctp:161;211
+msgid "ask a question"
+msgstr "问一个问题"
+
+#: /views/layouts/default.ctp:188
+#: /views/posts/view.ctp:55;237
+msgid "edit"
+msgstr ""
+
+#: /views/layouts/default.ctp:189
+#: /views/posts/view.ctp:62
+msgid "del"
+msgstr ""
+
+#: /views/layouts/default.ctp:199
+msgid "add widgets to this page"
+msgstr ""
+
+#: /views/layouts/default.ctp:210
+msgid "home"
+msgstr ""
+
+#: /views/posts/display.ctp:8
+#: /views/posts/view.ctp:154
+msgid "answer"
+msgid_plural "answers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /views/posts/display.ctp:12
+msgid "view"
+msgid_plural "views"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /views/posts/view.ctp:47
+msgid "flag"
+msgstr ""
+
+#: /views/posts/view.ctp:146
+msgid "add comment"
+msgstr ""
+
+#: /views/posts/view.ctp:288
+msgid "your answer"
+msgstr ""
+
+#: /views/users/login.ctp:2
+msgid "You are currently an anonymous user. Login below to sign into your account"
+msgstr ""
+
+#: /views/users/user_settings.ctp:2
+msgid "Profile Image"
+msgstr ""
+
+#: /webroot/test.php:99
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+

@@ -33,7 +33,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 0);
+	Configure::write('debug', 2);
 
 /**
  * CakePHP Log Level:
@@ -91,7 +91,7 @@
  * Turn off all caching application-wide.
  *
  */
-	//Configure::write('Cache.disable', true);
+	Configure::write('Cache.disable', true);
 
 /**
  * Enable cache checking.
@@ -307,3 +307,4 @@
 
     Configure::write('recaptcha.publickey', '6LcgswkAAAAAAC15Pg3j8YDKFCi-mHYO_qHpoPH6');
     Configure::write('recaptcha.privatekey', '6LcgswkAAAAAAApN8RkAjBhu2RgDGXGwh5onuUpW');
+    Configure::write('Config.language', 'fre');

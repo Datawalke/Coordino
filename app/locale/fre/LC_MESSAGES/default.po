@@ -1,0 +1,148 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Coordino\n"
+"POT-Creation-Date: 2012-05-09 05:47+0200\n"
+"PO-Revision-Date: 2012-05-09 05:48+0100\n"
+"Last-Translator: Romain DARY <romain.dary@eoko.fr>\n"
+"Language-Team: Eoko <romain.dary@eoko.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: /views/layouts/default.ctp:49
+msgid "login"
+msgstr "connexion"
+
+#: /views/layouts/default.ctp:58
+msgid "register"
+msgstr "s'enregistrer"
+
+#: /views/layouts/default.ctp:66;213
+msgid "about"
+msgstr "à propos"
+
+#: /views/layouts/default.ctp:74;97
+msgid "settings"
+msgstr "paramètres"
+
+#: /views/layouts/default.ctp:81
+msgid "change language"
+msgstr "changer de langue"
+
+#: /views/layouts/default.ctp:83
+msgid "english"
+msgstr "anglais"
+
+#: /views/layouts/default.ctp:84
+msgid "french"
+msgstr "français"
+
+#: /views/layouts/default.ctp:90
+msgid "admin"
+msgstr "admin"
+
+#: /views/layouts/default.ctp:104
+msgid "Flagged Posts"
+msgstr "Contribution signalé"
+
+#: /views/layouts/default.ctp:111
+msgid "User Management"
+msgstr "Gestion des membres"
+
+#: /views/layouts/default.ctp:118
+msgid "Blacklist"
+msgstr "Liste noire"
+
+#: /views/layouts/default.ctp:125
+msgid "Remote Settings"
+msgstr "Paramètres distants"
+
+#: /views/layouts/default.ctp:137
+msgid "logout"
+msgstr "Déconnexion"
+
+#: /views/layouts/default.ctp:152
+msgid "Questions"
+msgstr "Questions"
+
+#: /views/layouts/default.ctp:154
+msgid "Tags"
+msgstr "Mot-clés"
+
+#: /views/layouts/default.ctp:155
+msgid "Unsolved"
+msgstr "Non-résolue"
+
+#: /views/layouts/default.ctp:156
+msgid "Users"
+msgstr "Utilisateur"
+
+#: /views/layouts/default.ctp:161;211
+msgid "ask a question"
+msgstr "poser une question"
+
+#: /views/layouts/default.ctp:188
+#: /views/posts/view.ctp:55;237
+msgid "edit"
+msgstr "édit"
+
+#: /views/layouts/default.ctp:189
+#: /views/posts/view.ctp:62
+msgid "del"
+msgstr "suppr"
+
+#: /views/layouts/default.ctp:199
+msgid "add widgets to this page"
+msgstr "ajouter des widgets à cette page"
+
+#: /views/layouts/default.ctp:210
+msgid "home"
+msgstr "accueil"
+
+#: /views/posts/display.ctp:8
+#: /views/posts/view.ctp:154
+msgid "answer"
+msgid_plural "answers"
+msgstr[0] "réponse"
+msgstr[1] "réponses"
+
+#: /views/posts/display.ctp:12
+msgid "view"
+msgid_plural "views"
+msgstr[0] "vue"
+msgstr[1] "vues"
+
+#: /views/posts/view.ctp:47
+msgid "flag"
+msgstr "signaler"
+
+#: /views/posts/view.ctp:146
+msgid "add comment"
+msgstr "ajouter un commentaire"
+
+#: /views/posts/view.ctp:288
+#, fuzzy
+msgid "your answer"
+msgstr "réponse"
+
+#: /views/users/login.ctp:2
+msgid "You are currently an anonymous user. Login below to sign into your account"
+msgstr "Vous êtes actuellement un utilisateur anonyme. Veuillez vous identifier ci-dessous pour acceder à votre compte."
+
+#: /views/users/user_settings.ctp:2
+msgid "Profile Image"
+msgstr "Image de profile"
+
+#: /webroot/test.php:99
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
+#~ msgid "ask a Question"
+#~ msgstr "poser une question"
