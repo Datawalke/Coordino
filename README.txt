@@ -1,20 +1,4 @@
 ==================================
-Notes
-==================================
-Add support for multilingual. French is going to be added. English is full-supported as default language. 
-Chinese has been added for fun ^^.
-
-There are some improvement and a lot of them are not fully stable. Therefore, I'm not a cakephp developper... 
-but the project is really cool and well writting.
-
-
-==================================
-Logs
-==================================
-To be complete
-
-
-==================================
 Requirements
 ==================================
 All that is required is your basic LAMP/WAMP stack. 
