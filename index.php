@@ -1,5 +1,3 @@
-ddfdf
-
 <?php
 /**
  * Requests collector.
