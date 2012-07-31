@@ -87,6 +87,7 @@ Then a message is compiled with the User's username, email, a timestamp, and you
 Contributors - Thank you!
 ==================================
 * do9iigane
+* cybervirax
 * ultramundane
 * datawalke
 Don't see yourself Just edit the Readme!
