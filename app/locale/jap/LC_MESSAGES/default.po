@@ -1,0 +1,145 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Coordino\n"
+"POT-Creation-Date: 2012-05-09 05:47+0200\n"
+"PO-Revision-Date: 2012-07-31 21:44+0900\n"
+"Last-Translator: 毒眼鏡 <dokumegane@interestic.com>\n"
+"Language-Team: Eoko <romain.dary@eoko.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Language: fr_FR\n"
+
+#: /views/layouts/default.ctp:49
+msgid "login"
+msgstr "ログイン"
+
+#: /views/layouts/default.ctp:58
+msgid "register"
+msgstr "新規登録"
+
+#: /views/layouts/default.ctp:66;213
+msgid "about"
+msgstr "about"
+
+#: /views/layouts/default.ctp:74;97
+msgid "settings"
+msgstr "設定"
+
+#: /views/layouts/default.ctp:81
+msgid "change language"
+msgstr "言語の変更"
+
+#: /views/layouts/default.ctp:83
+msgid "english"
+msgstr "英語"
+
+#: /views/layouts/default.ctp:84
+msgid "french"
+msgstr "フランス語"
+
+#: /views/layouts/default.ctp:90
+msgid "admin"
+msgstr "管理"
+
+#: /views/layouts/default.ctp:104
+msgid "Flagged Posts"
+msgstr "お気に入り"
+
+#: /views/layouts/default.ctp:111
+msgid "User Management"
+msgstr "ユーザー管理"
+
+#: /views/layouts/default.ctp:118
+msgid "Blacklist"
+msgstr "ブラックリスト"
+
+#: /views/layouts/default.ctp:125
+msgid "Remote Settings"
+msgstr "リモート設定"
+
+#: /views/layouts/default.ctp:137
+msgid "logout"
+msgstr "ログアウト"
+
+#: /views/layouts/default.ctp:152
+msgid "Questions"
+msgstr "質問"
+
+#: /views/layouts/default.ctp:154
+msgid "Tags"
+msgstr "タグ"
+
+#: /views/layouts/default.ctp:155
+msgid "Unsolved"
+msgstr "未解決"
+
+#: /views/layouts/default.ctp:156
+msgid "Users"
+msgstr "ユーザー"
+
+#: /views/layouts/default.ctp:161;211
+msgid "ask a question"
+msgstr "質問する"
+
+#: /views/layouts/default.ctp:188 /views/posts/view.ctp:55;237
+msgid "edit"
+msgstr "編集"
+
+#: /views/layouts/default.ctp:189 /views/posts/view.ctp:62
+msgid "del"
+msgstr "削除"
+
+#: /views/layouts/default.ctp:199
+msgid "add widgets to this page"
+msgstr "このページにウィジェットを追加"
+
+#: /views/layouts/default.ctp:210
+msgid "home"
+msgstr "ホーム"
+
+#: /views/posts/display.ctp:8 /views/posts/view.ctp:154
+msgid "answer"
+msgid_plural "answers"
+msgstr[0] "回答"
+msgstr[1] "回答"
+
+#: /views/posts/display.ctp:12
+msgid "view"
+msgid_plural "views"
+msgstr[0] "閲覧"
+msgstr[1] "閲覧"
+
+#: /views/posts/view.ctp:47
+msgid "flag"
+msgstr "お気に入り"
+
+#: /views/posts/view.ctp:146
+msgid "add comment"
+msgstr "コメントする"
+
+#: /views/posts/view.ctp:288
+msgid "your answer"
+msgstr "回答"
+
+#: /views/users/login.ctp:2
+msgid ""
+"You are currently an anonymous user. Login below to sign into your account"
+msgstr ""
+"あなたは現在匿名ユーザーです。ログイン、もしくはサインインしてください。"
+
+#: /views/users/user_settings.ctp:2
+msgid "Profile Image"
+msgstr "プロフィール画像"
+
+#: /webroot/test.php:99
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
+#~ msgid "ask a Question"
+#~ msgstr "poser une question"

@@ -1,0 +1,28 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2012-05-09 03:18+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /views/users/login.ctp:2
+msgid "You are currently an anonymous user. Login below to sign into your account"
+msgstr ""
+
+#: /views/users/user_settings.ctp:2
+msgid "Profile Image"
+msgstr ""
+
+#: /webroot/test.php:99
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
