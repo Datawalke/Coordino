@@ -83,4 +83,10 @@ header('Location: ' . $url);
 The username and email address are pulled from your current userbase. 
 Then a message is compiled with the User's username, email, a timestamp, and your remote auth key. That message is then md5'd into a check hash. A URL is then formed with the correct information and the remote logged in user is then forwarded to the Coordino Remote Access URL.
 
-
+==================================
+Contributors - Thank you!
+==================================
+* do9iigane
+* ultramundane
+* datawalke
+Don't see yourself Just edit the Readme!
