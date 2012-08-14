@@ -2,6 +2,8 @@
 class Tag extends AppModel {
 
 	var $name = 'Tag';
+	var $actsAs = array('Containable');
+    
     var $hasAndBelongsToMany = array(
         'Post' => array(
             'className'    => 'Post',
@@ -54,7 +56,8 @@ class Tag extends AppModel {
                             'fields' => array('User.public_key', 'User.username')
                         ),
                         'Answer' => array(
-                            'fields' => array('Answer.id')
+                            'fields' => array('Answer.id'),
+                            'conditions' => array('Answer.flags <' => $flag_check['Setting']['value'])
                         ),
                         'conditions' => array('Post.flags <' => $flag_check['Setting']['value']),
                         'fields' => array('Post.title', 'Post.url_title', 'Post.public_key',
