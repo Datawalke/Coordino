@@ -117,7 +117,7 @@ Contributors - Thank you!
 ==================================
 
 * do9iigane
-* cybervirax
+* iam-merlin
 * ultramundane
 * datawalke
 
