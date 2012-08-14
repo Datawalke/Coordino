@@ -1,10 +1,9 @@
-
 Requirements
 ==================================
 All that is required is your basic LAMP/WAMP stack. 
 However the best-case conditions:
-	* PHP5+
-	* MySQL 5.1+
+* PHP5+
+* MySQL 5.1+
 	
 
 How to Install Coordino
@@ -21,16 +20,16 @@ Widget Tokens
 Tokens may be used to render dynamic content to the user. 
 
 The following tokens are available: 
-	* The logged in user's username.       - [user.username]
-	* The logged in user's reputation.     - [user.reputation]
-	* The logged in user's age.            - [user.age]
-	* The logged in user's website.        - [user.website]
-	* The logged in user's information.    - [user.info]
-	* The logged in user's location.       - [user.location]
-	* The logged in user's answer count.   - [user.answer-count]
-	* The logged in user's comment count.  - [user.comment-count]
-	* The logged in user's question count. - [user.question-count]
-	* A link to the user's profile.        - [user.profile-link]
+* The logged in user's username.       - [user.username]
+* The logged in user's reputation.     - [user.reputation]
+* The logged in user's age.            - [user.age]
+* The logged in user's website.        - [user.website]
+* The logged in user's information.    - [user.info]
+* The logged in user's location.       - [user.location]
+* The logged in user's answer count.   - [user.answer-count]
+* The logged in user's comment count.  - [user.comment-count]
+* The logged in user's question count. - [user.question-count]
+* A link to the user's profile.        - [user.profile-link]
 	
 For example:
 
@@ -43,8 +42,8 @@ Remote Auth. Logins
 ==================================
 Coordino works in two modes: 
 
-	1. An internal userbase. (Remote Auth Only "No")
-	2. Remote userbase. (Remote Auth Only "Yes")
+1. An internal userbase. (Remote Auth Only "No")
+2. Remote userbase. (Remote Auth Only "Yes")
 
 These settings may be changed in the administration setting under "Admin" -> "Remote Settings"
 
@@ -55,39 +54,39 @@ However, if you have an external userbase already and do not wish to have all of
 
 The following user details from your userbase are needed:
 
-	- Username
-	- Email Address
+- Username
+- Email Address
 
 The following extra message details are needed:
 
-	- Timestamp
-	- Remote Auth Key (Found in Remote Settings)
-	- Hash
+- Timestamp
+- Remote Auth Key (Found in Remote Settings)
+- Hash
 
 Take the following example in PHP:
 
-	``` php
-	/*
-	 * Remote authentication for PHP
-	 * This is meant to be used as a template to base the integration with your application.  
-	 */
+```Php
+/*
+ * Remote authentication for PHP
+ * This is meant to be used as a template to base the integration with your application.  
+ */
 
-	// The following values should comefrom your source of information
-	$username = 'BillyRogan';
-	$email = 'rbillyscool@aol.com';
+// The following values should comefrom your source of information
+$username = 'BillyRogan';
+$email = 'rbillyscool@aol.com';
 
-	// Insert your Authentication key here
-	$key = '98y94NIUfafnajskfn9823JNAIUz'; 
+// Insert your Authentication key here
+$key = '98y94NIUfafnajskfn9823JNAIUz'; 
 
-	// Build the Message
-	$timestamp = time();
-	$message = $username . $email . $timestamp . $key;
-	$hash= md5($message);
+// Build the Message
+$timestamp = time();
+$message = $username . $email . $timestamp . $key;
+$hash= md5($message);
 	
-	// Set the URL of your Answer Engine install and form the correct remote authentication URL.
-	$url = 'http://your.domain.com/coordino_install/access/remote' . $name . '/' . $email . '/' . $timestamp . '/' . $hash;
-	header('Location: ' . $url);
-	```
+// Set the URL of your Answer Engine install and form the correct remote authentication URL.
+$url = 'http://your.domain.com/coordino_install/access/remote' . $name . '/' . $email . '/' . $timestamp . '/' . $hash;
+header('Location: ' . $url);
+```
 
 The username and email address are pulled from your current userbase. 
 Then a message is compiled with the User's username, email, a timestamp, and your remote auth key. That message is then md5'd into a check hash. A URL is then formed with the correct information and the remote logged in user is then forwarded to the Coordino Remote Access URL.
@@ -117,9 +116,9 @@ Run this command in the root path of Coordino :
 Contributors - Thank you!
 ==================================
 
-	* do9iigane
-	* cybervirax
-	* ultramundane
-	* datawalke
+* do9iigane
+* cybervirax
+* ultramundane
+* datawalke
 
 Don't see yourself Just edit the Readme!
