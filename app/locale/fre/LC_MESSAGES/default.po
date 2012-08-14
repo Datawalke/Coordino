@@ -4,10 +4,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Coordino\n"
-"POT-Creation-Date: 2012-05-09 05:47+0200\n"
-"PO-Revision-Date: 2012-05-09 05:48+0100\n"
+"POT-Creation-Date: 2012-08-14 12:01+0200\n"
+"PO-Revision-Date: 2012-08-14 12:13+0100\n"
 "Last-Translator: Romain DARY <romain.dary@eoko.fr>\n"
 "Language-Team: Eoko <romain.dary@eoko.fr>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,6 +16,69 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: /controllers/posts_controller.php:40
+msgid "You do not have permission to access that.."
+msgstr "Vous n'avez pas la permission pour accéder à ça."
+
+#: /controllers/posts_controller.php:44
+msgid "Post deleted"
+msgstr "Message supprimé"
+
+#: /controllers/posts_controller.php:49
+#: /views/layouts/default.ctp:162
+#: /views/posts/ask.ctp:68;116
+msgid "Ask a question"
+msgstr "Poser une question"
+
+#: /controllers/posts_controller.php:126
+msgid "Your question has been answered!"
+msgstr "Votre question a eu une réponse!"
+
+#: /controllers/posts_controller.php:157
+msgid "Invalid reCAPTCHA entered."
+msgstr "Le reCAPTCHA renseigné est invalide."
+
+#: /controllers/posts_controller.php:407
+msgid "The question you are trying to view no longer exists."
+msgstr "La question que vous essayez de consulter n'existe plus."
+
+#: /controllers/posts_controller.php:447
+msgid "That is not your question to edit, and you need more reputation!"
+msgstr "Ceci n'est pas votre question, vous ne pouvez pas l'éditer et vous avez besoin de plus de réputation!"
+
+#: /controllers/posts_controller.php:542
+msgid "Invalid search type."
+msgstr "Type de recherche invalide."
+
+#: /controllers/posts_controller.php:548;550
+msgid "No results for"
+msgstr "Aucun résultat pour"
+
+#: /controllers/posts_controller.php:582
+msgid "What are you trying to do?"
+msgstr "Qu'est ce que vous essayez de faire?"
+
+#: /controllers/posts_controller.php:591
+msgid "You are not allowed to edit that."
+msgstr "Vous n'êtes pas autorisé à éditer cela."
+
+#: /controllers/posts_controller.php:631
+msgid "You need to be logged in to do that!"
+msgstr "Vous devez être connecter pour faire cela."
+
+#: /controllers/posts_controller.php:634
+msgid "You need more reputation to do that."
+msgstr "Vous avez besoin de plus de réputation pour faire cela."
+
+#: /controllers/posts_controller.php:639
+#, fuzzy
+msgid "You have already flagged that."
+msgstr "Vous avez déjà \"flagged\" cela."
+
+#: /controllers/posts_controller.php:642
+msgid "Post flagged."
+msgstr "Message supprimé."
 
 #: /views/layouts/default.ctp:49
 msgid "login"
@@ -24,87 +88,135 @@ msgstr "connexion"
 msgid "register"
 msgstr "s'enregistrer"
 
-#: /views/layouts/default.ctp:66;213
+#: /views/layouts/default.ctp:66;217
 msgid "about"
 msgstr "à propos"
 
-#: /views/layouts/default.ctp:74;97
+#: /views/layouts/default.ctp:74;98
 msgid "settings"
 msgstr "paramètres"
 
 #: /views/layouts/default.ctp:81
+#: /views/layouts/install.ctp:14
 msgid "change language"
 msgstr "changer de langue"
 
 #: /views/layouts/default.ctp:83
+#: /views/layouts/install.ctp:16
 msgid "english"
 msgstr "anglais"
 
 #: /views/layouts/default.ctp:84
+#: /views/layouts/install.ctp:17
 msgid "french"
 msgstr "français"
 
-#: /views/layouts/default.ctp:90
+#: /views/layouts/default.ctp:85
+msgid "chinese"
+msgstr "chinois"
+
+#: /views/layouts/default.ctp:91
 msgid "admin"
 msgstr "admin"
 
-#: /views/layouts/default.ctp:104
+#: /views/layouts/default.ctp:105
 msgid "Flagged Posts"
 msgstr "Contribution signalé"
 
-#: /views/layouts/default.ctp:111
+#: /views/layouts/default.ctp:112
 msgid "User Management"
 msgstr "Gestion des membres"
 
-#: /views/layouts/default.ctp:118
+#: /views/layouts/default.ctp:119
 msgid "Blacklist"
 msgstr "Liste noire"
 
-#: /views/layouts/default.ctp:125
+#: /views/layouts/default.ctp:126
 msgid "Remote Settings"
 msgstr "Paramètres distants"
 
-#: /views/layouts/default.ctp:137
+#: /views/layouts/default.ctp:138
 msgid "logout"
 msgstr "Déconnexion"
 
-#: /views/layouts/default.ctp:152
+#: /views/layouts/default.ctp:153
 msgid "Questions"
 msgstr "Questions"
 
-#: /views/layouts/default.ctp:154
+#: /views/layouts/default.ctp:155
+#: /views/posts/ask.ctp:90
 msgid "Tags"
 msgstr "Mot-clés"
 
-#: /views/layouts/default.ctp:155
+#: /views/layouts/default.ctp:156
 msgid "Unsolved"
 msgstr "Non-résolue"
 
-#: /views/layouts/default.ctp:156
+#: /views/layouts/default.ctp:157
 msgid "Users"
 msgstr "Utilisateur"
 
-#: /views/layouts/default.ctp:161;211
-msgid "ask a question"
-msgstr "poser une question"
-
-#: /views/layouts/default.ctp:188
+#: /views/layouts/default.ctp:189
 #: /views/posts/view.ctp:55;237
 msgid "edit"
 msgstr "édit"
 
-#: /views/layouts/default.ctp:189
+#: /views/layouts/default.ctp:190
 #: /views/posts/view.ctp:62
 msgid "del"
 msgstr "suppr"
 
-#: /views/layouts/default.ctp:199
+#: /views/layouts/default.ctp:200
 msgid "add widgets to this page"
 msgstr "ajouter des widgets à cette page"
 
-#: /views/layouts/default.ctp:210
+#: /views/layouts/default.ctp:212
 msgid "home"
 msgstr "accueil"
+
+#: /views/layouts/default.ctp:214
+msgid "ask a question"
+msgstr "poser une question"
+
+#: /views/posts/ask.ctp:60
+msgid "Titles must be at least 10 characters long."
+msgstr "Le titre doit contenir un minimum de 10 caractères."
+
+#: /views/posts/ask.ctp:62;79
+msgid "What is your question about?"
+msgstr "Qu'elle est votre question?"
+
+#: /views/posts/ask.ctp:76
+msgid "Title"
+msgstr "Titre"
+
+#: /views/posts/ask.ctp:92
+msgid "Combine multiple words into single-words."
+msgstr "Combinez plusieurs mots en un mot unique"
+
+#: /views/posts/ask.ctp:95
+msgid "Who Are You?"
+msgstr "Qui êtes-vous?"
+
+#: /views/posts/ask.ctp:96
+msgid "Have an account already?"
+msgstr "Avez-vous déjà un compte?"
+
+#: /views/posts/ask.ctp:96
+msgid "Login before answering!"
+msgstr "Veuillez vous identifier avant de poser une question!"
+
+#: /views/posts/ask.ctp:97
+msgid "Name"
+msgstr "Nom"
+
+#: /views/posts/ask.ctp:103
+msgid "Email"
+msgstr "Email"
+
+#: /views/posts/ask.ctp:112
+msgid "Notify me when my question is answered."
+msgstr "Avertissez moi quand ma question aura une réponse."
 
 #: /views/posts/display.ctp:8
 #: /views/posts/view.ctp:154
@@ -128,9 +240,8 @@ msgid "add comment"
 msgstr "ajouter un commentaire"
 
 #: /views/posts/view.ctp:288
-#, fuzzy
 msgid "your answer"
-msgstr "réponse"
+msgstr "votre question"
 
 #: /views/users/login.ctp:2
 msgid "You are currently an anonymous user. Login below to sign into your account"
@@ -142,7 +253,12 @@ msgstr "Image de profile"
 
 #: /webroot/test.php:99
 msgid "Debug setting does not allow access to this url."
-msgstr ""
+msgstr "Les paramètres de debug ne permettent pas d'accéder à cette url."
 
-#~ msgid "ask a Question"
+#: /views/posts/view.ctp:312
+msgid "Answer"
+msgstr "Réponse"
+
+#, fuzzy
+#~ msgid "Ask a Question"
 #~ msgstr "poser une question"
