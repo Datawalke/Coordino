@@ -117,7 +117,7 @@ Contributors - Thank you!
 ==================================
 
 * do9iigane
-* iam-merlin
+* [iam-merlin](https://github.com/iam-merlin)
 * ultramundane
 * datawalke
 
