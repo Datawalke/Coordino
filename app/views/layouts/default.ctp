@@ -159,7 +159,7 @@
 		  <ul class="tabs" style="float: right;">
 			<li>
 				<?=$html->link(
-						__('ask a question',true),
+						__('Ask a question',true),
 						array('controller' => 'posts', 'action' => 'ask')
 					);
 				?>

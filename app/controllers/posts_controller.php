@@ -37,16 +37,16 @@ class PostsController extends AppController {
 
 	public function delete($id) {
         if(!$this->isAdmin($this->Auth->user('id'))) {
-			$this->Session->setFlash('You do not have permission to access that..', 'error');
+			$this->Session->setFlash(__('You do not have permission to access that..',true), 'error');
 			$this->redirect('/');
         }
 		$this->Post->delete($id);
-		$this->Session->setFlash('Post Deleted', 'error');
+		$this->Session->setFlash(__('Post deleted',true), 'error');
 		$this->redirect('/');
 	}
 	
 	public function ask() {
-		$this->set('title_for_layout', 'Ask a question!');
+		$this->set('title_for_layout', __('Ask a question',true));
 		
 		if(!empty($this->data)) {
 			
@@ -123,7 +123,7 @@ class PostsController extends AppController {
                 $this->set('answer', $this->data['Post']['content']);
                 $this->Email->from = 'Answerman <answers@' . $_SERVER['SERVER_NAME'] . '>';
                 $this->Email->to = $user['User']['email'];
-                $this->Email->subject = 'Your question has been answered!';
+                $this->Email->subject = __('Your question has been answered!',true);
                 $this->Email->template = 'notification';
                 $this->Email->sendAs = 'both';
                 $this->Email->send();
@@ -154,7 +154,7 @@ class PostsController extends AppController {
 		if($reCaptcha == true) {
 			if(!$this->Recaptcha->valid($data['reCAPTCHA'])) {
 				$data['Post']['content'] = $this->Markdownify->parseString($data['Post']['content']);
-				$recaptchaErrors = array('recaptcha' => 'Invalid reCAPTCHA entered.');
+				$recaptchaErrors = array('recaptcha' => __('Invalid reCAPTCHA entered.',true));
 				$errors = array(
 					'errors' => $recaptchaErrors,
 					'data' => $data
@@ -404,7 +404,7 @@ class PostsController extends AppController {
 		 * If so redirect.
 		 */
 		if($question['Post']['flags'] >= $flag_check['Setting']['value'] && $this->Setting->repCheck($this->Auth->user('id'), 'rep_edit')) {
-			$this->Session->setFlash('The question you are trying to view no longer exists.', 'error');
+			$this->Session->setFlash(__('The question you are trying to view no longer exists.',true), 'error');
 			$this->redirect('/');
 		}
 		
@@ -444,7 +444,7 @@ class PostsController extends AppController {
             $redirect = $this->Post->findById($redirect['Post']['related_id']);
         }
 		if($question['Post']['user_id'] != $this->Auth->user('id') && !$this->isAdmin($this->Auth->user('id')) && !$this->Setting->repCheck($this->Auth->user('id'), 'rep_edit')) {
-			$this->Session->setFlash('That is not your question to edit, and you need more reputation!', 'error');
+			$this->Session->setFlash(__('That is not your question to edit, and you need more reputation!',true), 'error');
 			$this->redirect('/questions/' . $redirect['Post']['public_key'] . '/' . $redirect['Post']['url_title']);
 		}
         if(!empty($question['Post']['title'])) {
@@ -539,15 +539,15 @@ class PostsController extends AppController {
 
         $keywords = array('hot', 'week', 'month', 'recent', 'solved', 'unanswered');
         if(($search == 'no') && (!in_array($type, $keywords))) {
-            $this->Session->setFlash('Invalid search type.', 'error');
+            $this->Session->setFlash(__('Invalid search type.',true), 'error');
             $this->redirect('/');
         }
 
 		if(empty($questions)) {
             if(isset($type['needle'])) {
-                $this->Session->setFlash('No results for "' . $type['needle'] . '"!', 'error');
+                $this->Session->setFlash(__('No results for',true) . ' "' . $type['needle'] . '"!', 'error');
             }else {
-                $this->Session->setFlash('No results for "' . $type . '"!', 'error');
+                $this->Session->setFlash(__('No results for',true) . ' "' . $type . '"!', 'error');
             }
 			if($this->Post->find('count') > 0) {
             	$this->redirect('/');
@@ -579,7 +579,7 @@ class PostsController extends AppController {
 		 * Check to make sure the Post is an answer
 		 */
 		if($answer['Post']['type'] != 'answer') {
-			$this->Session->setFlash('What are you trying to do?', 'error');
+			$this->Session->setFlash(__('What are you trying to do?',true), 'error');
 			$this->redirect('/');
 		}
 
@@ -588,7 +588,7 @@ class PostsController extends AppController {
 		 * Check to make sure the logged in user is authorized to edit this Post
 		 */
 		if($question['Post']['user_id'] != $this->Auth->user('id')) {
-			$this->Session->setFlash('You are not allowed to edit that.');
+			$this->Session->setFlash(__('You are not allowed to edit that.',true));
 			$this->redirect('/questions/' . $question['Post']['public_key'] . '/' . $question['Post']['url_title']);
 		}
 
@@ -628,18 +628,18 @@ class PostsController extends AppController {
     public function flag($public_key) {
         $redirect = $this->Post->correctRedirect($public_key);
         if(!$this->Auth->user('id')) {
-            $this->Session->setFlash('You need to be logged in to do that!', 'error');
+            $this->Session->setFlash(__('You need to be logged in to do that!',true), 'error');
             $this->redirect('/questions/' . $redirect['Post']['public_key'] . '/' . $redirect['Post']['url_title']);
         }elseif(!$this->Setting->repCheck($this->Auth->user('id'), 'rep_flag')) {
-            $this->Session->setFlash('You need more reputation to do that.', 'error');
+            $this->Session->setFlash(__('You need more reputation to do that.',true), 'error');
             $this->redirect('/questions/' . $redirect['Post']['public_key'] . '/' . $redirect['Post']['url_title']);
         }else{
             $flag = $this->Vote->throwFlag($this->Auth->user('id'), $public_key);
             if($flag == 'exists') {
-                $this->Session->setFlash('You have already flagged that.', 'error');
+                $this->Session->setFlash(__('You have already flagged that.',true), 'error');
                 $this->redirect('/questions/' . $redirect['Post']['public_key'] . '/' . $redirect['Post']['url_title']);
             }elseif($flag == 'success') {
-                $this->Session->setFlash('Post flagged.', 'error');
+                $this->Session->setFlash(__('Post flagged.',true), 'error');
                 $this->redirect('/questions/' . $redirect['Post']['public_key'] . '/' . $redirect['Post']['url_title']);
             }
         }

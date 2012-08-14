@@ -57,15 +57,15 @@
 	
 	$("#PostTitle").keyup(function(event){
 		if($("#PostTitle").val().length < 10) {
-			$("#title_status").html('<span class="red">Titles must be at least 10 characters long.</span>');
+			$("#title_status").html('<span class="red"><?= __('Titles must be at least 10 characters long.',true) ?></span>');
 		} else {
-			$("#title_status").html('What is your question about?');
+			$("#title_status").html('<?= __('What is your question about?',true) ?>');
 		}
 	});
 	
   });
   </script>
-<h2>Ask a Question</h2>
+<h2><?= __('Ask a question',true) ?></h2>
 <? if ($session->read('errors')) {
 		foreach($session->read('errors.errors') as $error) {
 			echo '<div class="error">' . $error . '</div>';
@@ -73,10 +73,10 @@
 	}
 ?>
 <?=$form->create('Post', array('action' => 'ask'));?>
-<?=$form->label('title');?><br/>
+<?=$form->label(__('Title',true));?><br/>
 
 <?=$form->text('title', array('class' => 'wmd-panel big_input', 'value' => $session->read('errors.data.Post.title')));?><br/>
-<span id="title_status"class="quiet">What is your question about?</span>
+<span id="title_status"class="quiet"><?= __('What is your question about?',true) ?></span>
 <div id="resultsContainer"></div>
 
 <div id="wmd-button-bar" class="wmd-panel"></div>
@@ -87,20 +87,20 @@
 
 <div id="wmd-preview" class="wmd-panel"></div>
 
-<?=$form->label('tags');?><br/>
+<?=$form->label(__('Tags',true));?><br/>
 <?=$form->text('tags', array('id' => 'tag_input', 'class' => 'wmd-panel big_input'));?><br/>
-<span id="tag_status" class="quiet">Combine multiple words into single-words.</span>
+<span id="tag_status" class="quiet"><?= __('Combine multiple words into single-words.',true) ?></span>
 
 <? if(!$session->check('Auth.User.id')) { ?>
-<h2>Who Are You?</h2>
-<span class="quiet">Have an account already? <a href="#">Login before answering!</a></span><br/>
-	<?=$form->label('name');?><br/>
+<h2><?= __('Who Are You?',true) ?></h2>
+<span class="quiet"><?= __('Have an account already?',true) ?> <a href="#"><?= __('Login before answering!',true) ?></a></span><br/>
+	<?=$form->label(__('Name',true));?><br/>
 	<?=$form->text('User.username', array(
 		'class' => 'big_input medium_input', 
 		'value' => $session->read('errors.data.User.username')
 		));
 	?><br/>
-	<?=$form->label('email');?><br/>
+	<?=$form->label(__('Email',true));?><br/>
 	<?=$form->text('User.email', array(
 		'class' => 'big_input medium_input',
 		'value' => $session->read('errors.data.User.email')
@@ -109,9 +109,9 @@
 <? } ?>
 <br/><br/>
 <?=$form->checkbox('Post.notify', array('checked' => true));?>
-<span style="margin-left: 5px;">Notify me when my question is answered.</span>
+<span style="margin-left: 5px;"><?= __('Notify me when my question is answered.',true) ?></span>
 
 <?$recaptcha->display_form('echo');?>
 
-<?=$form->end('Ask Your Question');?>
+<?=$form->end( __('Ask a question',true));?>
 

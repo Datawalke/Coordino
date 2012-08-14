@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2012-05-09 05:47+0200\n"
+"POT-Creation-Date: 2012-08-14 12:01+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -13,6 +13,68 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /controllers/posts_controller.php:40
+msgid "You do not have permission to access that.."
+msgstr ""
+
+#: /controllers/posts_controller.php:44
+msgid "Post deleted"
+msgstr ""
+
+#: /controllers/posts_controller.php:49
+#: /views/layouts/default.ctp:162
+#: /views/posts/ask.ctp:68;116
+msgid "Ask a question"
+msgstr ""
+
+#: /controllers/posts_controller.php:126
+msgid "Your question has been answered!"
+msgstr ""
+
+#: /controllers/posts_controller.php:157
+msgid "Invalid reCAPTCHA entered."
+msgstr ""
+
+#: /controllers/posts_controller.php:407
+msgid "The question you are trying to view no longer exists."
+msgstr ""
+
+#: /controllers/posts_controller.php:447
+msgid "That is not your question to edit, and you need more reputation!"
+msgstr ""
+
+#: /controllers/posts_controller.php:542
+msgid "Invalid search type."
+msgstr ""
+
+#: /controllers/posts_controller.php:548;550
+msgid "No results for"
+msgstr ""
+
+#: /controllers/posts_controller.php:582
+msgid "What are you trying to do?"
+msgstr ""
+
+#: /controllers/posts_controller.php:591
+msgid "You are not allowed to edit that."
+msgstr ""
+
+#: /controllers/posts_controller.php:631
+msgid "You need to be logged in to do that!"
+msgstr ""
+
+#: /controllers/posts_controller.php:634
+msgid "You need more reputation to do that."
+msgstr ""
+
+#: /controllers/posts_controller.php:639
+msgid "You have already flagged that."
+msgstr ""
+
+#: /controllers/posts_controller.php:642
+msgid "Post flagged."
+msgstr ""
 
 #: /views/layouts/default.ctp:49
 msgid "login"
@@ -22,86 +84,134 @@ msgstr ""
 msgid "register"
 msgstr ""
 
-#: /views/layouts/default.ctp:66;213
+#: /views/layouts/default.ctp:66;217
 msgid "about"
 msgstr ""
 
-#: /views/layouts/default.ctp:74;97
+#: /views/layouts/default.ctp:74;98
 msgid "settings"
 msgstr ""
 
 #: /views/layouts/default.ctp:81
+#: /views/layouts/install.ctp:14
 msgid "change language"
 msgstr ""
 
 #: /views/layouts/default.ctp:83
+#: /views/layouts/install.ctp:16
 msgid "english"
 msgstr ""
 
 #: /views/layouts/default.ctp:84
+#: /views/layouts/install.ctp:17
 msgid "french"
 msgstr ""
 
-#: /views/layouts/default.ctp:90
+#: /views/layouts/default.ctp:85
+msgid "chinese"
+msgstr ""
+
+#: /views/layouts/default.ctp:91
 msgid "admin"
 msgstr ""
 
-#: /views/layouts/default.ctp:104
+#: /views/layouts/default.ctp:105
 msgid "Flagged Posts"
 msgstr ""
 
-#: /views/layouts/default.ctp:111
+#: /views/layouts/default.ctp:112
 msgid "User Management"
 msgstr ""
 
-#: /views/layouts/default.ctp:118
+#: /views/layouts/default.ctp:119
 msgid "Blacklist"
 msgstr ""
 
-#: /views/layouts/default.ctp:125
+#: /views/layouts/default.ctp:126
 msgid "Remote Settings"
 msgstr ""
 
-#: /views/layouts/default.ctp:137
+#: /views/layouts/default.ctp:138
 msgid "logout"
 msgstr ""
 
-#: /views/layouts/default.ctp:152
+#: /views/layouts/default.ctp:153
 msgid "Questions"
 msgstr ""
 
-#: /views/layouts/default.ctp:154
+#: /views/layouts/default.ctp:155
+#: /views/posts/ask.ctp:90
 msgid "Tags"
 msgstr ""
 
-#: /views/layouts/default.ctp:155
+#: /views/layouts/default.ctp:156
 msgid "Unsolved"
 msgstr ""
 
-#: /views/layouts/default.ctp:156
+#: /views/layouts/default.ctp:157
 msgid "Users"
 msgstr ""
 
-#: /views/layouts/default.ctp:161;211
-msgid "ask a question"
-msgstr ""
-
-#: /views/layouts/default.ctp:188
+#: /views/layouts/default.ctp:189
 #: /views/posts/view.ctp:55;237
 msgid "edit"
 msgstr ""
 
-#: /views/layouts/default.ctp:189
+#: /views/layouts/default.ctp:190
 #: /views/posts/view.ctp:62
 msgid "del"
 msgstr ""
 
-#: /views/layouts/default.ctp:199
+#: /views/layouts/default.ctp:200
 msgid "add widgets to this page"
 msgstr ""
 
-#: /views/layouts/default.ctp:210
+#: /views/layouts/default.ctp:212
 msgid "home"
+msgstr ""
+
+#: /views/layouts/default.ctp:214
+msgid "ask a question"
+msgstr ""
+
+#: /views/posts/ask.ctp:60
+msgid "Titles must be at least 10 characters long."
+msgstr ""
+
+#: /views/posts/ask.ctp:62;79
+msgid "What is your question about?"
+msgstr ""
+
+#: /views/posts/ask.ctp:76
+msgid "Title"
+msgstr ""
+
+#: /views/posts/ask.ctp:92
+msgid "Combine multiple words into single-words."
+msgstr ""
+
+#: /views/posts/ask.ctp:95
+msgid "Who Are You?"
+msgstr ""
+
+#: /views/posts/ask.ctp:96
+msgid "Have an account already?"
+msgstr ""
+
+#: /views/posts/ask.ctp:96
+msgid "Login before answering!"
+msgstr ""
+
+#: /views/posts/ask.ctp:97
+msgid "Name"
+msgstr ""
+
+#: /views/posts/ask.ctp:103
+msgid "Email"
+msgstr ""
+
+#: /views/posts/ask.ctp:112
+msgid "Notify me when my question is answered."
 msgstr ""
 
 #: /views/posts/display.ctp:8
@@ -139,5 +249,9 @@ msgstr ""
 
 #: /webroot/test.php:99
 msgid "Debug setting does not allow access to this url."
+msgstr ""
+
+#: /views/posts/view.ctp:312
+msgid "Answer"
 msgstr ""
 
