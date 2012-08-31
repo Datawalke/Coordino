@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Coordino\n"
 "POT-Creation-Date: 2012-05-09 05:47+0200\n"
-"PO-Revision-Date: 2012-07-31 21:44+0900\n"
+"PO-Revision-Date: 2012-07-31 22:15+0900\n"
 "Last-Translator: 毒眼鏡 <dokumegane@interestic.com>\n"
 "Language-Team: Eoko <romain.dary@eoko.fr>\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "プロフィール画像"
 
 #: /webroot/test.php:99
 msgid "Debug setting does not allow access to this url."
-msgstr ""
+msgstr "debugが有効の場合、このurlへのアクセスは許可されていません。"
 
 #~ msgid "ask a Question"
 #~ msgstr "poser une question"
