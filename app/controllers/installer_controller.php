@@ -10,15 +10,16 @@ class InstallerController extends AppController {
 		//$this->Auth->allow('*');
 	}
 	
-        public function start() {
-           $this->set('write_config', is_writable(APP.'/config'));
-		$this->set('write_tmp', is_writable(TMP));
-		$this->set('write_uploads', is_writable(APP.'/webroot/img/uploads/users'));
-		$this->set('write_thumbs', is_writable(APP.'/webroot/img/thumbs'));
-        $this->set('write_database', is_writable(APP.'/config/database.php'));
-		if(is_writable(APP.'/config/database.php') && is_writable(TMP) && is_writable(APP.'/webroot/img/uploads/users') && is_writable(APP.'/webroot/img/thumbs')) {
-			$this->set('continue', true);
-		}
+    public function start() {
+        $writeChecks = array(
+            'config' => is_writable(APP.'/config'),
+            'tmp' => is_writable(TMP),
+            'tmp_cache' => is_writable(TMP.'/cache'),
+            'uploads' => is_writable(APP.'/webroot/img/uploads/users'),
+            'thumbs' => is_writable(APP.'/webroot/img/thumbs'),
+            'database' => is_writable(APP.'/config/database.php')
+        );
+        $this->set('writeChecks', $writeChecks);
 	}
 	
 	public function license() {

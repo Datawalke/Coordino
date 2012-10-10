@@ -14,24 +14,27 @@
 
 <p>Directory permission tests:</p>
 <ul>
-	<li>/app/config <?if($write_config) { echo '<span class="success">is writable.</span>'; } 
+	<li>/app/config <?if($writeChecks['config']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>
-	<li>/app/config/database.php <?if($write_database) { echo '<span class="success">is writable.</span>'; }
+	<li>/app/config/database.php <?if($writeChecks['database']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>
-	<li>/app/tmp <?if($write_tmp) { echo '<span class="success">is writable.</span>'; } 
+	<li>/app/tmp <?if($writeChecks['tmp']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>
-	<li>/app/webroot/img/thumbs <?if($write_thumbs) { echo '<span class="success">is writable.</span>'; } 
+    <li>/app/tmp/cache <?if($writeChecks['tmp_cache']) { echo '<span class="success">is writable.</span>'; }
+    else { echo '<span class="error">is not writable.</span>';}?>
+    </li>
+	<li>/app/webroot/img/thumbs <?if($writeChecks['thumbs']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>	
-	<li>/app/webroot/img/uploads/users <?if($write_uploads) { echo '<span class="success">is writable.</span>'; } 
+	<li>/app/webroot/img/uploads/users <?if($writeChecks['uploads']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>	
 </ul>
 
-<?	if($continue) { ?>
+<?	if(!in_array(false, $writeChecks)) { ?>
 	<p>Looks like you are good to go. <a href="install/database-config">Lets Continue!</a></p>
 <? } else { ?>
 	<p><span class="error">Look above for errors you must fix.</span></p>

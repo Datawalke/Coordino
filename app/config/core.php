@@ -307,4 +307,4 @@
 
     Configure::write('recaptcha.publickey', '6LcgswkAAAAAAC15Pg3j8YDKFCi-mHYO_qHpoPH6');
     Configure::write('recaptcha.privatekey', '6LcgswkAAAAAAApN8RkAjBhu2RgDGXGwh5onuUpW');
-    Configure::write('Config.language', 'fre');
+    Configure::write('Config.language', 'eng');
