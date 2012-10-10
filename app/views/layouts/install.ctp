@@ -9,15 +9,6 @@
 </head>
 <body>
 	<?=$html->image('coordino_logo.png');?>
-	<div style="float:right">
-	    				<li>
-				    <a href='#'><?php __('change language'); ?></a>
-				    <ul>
-				        <li><?=$html->link(__('english',true),'/lang/eng')?></li>
-				        <li><?=$html->link(__('french',true),'/lang/fre')?></li>
-				    </ul>
-				</li>
-	</div>
 	<? echo $session->flash(); ?>
 	<?=$content_for_layout;?>
 <body>

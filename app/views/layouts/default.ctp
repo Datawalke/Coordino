@@ -186,8 +186,8 @@
 			<? } ?>
 			<?=$widget['Widget']['content'];?>
 		<? if(isset($admin) && $admin) { ?>
-			<a href="/widgets/edit/<?=$widget['Widget']['id'];?>" title="Edit this Widget"><?php __('edit'); ?></a>	| 
-			<a href="/widgets/delete/<?=$widget['Widget']['id'];?>" title="Delete Widget"><?php __('del'); ?></a>	
+			<?=$html->link(__('edit', true),'/widgets/edit/' . $widget['Widget']['id'], array('title' => __('Edit this Widget', true)));?>	| 
+			<?=$html->link(__('del', true),'/widgets/delete/' . $widget['Widget']['id'], array('title' => __('Delete Widget', true)));?>	
 		<? } ?>
 		  </div>
 		<?
@@ -196,9 +196,10 @@
         
 	    if(isset($admin) && $admin):
     ?>
-        <a href="/widgets/add<?php echo $_SERVER['REQUEST_URI']; ?>">
-            <img src="/img/icons/plugin_edit.png" alt="Edit"/><?php __('add widgets to this page'); ?>.
-        </a>
+	    <?=$html->link($html->image('icons/plugin_edit.png', array('alt' => __('Edit', true))) . __('add widgets to this page', true),
+			'/widgets/add' . $html->url(null, false),
+			array('escape' => false)
+		); ?>
         <? endif; ?>
 
     </div>

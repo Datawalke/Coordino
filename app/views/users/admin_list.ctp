@@ -17,9 +17,10 @@ foreach($users as $key => $value) {
         break;
     }
 ?>
-    <td><a href="/users/<?=$users[$key]['User']['public_key'];?>/<?=$users[$key]['User']['username'];?>"><?=$users[$key]['User']['username'];?></a> 
+    
+    <td><?=$html->link($users[$key]['User']['username'],'/users/' . $users[$key]['User']['public_key'] . '/' . $users[$key]['User']['username']);?> 
 	<?if(empty($users[$key]['User']['permission'])) {?><a class="promote" href="/admin/promote/<?=$users[$key]['User']['public_key'];?>">promote</a><? } else { ?>
-		<a class="demote" href="/admin/demote/<?=$users[$key]['User']['public_key'];?>">demote</a>
+		<?=$html->link(__('demote', true), '/admin/demote/' . $users[$key]['User']['public_key'], array('class' => 'demote'));?> 
 	<? } ?>
 	</td>
 <?  $i++;
@@ -47,22 +48,22 @@ foreach($users as $key => $value) {
 
 <?
     if((($end_page - $current) > 3) && $current > 3) { ?>
-    <span style="float: left;"><a href="/admin/users/1"><u>1</u>&nbsp;</a></span>
-    <span style="float: left;"><a href="/admin/users/<?=$current-2;?>"><u><?=$current-2;?></u>&nbsp;</a></span>
-    <span style="float: left;"><a href="/admin/users/<?=$current-1;?>"><u><?=$current-1;?></u>&nbsp;</a></span>
+    <span style="float: left;"><?=$html->link('<u>1</u>&nbsp;', '/admin/users/1', array('escape' => false)); ?></span>
+    <span style="float: left;"><?=$html->link('<u>' . $current-2 . '</u>&nbsp;', '/admin/users/' . $current-2, array('escape' => false)); ?></span>
+    <span style="float: left;"><?=$html->link('<u>' . $current-1 . '</u>&nbsp;', '/admin/users/' . $current-1, array('escape' => false)); ?></span>
     <span style="float: left;"><?=$current;?>&nbsp;</span>
-    <span style="float: left;"><a href="/admin/users/<?=$current+1;?>"><u><?=$current+1;?></u>&nbsp;</a></span>
-    <span style="float: left;"><a href="/admin/users/<?=$current+2;?>"><u><?=$current+2;?></u>&nbsp;</a></span>
-    <span style="float: left;"><a href="/admin/users/<?=$end_page;?>"><u><?=$end_page;?></u></a></span>
+    <span style="float: left;"><?=$html->link('<u>' . $current+1 . '</u>&nbsp;', '/admin/users/' . $current+1, array('escape' => false)); ?></span>
+    <span style="float: left;"><?=$html->link('<u>' . $current+2 . '</u>&nbsp;', '/admin/users/' . $current+2, array('escape' => false)); ?></span>
+    <span style="float: left;"><?=$html->link('<u>' . $end_page . '</u>&nbsp;', '/admin/users/' . $end_page, array('escape' => false)); ?></span>
 <? }elseif($current < $end_page) { ?>
-    <span style="float: left;">page <?=$current;?> of <a href="/admin/users/<?=$end_page;?>"><?=$end_page;?></a></span>
+    <span style="float: left;">page <?=$current;?> of <?=$html->link($end_page, '/admin/users/' . $end_page); ?></span>
 <? }else { ?>
     <span style="float: left;">page <?=$current;?> of <?=$end_page;?></span>
 <? }
 if(isset($next)) { ?>
-    <span style="float: right;"><a href="/admin/users/<?=$next;?>">&nbsp;&nbsp;Next >></a></span>
+    <span style="float: right;"><?=$html->link('&nbsp;&nbsp;Next >>', '/admin/users/' . $next, array('escape' => false)); ?></span>
 <?
 }
 if(isset($previous)) { ?>
-    <span style="float: right;"><a href="/admin/users/<?=$previous;?>"><< Previous&nbsp;&nbsp;</a></span>
+    <span style="float: right;"><?=$html->link('<< Previous&nbsp;&nbsp;', '/admin/users/' . $previous, array('escape' => false)); ?></span>
 <? } ?>

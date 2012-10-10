@@ -84,6 +84,7 @@ class DATABASE_CONFIG {
 		'login' => 'username',
 		'password' => '',
 		'database' => '',
+		'encoding' => 'utf8',
 	);
 
 }
