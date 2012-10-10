@@ -60,6 +60,7 @@ class DATABASE_CONFIG {
 		'login' => '" . $this->data['Database']['login'] . "',
 		'password' => '" . $this->data['Database']['password'] . "',
 		'database' => '" . $this->data['Database']['database'] . "',
+		'encoding' => 'utf8',
 	);
 }
 ?>
