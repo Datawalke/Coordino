@@ -42,7 +42,7 @@ class WidgetsController extends AppController {
 		$this->set('referer', $this->referer());
 		if(!empty($this->data)) {
 			$this->data['Widget']['global'] = ($this->data['Widget']['global'] == 'on') ?  1 : 0;
-			$page = str_replace(array('/widgets/add', '?'), array('',''), $_SERVER['REQUEST_URI']);
+			$page = end(explode('/widgets/add', Router::url(null, false)));
 			$this->data['Widget']['page'] = $page;
 			if(strpos($page, 'questions/') == 1) { $this->data['Widget']['page'] = '/questions/view'; }
 			if($this->Widget->save($this->data)) {

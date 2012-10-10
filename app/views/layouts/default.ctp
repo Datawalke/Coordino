@@ -197,7 +197,7 @@
 	    if(isset($admin) && $admin):
     ?>
 	    <?=$html->link($html->image('icons/plugin_edit.png', array('alt' => __('Edit', true))) . __('add widgets to this page', true),
-			'/widgets/add',
+			'/widgets/add' . $html->url(null, false),
 			array('escape' => false)
 		); ?>
         <? endif; ?>
