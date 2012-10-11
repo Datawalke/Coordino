@@ -51,11 +51,7 @@ class Post extends AppModel {
 	                            );
 
     public function niceUrl($url) {
-        $prohibited = array(' ', '!', "'", '"', '@', '#', '$', '%', '^', '&', '*', '?', ',', '/', '<', '>', ':', ';',
-                            'é', 'è', '{', '}', ')', '(');
-        $replace = array('-', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                         'e', 'e', '', '', '', '');
-        return strtolower(str_replace($prohibited, $replace, $url));
+		return preg_replace("/[^0-9a-zA-Z-]/", "", str_replace(' ', '-', $url));
     }
 
     public function monsterSearch($type, $page, $search) {
