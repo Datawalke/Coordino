@@ -94,7 +94,7 @@ Then a message is compiled with the User's username, email, a timestamp, and you
 
 Translate Coordino
 ==================================
-Because Coordino is ready for i18n, you can contribute to tranlate it!
+Because Coordino is ready for i18n, you can contribute to translate it!
 To help you, you can have some informations in :
 <http://book.cakephp.org/1.3/en/view/1229/Internationalizing-Your-Application>
 
