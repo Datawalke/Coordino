@@ -225,10 +225,12 @@ class Post extends AppModel {
 			));
         }
     } else {
+            $escapedNeedle = $this->getDataSource()->value($type['needle']);
+
             return $this->find(
                 'all', array(
                     'conditions' => array(
-                        "match(content, title) against ('" . $type['needle'] . "')",
+                        "MATCH(Post.content, Post.title) against (" . $escapedNeedle . " IN BOOLEAN MODE)",
                         'Post.type' => 'question',
                         'Post.flags <' => $flag_check['Setting']['value']),
                     'contain' => array(
@@ -240,7 +242,7 @@ class Post extends AppModel {
                         )
                     ),
                     'fields' => array(
-						"match(content, title) against('" . $type['needle'] . "') as relevance",
+						"match(Post.content, Post.title) against(" . $escapedNeedle . ") as relevance",
                         'Post.title', 'Post.views', 'Post.url_title', 'Post.public_key',
                         'Post.timestamp', 'User.username', 'User.public_key', 'User.image',
                         'User.reputation'),
