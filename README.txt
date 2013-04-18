@@ -76,7 +76,7 @@ $timestamp = time();
 $message = $username . $email . $timestamp . $key;
 $hash= md5($message);
 /* Set the URL of your Answer Engine install and form the correct remote authentication URL. */
-$url = 'http://your.domain.com/coordino_install/access/remote' . $name . '/' . $email . '/' . $timestamp . '/' . $hash;
+$url = 'http://your.domain.com/coordino_install/access/remote/' . $username . '/' . $email . '/' . $timestamp . '/' . $hash;
 header('Location: ' . $url);
 ?>
 
