@@ -160,18 +160,18 @@ class TrickyFileInputHelper extends AppHelper {
 		}
 		
 		if($this->options['form'] != false) { ?>
-			<? $this->__htmlForm(); ?>
-				<? $this->__htmlDiv(); ?>
-					<? $this->__htmlInput(); ?>
-					<? $this->__htmlImage(); ?>
-				<? $this->__htmlEndTag('div'); ?>
-			<? $this->__htmlEndTag('form'); ?>
-		<? } else { ?>
-			<? $this->__htmlDiv(); ?>
-				<? $this->__htmlInput(); ?>
-				<? $this->__htmlImage(); ?>
-			<? $this->__htmlEndTag('div'); ?>
-		<? }
+			<?php $this->__htmlForm(); ?>
+				<?php $this->__htmlDiv(); ?>
+					<?php $this->__htmlInput(); ?>
+					<?php $this->__htmlImage(); ?>
+				<?php $this->__htmlEndTag('div'); ?>
+			<?php $this->__htmlEndTag('form'); ?>
+		<?php } else { ?>
+			<?php $this->__htmlDiv(); ?>
+				<?php $this->__htmlInput(); ?>
+				<?php $this->__htmlImage(); ?>
+			<?php $this->__htmlEndTag('div'); ?>
+		<?php }
     }
 
 
@@ -227,7 +227,7 @@ class TrickyFileInputHelper extends AppHelper {
 				/>
 			</div>
 		</form>
-	<? }
+	<?php }
 	
 	
 	
@@ -244,7 +244,7 @@ class TrickyFileInputHelper extends AppHelper {
 				onchange="<?php echo $this->options['input']['submitOnChange']?>"
 			/>
 		</div>
-	<? }
+	<?php }
 	
 	
 	
@@ -410,7 +410,7 @@ class TrickyFileInputHelper extends AppHelper {
 			name="<?php echo $this->options['form']['name']?>" 
 			method="<?php echo $this->options['form']['method']?>"
 		>
-	<? }
+	<?php }
 	
 	
 	
@@ -419,7 +419,7 @@ class TrickyFileInputHelper extends AppHelper {
 	 */
 	function __htmlDiv() { ?>
 		<div class="<?php echo $this->styles['div']?>">
-	<? }
+	<?php }
 	
 	
 
@@ -434,7 +434,7 @@ class TrickyFileInputHelper extends AppHelper {
 			class="<?php echo $this->styles['input']?>" 
 			onchange="<?php echo $this->options['input']['submitOnChange']?>"
 		/>
-	<? }
+	<?php }
 	
 
 	/**
@@ -448,7 +448,7 @@ class TrickyFileInputHelper extends AppHelper {
 			class="<?php echo $this->styles['input']?>" 
 			onchange="<?php echo $this->options['input']['submitOnChange']?>"
 		/>
-	<? }
+	<?php }
 	
 	
 	
@@ -460,7 +460,7 @@ class TrickyFileInputHelper extends AppHelper {
 			class="<?php echo $this->styles['image']?>" 
 			src="<?php echo $this->options['image']?>"
 		/>
-	<? }
+	<?php }
 
 
 
@@ -472,7 +472,7 @@ class TrickyFileInputHelper extends AppHelper {
 			id="<?php echo $this->options['name']['id']?>" 
 			class="<?php echo $this->styles['name']?>" 
 		></span>
-	<? }
+	<?php }
 	
 	
 	
@@ -486,7 +486,7 @@ class TrickyFileInputHelper extends AppHelper {
 				document.getElementById("<?php echo $this->options['name']['id']?>").innerHTML = name.value;
 			}
 		</script>
-	<? }
+	<?php }
 	
 }
 ?>

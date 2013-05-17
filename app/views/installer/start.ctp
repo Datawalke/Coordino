@@ -36,6 +36,6 @@
 
 <?	if(!in_array(false, $writeChecks)) { ?>
 	<p>Looks like you are good to go. <a href="install/database-config">Lets Continue!</a></p>
-<? } else { ?>
+<?php } else { ?>
 	<p><span class="error">Look above for errors you must fix.</span></p>
-<? } ?>
+<?php } ?>

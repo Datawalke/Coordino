@@ -28,13 +28,13 @@
 <div class="wrapper" id="header">
 	<div class="wrapper">
 		<div id="top_actions" class="top_actions">
-			<? 
+			<?php 
 				echo $form->create('Post', array('action' => 'display'));
 				echo $form->text('needle', array('value' => 'search', 'onclick' => 'this.value=""'));
 				echo $form->end();
 			?>
 			<ul class="tabs">
-				 <? if($session->check('Auth.User.id')) { ?>
+				 <?php if($session->check('Auth.User.id')) { ?>
 					<li>
 						<?php echo $html->link(
 								$session->read('Auth.User.username'),
@@ -42,8 +42,8 @@
 							);
 						?>
 					</li>
-				<? } ?>
-				<? if(!$session->check('Auth.User.id')) { ?>
+				<?php } ?>
+				<?php if(!$session->check('Auth.User.id')) { ?>
 					<li>
 					<?php echo $html->link(
 							__('login',true),
@@ -51,8 +51,8 @@
 						);
 					?>
 					</li>
-				<? } ?>
-				<? if(!$session->check('Auth.User.id') || $session->read('Auth.User.registered') == 0) { ?>
+				<?php } ?>
+				<?php if(!$session->check('Auth.User.id') || $session->read('Auth.User.registered') == 0) { ?>
 				<li>
 					<?php echo $html->link(
 							__('register',true),
@@ -60,7 +60,7 @@
 						);
 					?>
 				</li>
-				<? } ?>
+				<?php } ?>
 				<li>
 					<?php echo $html->link(
 							__('about',true),
@@ -68,7 +68,7 @@
 						);
 					?>
 				</li>
-				<? if($session->read('Auth.User.id')) { ?>
+				<?php if($session->read('Auth.User.id')) { ?>
 				<li>
 					<?php echo $html->link(
 							__('settings',true),
@@ -76,7 +76,7 @@
 						);
 					?>
 				</li>
-				<? } ?>
+				<?php } ?>
 				<li>
 				    <a href='#'><?php __('change language'); ?></a>
 				    <ul>
@@ -85,7 +85,7 @@
 				        <li><?php echo $html->link(__('chinese',true),'/lang/chi')?></li>
 				    </ul>
 				</li>
-				<? if($session->check('Auth.User.id') && $session->read('Auth.User.permission') != '') { ?>
+				<?php if($session->check('Auth.User.id') && $session->read('Auth.User.permission') != '') { ?>
 				<li>
 					<?php echo $html->link(
 							__('admin',true),
@@ -130,9 +130,9 @@
 						</li>
 					</ul>
 				</li>
-				<? } ?>
+				<?php } ?>
 				
-				<? if($session->check('Auth.User.id') && $session->read('Auth.User.registered') == 1) { ?>
+				<?php if($session->check('Auth.User.id') && $session->read('Auth.User.registered') == 1) { ?>
 				<li>
 					<?php echo $html->link(
 							__('logout',true),
@@ -140,7 +140,7 @@
 						);
 					?>
 				</li>
-				<? } ?>
+				<?php } ?>
 			</ul>
 		</div>
 	</div>
@@ -181,14 +181,14 @@
 				foreach($widgets as $widget) {
 		?>
 		<div class="widget_box wrapper">
-			<? if(!empty($widget['Widget']['title'])) {?>
+			<?php if(!empty($widget['Widget']['title'])) {?>
 	      		<h3><?php echo $widget['Widget']['title'];?></h3>
-			<? } ?>
+			<?php } ?>
 			<?php echo $widget['Widget']['content'];?>
-		<? if(isset($admin) && $admin) { ?>
+		<?php if(isset($admin) && $admin) { ?>
 			<?php echo $html->link(__('edit', true),'/widgets/edit/' . $widget['Widget']['id'], array('title' => __('Edit this Widget', true)));?>	| 
 			<?php echo $html->link(__('del', true),'/widgets/delete/' . $widget['Widget']['id'], array('title' => __('Delete Widget', true)));?>	
-		<? } ?>
+		<?php } ?>
 		  </div>
 		<?
 		}
@@ -200,7 +200,7 @@
 			'/widgets/add' . $html->url(null, false),
 			array('escape' => false)
 		); ?>
-        <? endif; ?>
+        <?php endif; ?>
 
     </div>
   </div>

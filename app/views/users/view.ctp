@@ -33,9 +33,9 @@ $('#tabs ul li a').click(function(){ //When any link is clicked
 </script>
 <div id="userAvatar">
 	<div id="image">
-		<? if(empty($user['User']['image'])) { ?>
+		<?php if(empty($user['User']['image'])) { ?>
 			<?php echo $html->image('answerAvatar.png'); ?>
-		<? }else { 
+		<?php }else { 
 echo $thumbnail->show(array(
 						        'save_path' => WWW_ROOT . 'img/thumbs',
 						        'display_path' => $this->webroot.  'img/thumbs',
@@ -50,7 +50,7 @@ echo $thumbnail->show(array(
 	</div>
 </div>
 <div id="userInfo">
-	<? if(!empty($user['User']['info'])) { 
+	<?php if(!empty($user['User']['info'])) { 
 		echo $user['User']['info'];	
 	}else { 
 		echo $user['User']['username'] . ' has not added any information about themselves yet!';
@@ -103,101 +103,101 @@ echo $thumbnail->show(array(
 		<!-- recent activity displayed here -->
 		<h3>recent activity:</h3>
 		<table>
-		    <? foreach($recent as $key => $value) { ?>
+		    <?php foreach($recent as $key => $value) { ?>
 			<tr>
 				<td>
-					<? if ($time->isToday($recent[$key]['History']['timestamp'])) : ?>
+					<?php if ($time->isToday($recent[$key]['History']['timestamp'])) : ?>
 						today
-					<? elseif ($time->wasYesterday($recent[$key]['History']['timestamp'])) : ?>
+					<?php elseif ($time->wasYesterday($recent[$key]['History']['timestamp'])) : ?>
 						yesterday
-					<? else : ?>
+					<?php else : ?>
 						<?php echo $time->niceShort($recent[$key]['History']['timestamp']) ?>
-					<? endif; ?>
+					<?php endif; ?>
 				</td>
 				
 				<td>
-					<? if (($recent[$key]['History']['type'] == "answered") && ($recent[$key]['Status'] == "open" )) : ?>
+					<?php if (($recent[$key]['History']['type'] == "answered") && ($recent[$key]['Status'] == "open" )) : ?>
 						<span style="color:#0000ff;">
 							replied
 						</span>
-					<? elseif (($recent[$key]['History']['type'] == "answered") && ($recent[$key]['Status'] == "correct")) : ?>
+					<?php elseif (($recent[$key]['History']['type'] == "answered") && ($recent[$key]['Status'] == "correct")) : ?>
 						<span style="color:#00aa00;">
 							solved
 						</span>
-					<? elseif ($recent[$key]['History']['type'] == "commented") : ?>	
+					<?php elseif ($recent[$key]['History']['type'] == "commented") : ?>	
 						commented
-					<? elseif ($recent[$key]['History']['type'] == "asked") : ?>
+					<?php elseif ($recent[$key]['History']['type'] == "asked") : ?>
 						<span style="color:#ffaa00;">
 							asked
 						</span>
-					<? elseif ($recent[$key]['History']['type'] == "edited") : ?>
+					<?php elseif ($recent[$key]['History']['type'] == "edited") : ?>
 						<span style="color:#9999ff">
 							edited
 						</span>
 					</span>
-					<? elseif ($recent[$key]['History']['type'] == "edited") : ?>
+					<?php elseif ($recent[$key]['History']['type'] == "edited") : ?>
 					edited
-					<? endif; ?>
+					<?php endif; ?>
 				</td>
 				
 				<td>
-			    <? if(($recent[$key]['History']['type'] == 'asked') || ($recent[$key]['History']['type'] == 'edited')) : ?>
+			    <?php if(($recent[$key]['History']['type'] == 'asked') || ($recent[$key]['History']['type'] == 'edited')) : ?>
 			    	<?php echo $html->link($recent[$key]['Post']['title'], '/questions/' . $recent[$key]['Post']['public_key'] . '/' . $recent[$key]['Post']['url_title']);?> 
-			  	<? elseif($recent[$key]['History']['type'] == 'commented') : ?>
-					<? if(isset($recent[$key]['Pad'])) : ?>
+			  	<?php elseif($recent[$key]['History']['type'] == 'commented') : ?>
+					<?php if(isset($recent[$key]['Pad'])) : ?>
 			        	<?php echo $html->link($recent[$key]['Pad']['Post']['title'], '/questions/' . $recent[$key]['Pad']['Post']['public_key'] . '/' . $recent[$key]['Pad']['Post']['url_title']);?> 
-					<? elseif(isset($recent[$key]['Real'])) : ?>
+					<?php elseif(isset($recent[$key]['Real'])) : ?>
 						<?php echo $html->link($recent[$key]['Real']['Post']['title'], '/questions/' . $recent[$key]['Real']['Post']['public_key'] . '/' . $recent[$key]['Real']['Post']['url_title']);?> 
-					<? endif; ?>
-			    <?  else : ?>
+					<?php endif; ?>
+			    <?php  else : ?>
 					<?php echo $html->link($recent[$key]['Pad']['Post']['title'], '/questions/' . $recent[$key]['Pad']['Post']['public_key'] . '/' . $recent[$key]['Pad']['Post']['url_title']);?> 
-			    <? endif; ?>
+			    <?php endif; ?>
 
 					
-			    <?  if($recent[$key]['History']['type'] == 'edited') : ?>
-                    <? if(isset($recent[$key]['Pad'])) { ?>
+			    <?php  if($recent[$key]['History']['type'] == 'edited') : ?>
+                    <?php if(isset($recent[$key]['Pad'])) { ?>
                         <?php echo $html->link($recent[$key]['Pad']['Post']['title'], '/questions/' . $recent[$key]['Pad']['Post']['public_key'] . '/' . $recent[$key]['Pad']['Post']['url_title']);?>
-                    <? }else { ?>
+                    <?php }else { ?>
                         <?php echo $html->link($recent[$key]['Post']['title'], '/questions/' . $recent[$key]['Post']['public_key'] . '/' . $recent[$key]['Post']['url_title']);?> 
-                    <? } ?>
-			    <? elseif(isset($recent[$key]['Pad'])) : ?>
+                    <?php } ?>
+			    <?php elseif(isset($recent[$key]['Pad'])) : ?>
                     <?php echo $html->link($recent[$key]['Pad']['Post']['title'], '/questions/' . $recent[$key]['Pad']['Post']['public_key'] . '/' . $recent[$key]['Pad']['Post']['url_title']);?>
-                <? else : ?>
+                <?php else : ?>
                 	<?php echo $html->link($recent[$key]['Post']['title'], '/questions/' . $recent[$key]['Post']['public_key'] . '/' . $recent[$key]['Post']['url_title']);?> 
-                <? endif ?>
+                <?php endif ?>
 
 				</td>
 		    </tr>
-		    <? } ?>
+		    <?php } ?>
 		</table>
 
 	</div><!-- end recent tab -->
 	
 	<div class="tabPanel" id="tab-3">
 		<h3>questions asked:</h3>
-	    <? foreach($recent as $key => $value) { ?>
+	    <?php foreach($recent as $key => $value) { ?>
 		<p>
-	    <? if($recent[$key]['History']['type'] == 'asked') {
+	    <?php if($recent[$key]['History']['type'] == 'asked') {
 	        echo $html->link($recent[$key]['Post']['title'], '/questions/' . $recent[$key]['Post']['public_key'] . '/' . $recent[$key]['Post']['url_title']);
 		}
 		?>
 		</p>
-		<? } ?>
+		<?php } ?>
 	</div><!-- end questions tab -->
 	
 	<div class="tabPanel" id="tab-4">
 		<h3>replies given:</h3>
-		<? foreach($recent as $key => $value) : ?>
+		<?php foreach($recent as $key => $value) : ?>
 		<p>
-	    <? if($recent[$key]['History']['type'] == 'answered') : ?>
+	    <?php if($recent[$key]['History']['type'] == 'answered') : ?>
 	        <?php echo $html->link($recent[$key]['Pad']['Post']['title'], '/questions/' . $recent[$key]['Pad']['Post']['public_key'] . '/' . $recent[$key]['Pad']['Post']['url_title']);?>
-		<? endif; ?>
-	    <? if($recent[$key]['History']['type'] == 'answered') {
+		<?php endif; ?>
+	    <?php if($recent[$key]['History']['type'] == 'answered') {
 	        echo $html->link($recent[$key]['Pad']['Post']['title'], '/questions/' . $recent[$key]['Pad']['Post']['public_key'] . '/' . $recent[$key]['Pad']['Post']['url_title']);
 		}
 		?>
 		</p>
-		<? endforeach; ?>
+		<?php endforeach; ?>
 	</div><!-- end answers tab -->
 	
 	<div class="tabPanel" id="tab-5">

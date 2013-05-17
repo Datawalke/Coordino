@@ -66,7 +66,7 @@
   });
   </script>
 <h2><?php echo __('Ask a question',true) ?></h2>
-<? if ($session->read('errors')) {
+<?php if ($session->read('errors')) {
 		foreach($session->read('errors.errors') as $error) {
 			echo '<div class="error">' . $error . '</div>';
 		}
@@ -91,7 +91,7 @@
 <?php echo $form->text('tags', array('id' => 'tag_input', 'class' => 'wmd-panel big_input'));?><br/>
 <span id="tag_status" class="quiet"><?php echo __('Combine multiple words into single-words.',true) ?></span>
 
-<? if(!$session->check('Auth.User.id')) { ?>
+<?php if(!$session->check('Auth.User.id')) { ?>
 <h2><?php echo __('Who Are You?',true) ?></h2>
 <span class="quiet"><?php echo __('Have an account already?',true) ?> <a href="#"><?php echo __('Login before answering!',true) ?></a></span><br/>
 	<?php echo $form->label(__('Name',true));?><br/>
@@ -106,7 +106,7 @@
 		'value' => $session->read('errors.data.User.email')
 		));
 	?><br/>		
-<? } ?>
+<?php } ?>
 <br/><br/>
 <?php echo $form->checkbox('Post.notify', array('checked' => true));?>
 <span style="margin-left: 5px;"><?php echo __('Notify me when my question is answered.',true) ?></span>

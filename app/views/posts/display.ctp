@@ -53,7 +53,7 @@ foreach($questions as $question) { ?>
 			</div>
 		</div>
 		<div class="wrapper tags">
-		<? foreach($question['Tag'] as $tag) { ?>
+		<?php foreach($question['Tag'] as $tag) { ?>
 			<div class="tag wrapper">
 				<?php echo $html->link(
 						$tag['tag'],
@@ -61,12 +61,12 @@ foreach($questions as $question) { ?>
 					);
 				?>
 			</div>
-		<?  } ?>
+		<?php  } ?>
 		</div>
 	</div>
 	
 </div>
-<? }
+<?php }
     if((($end_page - $current) > 3) && $current > 3) { ?>
     <span class="left"><a href="/search/type:<?php echo $type;?>/page:1/search:<?php echo $search;?>"><u>1</u>&nbsp;</a></span>
     <span class="left"><a href="/search/type:<?php echo $type;?>/page:<?php echo $current-2;?>/search:<?php echo $search;?>"><u><?php echo $current-2;?></u>&nbsp;</a></span>
@@ -75,15 +75,15 @@ foreach($questions as $question) { ?>
     <span class="left"><a href="/search/type:<?php echo $type;?>/page:<?php echo $current+1;?>/search:<?php echo $search;?>"><u><?php echo $current+1;?></u>&nbsp;</a></span>
     <span class="left"><a href="/search/type:<?php echo $type;?>/page:<?php echo $current+2;?>/search:<?php echo $search;?>"><u><?php echo $current+2;?></u>&nbsp;</a></span>
     <span class="left"><a href="/search/type:<?php echo $type;?>/page:<?php echo $end_page;?>/search:<?php echo $search;?>"><u><?php echo $end_page;?></u></a></span>
-<? }elseif($current < $end_page) { ?>
+<?php }elseif($current < $end_page) { ?>
     <span class="left">page <?php echo $current;?> of <a href="/search/type:<?php echo $type;?>/page:<?php echo $end_page;?>/search:<?php echo $search;?>"><?php echo $end_page;?></a></span>
-<? }else { ?>
+<?php }else { ?>
     <span class="left">page <?php echo $current;?> of <?php echo $end_page;?></span>
-<? }
+<?php }
 if(isset($next)) { ?>
     <span class="right"><a href="/search/type:<?php echo $type;?>/page:<?php echo $next;?>/search:<?php echo $search;?>">&nbsp;&nbsp;Next >></a></span>
 <?
 }
 if(isset($previous)) { ?>
     <span class="right"><a href="/search/type:<?php echo $type;?>/page:<?php echo $previous;?>/search:<?php echo $search;?>"><< Previous&nbsp;&nbsp;</a></span>
-<? } ?>
+<?php } ?>

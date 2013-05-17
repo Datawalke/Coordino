@@ -13,14 +13,14 @@
 
 <form id="changeStatusForm" method="post">
 
-<? foreach ($invalidBugs as $bug => $value) : ?>
+<?php foreach ($invalidBugs as $bug => $value) : ?>
 	<tr>
 		<td>
 			<input type="checkbox" name="data[Bugs][<?php echo $invalidBugs[$bug]['Bug']['id'];?>]" />
 		</td>
 		<td><?php echo $invalidBugs[$bug]['Bug']['content']; ?></td>
 	</tr>
-<? endforeach; ?>
+<?php endforeach; ?>
 </table>
 
 <div class="submit">

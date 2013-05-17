@@ -19,24 +19,24 @@ foreach($users as $key => $value) {
 ?>
     
     <td><?php echo $html->link($users[$key]['User']['username'],'/users/' . $users[$key]['User']['public_key'] . '/' . $users[$key]['User']['username']);?> 
-	<?if(empty($users[$key]['User']['permission'])) {?><a class="promote" href="/admin/promote/<?php echo $users[$key]['User']['public_key'];?>">promote</a><? } else { ?>
+	<?if(empty($users[$key]['User']['permission'])) {?><a class="promote" href="/admin/promote/<?php echo $users[$key]['User']['public_key'];?>">promote</a><?php } else { ?>
 		<?php echo $html->link(__('demote', true), '/admin/demote/' . $users[$key]['User']['public_key'], array('class' => 'demote'));?> 
-	<? } ?>
+	<?php } ?>
 	</td>
-<?  $i++;
+<?php  $i++;
     if($i < 5 && $i > 0) {
         if($i % 4 == 0) {
 ?>
 </tr>
 <tr>
-<?      } ?>
-<?  }elseif($i > 5) {
+<?php      } ?>
+<?php  }elseif($i > 5) {
         if(($i - 4) % 5 == 0) {
 ?>
 </tr>
 <tr>
-<?      } ?>
-<?  }
+<?php      } ?>
+<?php  }
     if($i - $loop_fuel == 100) {
         break;
     }  ?>
@@ -55,15 +55,15 @@ foreach($users as $key => $value) {
     <span style="float: left;"><?php echo $html->link('<u>' . $current+1 . '</u>&nbsp;', '/admin/users/' . $current+1, array('escape' => false)); ?></span>
     <span style="float: left;"><?php echo $html->link('<u>' . $current+2 . '</u>&nbsp;', '/admin/users/' . $current+2, array('escape' => false)); ?></span>
     <span style="float: left;"><?php echo $html->link('<u>' . $end_page . '</u>&nbsp;', '/admin/users/' . $end_page, array('escape' => false)); ?></span>
-<? }elseif($current < $end_page) { ?>
+<?php }elseif($current < $end_page) { ?>
     <span style="float: left;">page <?php echo $current;?> of <?php echo $html->link($end_page, '/admin/users/' . $end_page); ?></span>
-<? }else { ?>
+<?php }else { ?>
     <span style="float: left;">page <?php echo $current;?> of <?php echo $end_page;?></span>
-<? }
+<?php }
 if(isset($next)) { ?>
     <span style="float: right;"><?php echo $html->link('&nbsp;&nbsp;Next >>', '/admin/users/' . $next, array('escape' => false)); ?></span>
 <?
 }
 if(isset($previous)) { ?>
     <span style="float: right;"><?php echo $html->link('<< Previous&nbsp;&nbsp;', '/admin/users/' . $previous, array('escape' => false)); ?></span>
-<? } ?>
+<?php } ?>

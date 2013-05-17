@@ -42,7 +42,7 @@
 	<div class="post_actions wrapper">
 
 		<div style="width: 100px; float: left;">
-        <? if($question['Post']['user_id'] != $session->read('Auth.User.id')) { ?>
+        <?php if($question['Post']['user_id'] != $session->read('Auth.User.id')) { ?>
         <?php echo $html->link(
 				__('flag',true),
 				'/flag/' . $question['Post']['public_key']
@@ -69,7 +69,7 @@
 			<div style="width: 275px; float: left; text-align: center;">
 				edited <strong><?php echo $time->timeAgoInWords($question['Post']['last_edited_timestamp']);?></strong>
 			</div>
-		<? } ?>
+		<?php } ?>
 
 		<div class="user_info wrapper">
 			<div style="float: left;">
@@ -102,7 +102,7 @@
 		</div>
 
 		<div id="tags" style="clear: left;">
-			<? foreach($question['Tag'] as $tag) { ?>
+			<?php foreach($question['Tag'] as $tag) { ?>
 				<div class="tag">
 					<?php echo $html->link(
 							$tag['tag'],
@@ -110,14 +110,14 @@
 						);
 					?>
 				</div>
-			<?  } ?>
+			<?php  } ?>
 		</div>
 
 	</div>
 
-	<? if(!empty($question['Comment'])) { ?>
+	<?php if(!empty($question['Comment'])) { ?>
 		<div id="question_comments">
-			<? foreach($question['Comment'] as $comment) { ?>
+			<?php foreach($question['Comment'] as $comment) { ?>
 			<div class="comment">
 				<?php echo $comment['content']?> &ndash;
 
@@ -128,10 +128,10 @@
 				?>
 				<span class="quiet"><?php echo $time->timeAgoInWords($comment['timestamp']); ?></span>
 			</div>
-			<? } ?>
+			<?php } ?>
 		</div>
 
-	<? } ?>
+	<?php } ?>
 
 	<div id="comment_<?php echo $question['Post']['public_key'];?>" class="comment_area">
 		<?php echo $form->create(null, array(
@@ -153,7 +153,7 @@
 <div id="answers">
 	<h2><?php __n('answer','answers',count($answers));?></h2>
 	<hr/>
-	<? foreach($answers as $answer) { ?>
+	<?php foreach($answers as $answer) { ?>
 	<div class="<?php echo ($answer['Answer']['status'] == 'correct') ? 'answered' : 'answer';?>" id="a_<?php echo $answer['Answer']['public_key']?>">
 
 		<div class="content_container wrapper">
@@ -168,7 +168,7 @@
                                         'url' => '/vote/' . $answer['Answer']['public_key'] . '/down'
                                     )); ?>
                                 
-				<? if($question['Post']['user_id'] == $session->read('Auth.User.id') && $answer['Answer']['status'] != 'correct' && $question['Post']['status'] != 'closed') {?>
+				<?php if($question['Post']['user_id'] == $session->read('Auth.User.id') && $answer['Answer']['status'] != 'correct' && $question['Post']['status'] != 'closed') {?>
 				<div class="checkmark">
 					<?php echo $html->link(
 							'',
@@ -176,7 +176,7 @@
 						);
 					?>
 				</div>
-				<? } if($answer['Answer']['status'] == 'correct') {
+				<?php } if($answer['Answer']['status'] == 'correct') {
 					echo $html->image('checkmark_green.png');
 				} ?>
 				
@@ -231,7 +231,7 @@
 					. '#a_' . $answer['Answer']['public_key']
 				);
 			?>
-			<? if($answer['Answer']['user_id'] == $session->read('Auth.User.id') || isset($rep_rights)) { ?>
+			<?php if($answer['Answer']['user_id'] == $session->read('Auth.User.id') || isset($rep_rights)) { ?>
 			<span class="quiet">|</span>
 			<?php echo $html->link(
 					__('edit',true),
@@ -241,9 +241,9 @@
 	
 		</div>
 
-		<? if(!empty($answer['Comment'])) { ?>
+		<?php if(!empty($answer['Comment'])) { ?>
 			<div id="comments">
-				<? foreach($answer['Comment'] as $comment) { ?>
+				<?php foreach($answer['Comment'] as $comment) { ?>
 				<div class="comment">
 					<?php echo $comment['content']?> &ndash; 
 				
@@ -254,10 +254,10 @@
 					?>
 					<span class="quiet"><?php echo $time->timeAgoInWords($comment['timestamp']); ?></span>
 				</div>
-				<? } ?>
+				<?php } ?>
 			</div>
 			
-		<? } ?>
+		<?php } ?>
 	
 		<div id="comment_<?php echo $answer['Answer']['public_key'];?>" class="comment_area">
 			<?php echo $form->create(null, array(
@@ -275,11 +275,11 @@
 		</div>	
 	
 	</div>
-	<? } ?>
+	<?php } ?>
 </div>
 
 <div id="user_answer">
-	<? if ($session->read('errors')) {
+	<?php if ($session->read('errors')) {
 			foreach($session->read('errors.errors') as $error) {
 				echo '<div class="error">' . $error . '</div>';
 			}
@@ -297,14 +297,14 @@
 
 	<div id="wmd-preview" class="wmd-panel"></div>
 
-	<? if(!$session->check('Auth.User.id')) { ?>
+	<?php if(!$session->check('Auth.User.id')) { ?>
 	<h2>Who Are You?</h2>
 	<span class="quiet">Have an account already? <a href="/login">Login before answering!</a></span><br/>
 		<?php echo $form->label('name');?><br/>
 		<?php echo $form->text('User.username', array('class' => 'big_input medium_input '));?><br/>
 		<?php echo $form->label('email');?><br/>
 		<?php echo $form->text('User.email', array('class' => 'big_input medium_input '));?><br/>		
-	<? } ?>
+	<?php } ?>
 	
 	<?$recaptcha->display_form('echo');?>
 	

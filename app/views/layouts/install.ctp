@@ -9,7 +9,7 @@
 </head>
 <body>
 	<?php echo $html->image('coordino_logo.png');?>
-	<? echo $session->flash(); ?>
+	<?php echo $session->flash(); ?>
 	<?php echo $content_for_layout;?>
 <body>
 </html>

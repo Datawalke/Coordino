@@ -23,4 +23,4 @@
 		<strong style="float: left;">&nbsp;<?php echo $display;?></strong>
 		<div style="clear: both;"></div>
 	</div>
-<? } ?>
+<?php } ?>
