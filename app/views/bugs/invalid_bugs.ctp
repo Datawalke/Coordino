@@ -1,6 +1,6 @@
 <h3>
-	<?= $html->link("Open", array('action'=>'openBugs')); ?>  ---
-	<?= $html->link("Closed", array('action'=>'closedBugs')); ?> ---
+	<?php echo $html->link("Open", array('action'=>'openBugs')); ?>  ---
+	<?php echo $html->link("Closed", array('action'=>'closedBugs')); ?> ---
 	Invalid
 </h3>
 
@@ -13,14 +13,14 @@
 
 <form id="changeStatusForm" method="post">
 
-<? foreach ($invalidBugs as $bug => $value) : ?>
+<?php foreach ($invalidBugs as $bug => $value) : ?>
 	<tr>
 		<td>
-			<input type="checkbox" name="data[Bugs][<?=$invalidBugs[$bug]['Bug']['id'];?>]" />
+			<input type="checkbox" name="data[Bugs][<?php echo $invalidBugs[$bug]['Bug']['id'];?>]" />
 		</td>
-		<td><?= $invalidBugs[$bug]['Bug']['content']; ?></td>
+		<td><?php echo $invalidBugs[$bug]['Bug']['content']; ?></td>
 	</tr>
-<? endforeach; ?>
+<?php endforeach; ?>
 </table>
 
 <div class="submit">

@@ -160,18 +160,18 @@ class TrickyFileInputHelper extends AppHelper {
 		}
 		
 		if($this->options['form'] != false) { ?>
-			<? $this->__htmlForm(); ?>
-				<? $this->__htmlDiv(); ?>
-					<? $this->__htmlInput(); ?>
-					<? $this->__htmlImage(); ?>
-				<? $this->__htmlEndTag('div'); ?>
-			<? $this->__htmlEndTag('form'); ?>
-		<? } else { ?>
-			<? $this->__htmlDiv(); ?>
-				<? $this->__htmlInput(); ?>
-				<? $this->__htmlImage(); ?>
-			<? $this->__htmlEndTag('div'); ?>
-		<? }
+			<?php $this->__htmlForm(); ?>
+				<?php $this->__htmlDiv(); ?>
+					<?php $this->__htmlInput(); ?>
+					<?php $this->__htmlImage(); ?>
+				<?php $this->__htmlEndTag('div'); ?>
+			<?php $this->__htmlEndTag('form'); ?>
+		<?php } else { ?>
+			<?php $this->__htmlDiv(); ?>
+				<?php $this->__htmlInput(); ?>
+				<?php $this->__htmlImage(); ?>
+			<?php $this->__htmlEndTag('div'); ?>
+		<?php }
     }
 
 
@@ -212,22 +212,22 @@ class TrickyFileInputHelper extends AppHelper {
 	function __displayAutosubmit() { ?>
 		<form 
 			enctype="multipart/form-data" 
-			action="<?=$this->options['form']['action']?>" 
-			id="<?=$this->options['form']['id']?>" 
-			name="<?=$this->options['form']['name']?>" 
-			method="<?=$this->options['form']['method']?>"
+			action="<?php echo $this->options['form']['action']?>" 
+			id="<?php echo $this->options['form']['id']?>" 
+			name="<?php echo $this->options['form']['name']?>" 
+			method="<?php echo $this->options['form']['method']?>"
 		>
-			<div class="<?=$this->errorStyles['div']?>">
+			<div class="<?php echo $this->errorStyles['div']?>">
 				<input 
 					type="file" 
-					id="<?=$this->options['input']['id']?>" 
-					name="<?=$this->options['input']['name']?>" 
-					class="<?=$this->errorStyles['input']?>" 
-					onchange="document.<?=$this->options['form']['name']?>.submit();"
+					id="<?php echo $this->options['input']['id']?>" 
+					name="<?php echo $this->options['input']['name']?>" 
+					class="<?php echo $this->errorStyles['input']?>" 
+					onchange="document.<?php echo $this->options['form']['name']?>.submit();"
 				/>
 			</div>
 		</form>
-	<? }
+	<?php }
 	
 	
 	
@@ -235,16 +235,16 @@ class TrickyFileInputHelper extends AppHelper {
 	 * Displays a regular file element if the program fails with errors and is requested.
 	 */
 	function __displayRegular() { ?>
-		<div class="<?=$this->errorStyles['div']?>">
+		<div class="<?php echo $this->errorStyles['div']?>">
 			<input 
 				type="file" 
-				id="<?=$this->options['input']['id']?>" 
-				name="<?=$this->options['input']['name']?>" 
-				class="<?=$this->errorStyles['input']?>" 
-				onchange="<?=$this->options['input']['submitOnChange']?>"
+				id="<?php echo $this->options['input']['id']?>" 
+				name="<?php echo $this->options['input']['name']?>" 
+				class="<?php echo $this->errorStyles['input']?>" 
+				onchange="<?php echo $this->options['input']['submitOnChange']?>"
 			/>
 		</div>
-	<? }
+	<?php }
 	
 	
 	
@@ -405,12 +405,12 @@ class TrickyFileInputHelper extends AppHelper {
 	function __htmlForm() { ?>
 		<form 
 			enctype="multipart/form-data" 
-			action="<?=$this->options['form']['action']?>" 
-			id="<?=$this->options['form']['id']?>" 
-			name="<?=$this->options['form']['name']?>" 
-			method="<?=$this->options['form']['method']?>"
+			action="<?php echo $this->options['form']['action']?>" 
+			id="<?php echo $this->options['form']['id']?>" 
+			name="<?php echo $this->options['form']['name']?>" 
+			method="<?php echo $this->options['form']['method']?>"
 		>
-	<? }
+	<?php }
 	
 	
 	
@@ -418,8 +418,8 @@ class TrickyFileInputHelper extends AppHelper {
 	 * Creates a tricky input html div wrapper
 	 */
 	function __htmlDiv() { ?>
-		<div class="<?=$this->styles['div']?>">
-	<? }
+		<div class="<?php echo $this->styles['div']?>">
+	<?php }
 	
 	
 
@@ -429,12 +429,12 @@ class TrickyFileInputHelper extends AppHelper {
 	function __htmlInput() { ?>
 		<input 
 			type="file" 
-			id="<?=$this->options['input']['id']?>" 
-			name="<?=$this->options['input']['name']?>" 
-			class="<?=$this->styles['input']?>" 
-			onchange="<?=$this->options['input']['submitOnChange']?>"
+			id="<?php echo $this->options['input']['id']?>" 
+			name="<?php echo $this->options['input']['name']?>" 
+			class="<?php echo $this->styles['input']?>" 
+			onchange="<?php echo $this->options['input']['submitOnChange']?>"
 		/>
-	<? }
+	<?php }
 	
 
 	/**
@@ -443,12 +443,12 @@ class TrickyFileInputHelper extends AppHelper {
 	function __htmlInputForName() { ?>
 		<input 
 			type="file" 
-			id="<?=$this->options['input']['id']?>" 
-			name="<?=$this->options['input']['name']?>" 
-			class="<?=$this->styles['input']?>" 
-			onchange="<?=$this->options['input']['submitOnChange']?>"
+			id="<?php echo $this->options['input']['id']?>" 
+			name="<?php echo $this->options['input']['name']?>" 
+			class="<?php echo $this->styles['input']?>" 
+			onchange="<?php echo $this->options['input']['submitOnChange']?>"
 		/>
-	<? }
+	<?php }
 	
 	
 	
@@ -457,10 +457,10 @@ class TrickyFileInputHelper extends AppHelper {
 	 */
 	function __htmlImage() { ?>
 		<img 
-			class="<?=$this->styles['image']?>" 
-			src="<?=$this->options['image']?>"
+			class="<?php echo $this->styles['image']?>" 
+			src="<?php echo $this->options['image']?>"
 		/>
-	<? }
+	<?php }
 
 
 
@@ -469,10 +469,10 @@ class TrickyFileInputHelper extends AppHelper {
 	 */
 	function __htmlName() { ?>
 		<span 
-			id="<?=$this->options['name']['id']?>" 
-			class="<?=$this->styles['name']?>" 
+			id="<?php echo $this->options['name']['id']?>" 
+			class="<?php echo $this->styles['name']?>" 
 		></span>
-	<? }
+	<?php }
 	
 	
 	
@@ -481,12 +481,12 @@ class TrickyFileInputHelper extends AppHelper {
 	 */
 	function __javascriptNameChange() { ?>
 		<script type="text/javascript">
-			document.getElementById("<?=$this->options['input']['id']?>").onchange = function() {
-				var name = document.getElementById("<?=$this->options['input']['id']?>");
-				document.getElementById("<?=$this->options['name']['id']?>").innerHTML = name.value;
+			document.getElementById("<?php echo $this->options['input']['id']?>").onchange = function() {
+				var name = document.getElementById("<?php echo $this->options['input']['id']?>");
+				document.getElementById("<?php echo $this->options['name']['id']?>").innerHTML = name.value;
 			}
 		</script>
-	<? }
+	<?php }
 	
 }
 ?>

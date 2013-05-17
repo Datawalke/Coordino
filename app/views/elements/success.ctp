@@ -1,3 +1,3 @@
 <div id="alert" class="success">
-	<?=$_SESSION['Message']['flash']['message'];?>
+	<?php echo $_SESSION['Message']['flash']['message'];?>
 </div>
