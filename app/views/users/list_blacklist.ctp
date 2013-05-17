@@ -1,4 +1,4 @@
-<?=$this->element('admin_header',
+<?php echo $this->element('admin_header',
 	array("selected" => "Blacklist")); 
 ?>
 
@@ -9,7 +9,7 @@
 foreach($list as $key => $value) {
 ?>
 		<td>
-			"<?=$list[$key];?>"&nbsp;&nbsp;<a href="/admin/blacklist/remove/<?=$list[$key];?>">remove</a>
+			"<?php echo $list[$key];?>"&nbsp;&nbsp;<a href="/admin/blacklist/remove/<?php echo $list[$key];?>">remove</a>
 		</td>
 <? if($key > 0 && (($key < 6 && ($key % 4 == 0)) || ($key > 6 && (($key - 4) % 5 == 0)))) { ?>
 	</tr>

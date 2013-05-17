@@ -4,8 +4,8 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title><?=$title_for_layout;?> | Coordino</title>
-	<?=$html->css('screen.css');?>
+	<title><?php echo $title_for_layout;?> | Coordino</title>
+	<?php echo $html->css('screen.css');?>
 	<!--[if IE]>
 	<style type="text/css">
 	  .wrapper {
@@ -43,7 +43,7 @@
 			<ul class="tabs">
 				 <? if($session->check('Auth.User.id')) { ?>
 					<li>
-						<?=$html->link(
+						<?php echo $html->link(
 								$session->read('Auth.User.username'),
 								'/users/' . $session->read('Auth.User.public_key') . '/' . $session->read('Auth.User.username')
 							);
@@ -52,7 +52,7 @@
 				<? } ?>
 				<? if(!$session->check('Auth.User.id') || $session->read('Auth.User.registered') == 0) { ?>
 				<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							'register',
 							array('controller' => 'users', 'action' => 'register')
 						);
@@ -60,14 +60,14 @@
 				</li>
 				<? } ?>
 				<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							'about',
 							array('controller' => 'pages', 'action' => 'display', 'about')
 						);
 					?>
 				</li>
 				<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							'help',
 							array('controller' => 'pages', 'action' => 'display', 'help')
 						);
@@ -75,7 +75,7 @@
 				</li>
 				<? if($session->check('Auth.User.id') && $session->read('Auth.User.registered') == 1) { ?>
 				<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							'logout',
 							array('controller' => 'users', 'action' => 'logout')
 						);
@@ -87,7 +87,7 @@
 	</div>
 
 	<div class="wrapper">
-		  <?=$html->link(
+		  <?php echo $html->link(
 			$html->image('logo.png', array('alt' => 'Logo', 'id' => 'logo')),
 			'/',
 			null, null, false
@@ -95,7 +95,7 @@
 
 		  <ul class="tabs">
 		    <li>
-		    	<?=$html->link(
+		    	<?php echo $html->link(
 						'Questions',
 						'/'
 					);
@@ -106,7 +106,7 @@
 		  </ul>
 		  <ul class="tabs" style="float: right;">
 			<li>
-				<?=$html->link(
+				<?php echo $html->link(
 						'Ask a Question',
 						array('controller' => 'posts', 'action' => 'ask')
 					);
@@ -118,7 +118,7 @@
 </div>
   <div id="body" class="wrapper">
 	<div id="fullWidth">
-		<?=$content_for_layout;?>
+		<?php echo $content_for_layout;?>
     </div>
   </div><!-- end #body -->
   
@@ -135,5 +135,5 @@
 </div>
 
 </body>
-<?=$this->element('google_analytics');?>
+<?php echo $this->element('google_analytics');?>
 </html>
