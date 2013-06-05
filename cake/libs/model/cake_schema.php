@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model
@@ -309,19 +309,21 @@ class CakeSchema extends Object {
 				$systemTables = array(
 					'aros', 'acos', 'aros_acos', Configure::read('Session.table'), 'i18n'
 				);
-
+				
+				$fulltable = $db->fullTableName($Object, false);
+				
 				if (in_array($table, $systemTables)) {
 					$tables[$Object->table] = $this->__columns($Object);
 					$tables[$Object->table]['indexes'] = $db->index($Object);
-					$tables[$Object->table]['tableParameters'] = $db->readTableParameters($table);
+					$tables[$Object->table]['tableParameters'] = $db->readTableParameters($fulltable);
 				} elseif ($models === false) {
 					$tables[$table] = $this->__columns($Object);
 					$tables[$table]['indexes'] = $db->index($Object);
-					$tables[$table]['tableParameters'] = $db->readTableParameters($table);
+					$tables[$table]['tableParameters'] = $db->readTableParameters($fulltable);
 				} else {
 					$tables['missing'][$table] = $this->__columns($Object);
 					$tables['missing'][$table]['indexes'] = $db->index($Object);
-					$tables['missing'][$table]['tableParameters'] = $db->readTableParameters($table);
+					$tables['missing'][$table]['tableParameters'] = $db->readTableParameters($fulltable);
 				}
 			}
 		}
@@ -491,7 +493,7 @@ class CakeSchema extends Object {
 					}
 				}
 
-				if (isset($add[$table][$field])) {
+				if (isset($tables[$table]['add'][$field]) && $field !== 'indexes' && $field !== 'tableParameters') {
 					$wrapper = array_keys($fields);
 					if ($column = array_search($field, $wrapper)) {
 						if (isset($wrapper[$column - 1])) {
@@ -553,6 +555,9 @@ class CakeSchema extends Object {
 			}
 			if (is_bool($value) !== is_bool($correspondingValue)) {
 				$difference[$key] = $value;
+				continue;
+			}
+			if (is_array($value) && is_array($correspondingValue)) {
 				continue;
 			}
 			$compare = strval($value);

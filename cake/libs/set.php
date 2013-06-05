@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -327,7 +327,7 @@ class Set {
 			for ($j = 0; $j < $count; $j++) {
 				$args = array();
 				for ($i = 0; $i < $count2; $i++) {
-					if (isset($data[$i][$j])) {
+					if (array_key_exists($j, $data[$i])) {
 						$args[] = $data[$i][$j];
 					}
 				}
@@ -431,14 +431,9 @@ class Set {
 						'key' => $key,
 						'item' => array_keys($context['item']),
 					);
-				} elseif (($key === $token || (ctype_digit($token) && $key == $token) || $token === '.')) {
-					$context['trace'][] = $key;
-					$matches[] = array(
-						'trace' => $context['trace'],
-						'key' => $key,
-						'item' => $context['item'],
-					);
-				} elseif (is_array($context['item']) && array_key_exists($token, $context['item'])) {
+				} elseif (is_array($context['item'])
+					&& array_key_exists($token, $context['item'])
+					&& !(strval($key) === strval($token) && count($tokens) == 1 && $tokens[0] === '.')) {
 					$items = $context['item'][$token];
 					if (!is_array($items)) {
 						$items = array($items);
@@ -477,6 +472,13 @@ class Set {
 							'item' => $item,
 						);
 					}
+				} elseif ($key === $token || (ctype_digit($token) && $key == $token) || $token === '.') {
+					$context['trace'][] = $key;
+					$matches[] = array(
+						'trace' => $context['trace'],
+						'key' => $key,
+						'item' => $context['item'],
+					);
 				}
 			}
 			if ($conditions) {
@@ -701,6 +703,9 @@ class Set {
 					$_list[$key] = array();
 				}
 				$_list =& $_list[$key];
+			}
+			if (!is_array($_list)) {
+				return array();
 			}
 		}
 		return $list;

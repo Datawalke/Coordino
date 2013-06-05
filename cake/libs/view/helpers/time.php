@@ -5,18 +5,21 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+if (!class_exists('Multibyte')) {
+	App::import('Core', 'Multibyte');
+}
 
 /**
  * Time Helper class for easy use of time data.
@@ -213,7 +216,7 @@ class TimeHelper extends AppHelper {
 			$date = time();
 		}
 		$format = $this->convertSpecifiers('%a, %b %eS %Y, %H:%M', $date);
-		return strftime($format, $date);
+		return $this->_strftime($format, $date);
 	}
 
 /**
@@ -236,12 +239,12 @@ class TimeHelper extends AppHelper {
 		$y = $this->isThisYear($date) ? '' : ' %Y';
 
 		if ($this->isToday($dateString, $userOffset)) {
-			$ret = sprintf(__('Today, %s',true), strftime("%H:%M", $date));
+			$ret = sprintf(__('Today, %s',true), $this->_strftime("%H:%M", $date));
 		} elseif ($this->wasYesterday($dateString, $userOffset)) {
-			$ret = sprintf(__('Yesterday, %s',true), strftime("%H:%M", $date));
+			$ret = sprintf(__('Yesterday, %s',true), $this->_strftime("%H:%M", $date));
 		} else {
 			$format = $this->convertSpecifiers("%b %eS{$y}, %H:%M", $date);
-			$ret = strftime($format, $date);
+			$ret = $this->_strftime($format, $date);
 		}
 
 		return $ret;
@@ -440,6 +443,17 @@ class TimeHelper extends AppHelper {
  */
 	function toRSS($dateString, $userOffset = null) {
 		$date = $this->fromString($dateString, $userOffset);
+
+		if(!is_null($userOffset)) {
+			if($userOffset == 0) {
+				$timezone = '+0000';
+			} else {
+				$hours = (int) floor(abs($userOffset));
+				$minutes = (int) (fmod(abs($userOffset), $hours) * 60);
+				$timezone = ($userOffset < 0 ? '-' : '+') . str_pad($hours, 2, '0', STR_PAD_LEFT) . str_pad($minutes, 2, '0', STR_PAD_LEFT);
+			}
+			return date('D, d M Y H:i:s', $date) . ' ' . $timezone;
+		}
 		return date("r", $date);
 	}
 
@@ -739,6 +753,32 @@ class TimeHelper extends AppHelper {
 			$format = '%x';
 		}
 		$format = $this->convertSpecifiers($format, $date);
-		return strftime($format, $date);
+		return $this->_strftime($format, $date);
+	}
+
+/**
+ * Multibyte wrapper for strftime.
+ *
+ * Handles utf8_encoding the result of strftime when necessary.
+ *
+ * @param string $format Format string.
+ * @param int $date Timestamp to format.
+ * @return string formatted string with correct encoding.
+ */
+	function _strftime($format, $date) {
+		$format = strftime($format, $date);
+		$encoding = Configure::read('App.encoding');
+
+		if (!empty($encoding) && $encoding === 'UTF-8') {
+			if (function_exists('mb_check_encoding')) {
+				$valid = mb_check_encoding($format, $encoding);
+			} else {
+				$valid = !Multibyte::checkMultibyte($format);
+			}
+			if (!$valid) {
+				$format = utf8_encode($format);
+			}
+		}
+		return $format;
 	}
 }

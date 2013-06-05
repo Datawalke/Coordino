@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model
@@ -93,7 +93,7 @@ class AclNode extends AppModel {
 					$db->name("{$type}.rght") . ' >= ' . $db->name("{$type}0.rght")),
 				'fields' => array('id', 'parent_id', 'model', 'foreign_key', 'alias'),
 				'joins' => array(array(
-					'table' => $db->fullTableName($this),
+					'table' => $table,
 					'alias' => "{$type}0",
 					'type' => 'LEFT',
 					'conditions' => array("{$type}0.alias" => $start)
@@ -105,7 +105,7 @@ class AclNode extends AppModel {
 				$j = $i - 1;
 
 				$queryData['joins'][] = array(
-					'table' => $db->fullTableName($this),
+					'table' => $table,
 					'alias' => "{$type}{$i}",
 					'type'  => 'LEFT',
 					'conditions' => array(
@@ -175,7 +175,7 @@ class AclNode extends AppModel {
 				'conditions' => $ref,
 				'fields' => array('id', 'parent_id', 'model', 'foreign_key', 'alias'),
 				'joins' => array(array(
-					'table' => $db->fullTableName($this),
+					'table' => $table,
 					'alias' => "{$type}0",
 					'type' => 'LEFT',
 					'conditions' => array(

@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -146,6 +146,44 @@ class ModelIntegrationTest extends BaseModelTest {
 		$TestModel->Behaviors->detach('Tree');
 		$this->assertEqual($TestModel->Behaviors->attached(), array());
 		$this->assertFalse(isset($TestModel->Behaviors->Tree));
+	}
+
+/**
+ * testFindWithJoinsOption method
+ *
+ * @access public
+ * @return void
+ */
+	function testFindWithJoinsOption() {
+		$this->loadFixtures('Article', 'User');
+		$TestUser =& new User();
+
+		$options = array (
+			'fields' => array(
+				'user',
+				'Article.published',
+			),
+			'joins' => array (
+				array (
+					'table' => 'articles',
+					'alias' => 'Article',
+					'type'  => 'LEFT',
+					'conditions' => array(
+						'User.id = Article.user_id',
+					),
+				),
+			),
+			'group' => array('User.user'),
+			'recursive' => -1,
+		);
+		$result = $TestUser->find('all', $options);
+		$expected = array(
+			array('User' => array('user' => 'garrett'), 'Article' => array('published' => '')),
+			array('User' => array('user' => 'larry'), 'Article' => array('published' => 'Y')),
+			array('User' => array('user' => 'mariano'), 'Article' => array('published' => 'Y')),
+			array('User' => array('user' => 'nate'), 'Article' => array('published' => ''))
+		);
+		$this->assertEqual($result, $expected);
 	}
 
 /**

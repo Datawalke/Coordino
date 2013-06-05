@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.controller.components
@@ -425,20 +425,22 @@ class CookieComponent extends Object {
 			if (is_array($value)) {
 				foreach ($value as $key => $val) {
 					$pos = strpos($val, 'Q2FrZQ==.');
-					$decrypted[$name][$key] = $this->__explode($val);
 
 					if ($pos !== false) {
 						$val = substr($val, 8);
 						$decrypted[$name][$key] = $this->__explode(Security::$type(base64_decode($val), $this->key));
+					} else {
+						$decrypted[$name][$key] = $this->__explode($val);
 					}
 				}
 			} else {
 				$pos = strpos($value, 'Q2FrZQ==.');
-				$decrypted[$name] = $this->__explode($value);
 
 				if ($pos !== false) {
 					$value = substr($value, 8);
 					$decrypted[$name] = $this->__explode(Security::$type(base64_decode($value), $this->key));
+				} else {
+					$decrypted[$name] = $this->__explode($value);
 				}
 			}
 		}
@@ -464,10 +466,15 @@ class CookieComponent extends Object {
  * Explode method to return array from string set in CookieComponent::__implode()
  *
  * @param string $string String in the form key1|value1,key2|value2
- * @return array Map of key and values
+ * @return mixed If array, map of key and values. If string, value.
  * @access private
  */
 	function __explode($string) {
+		$first = substr($string, 0, 1);
+		if ($first !== false && ($first === '{' || $first === '[') && function_exists('json_decode')) {
+			$ret = json_decode($string, true);
+			return ($ret != null) ? $ret : $string;
+		}
 		$array = array();
 		foreach (explode(',', $string) as $pair) {
 			$key = explode('|', $pair);

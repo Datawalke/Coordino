@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -532,6 +532,86 @@ class ModelDeleteTest extends BaseModelTest {
 
 		$result = $TestModel->deleteAll(array('Article.user_id' => 999));
 		$this->assertTrue($result, 'deleteAll returned false when all no records matched conditions. %s');
+	}
+
+/**
+ * testDeleteDependent method
+ *
+ * @access public
+ * @return void
+ */
+	function testDeleteDependent() {
+		$this->loadFixtures('Bidding', 'BiddingMessage');
+		$Bidding = new Bidding();
+		$result = $Bidding->find('all');
+		$expected = array(
+			array(
+				'Bidding' => array('id' => 1, 'bid' => 'One', 'name' => 'Bid 1'),
+				'BiddingMessage' => array('bidding' => 'One', 'name' => 'Message 1'),
+			),
+			array(
+				'Bidding' => array('id' => 2, 'bid' => 'Two', 'name' => 'Bid 2'),
+				'BiddingMessage' => array('bidding' => 'Two', 'name' => 'Message 2'),
+			),
+			array(
+				'Bidding' => array('id' => 3, 'bid' => 'Three', 'name' => 'Bid 3'),
+				'BiddingMessage' => array('bidding' => 'Three', 'name' => 'Message 3'),
+			),
+			array(
+				'Bidding' => array('id' => 4, 'bid' => 'Five', 'name' => 'Bid 5'),
+				'BiddingMessage' => array('bidding' => '', 'name' => ''),
+			),
+		);
+		$this->assertEqual($result, $expected);
+
+		$Bidding->delete(4, true);
+		$result = $Bidding->find('all');
+		$expected = array(
+			array(
+				'Bidding' => array('id' => 1, 'bid' => 'One', 'name' => 'Bid 1'),
+				'BiddingMessage' => array('bidding' => 'One', 'name' => 'Message 1'),
+			),
+			array(
+				'Bidding' => array('id' => 2, 'bid' => 'Two', 'name' => 'Bid 2'),
+				'BiddingMessage' => array('bidding' => 'Two', 'name' => 'Message 2'),
+			),
+			array(
+				'Bidding' => array('id' => 3, 'bid' => 'Three', 'name' => 'Bid 3'),
+				'BiddingMessage' => array('bidding' => 'Three', 'name' => 'Message 3'),
+			),
+		);
+		$this->assertEqual($result, $expected);
+
+		$Bidding->delete(2, true);
+		$result = $Bidding->find('all');
+		$expected = array(
+			array(
+				'Bidding' => array('id' => 1, 'bid' => 'One', 'name' => 'Bid 1'),
+				'BiddingMessage' => array('bidding' => 'One', 'name' => 'Message 1'),
+			),
+			array(
+				'Bidding' => array('id' => 3, 'bid' => 'Three', 'name' => 'Bid 3'),
+				'BiddingMessage' => array('bidding' => 'Three', 'name' => 'Message 3'),
+			),
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $Bidding->BiddingMessage->find('all', array('order' => array('BiddingMessage.name' => 'ASC')));
+		$expected = array(
+			array(
+				'BiddingMessage' => array('bidding' => 'One', 'name' => 'Message 1'),
+				'Bidding' => array('id' => 1, 'bid' => 'One', 'name' => 'Bid 1'),
+			),
+			array(
+				'BiddingMessage' => array('bidding' => 'Three', 'name' => 'Message 3'),
+				'Bidding' => array('id' => 3, 'bid' => 'Three', 'name' => 'Bid 3'),
+			),
+			array(
+				'BiddingMessage' => array('bidding' => 'Four', 'name' => 'Message 4'),
+				'Bidding' => array('id' => '', 'bid' => '', 'name' => ''),
+			),
+		);
+		$this->assertEqual($result, $expected);
 	}
 
 /**

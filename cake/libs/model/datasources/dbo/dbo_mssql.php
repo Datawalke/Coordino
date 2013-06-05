@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources.dbo
@@ -325,7 +325,11 @@ class DboMssql extends DboSource {
 		$fields = parent::fields($model, $alias, $fields, false);
 		$count = count($fields);
 
-		if ($count >= 1 && strpos($fields[0], 'COUNT(*)') === false) {
+		if (
+			$count >= 1 &&
+			strpos($fields[0], 'COUNT(*)') === false &&
+			strpos($fields[0], 'COUNT(DISTINCT') === false
+		) {
 			$result = array();
 			for ($i = 0; $i < $count; $i++) {
 				$prepend = '';

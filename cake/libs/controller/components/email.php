@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.controller.components
@@ -18,6 +18,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::import('Core', 'Multibyte');
+App::import('Core', 'String');
 
 /**
  * EmailComponent
@@ -399,12 +400,11 @@ class EmailComponent extends Object{
 			$this->_attachFiles();
 		}
 
-		if (!is_null($this->__boundary)) {
+		if (!empty($this->attachments)) {
 			$this->__message[] = '';
 			$this->__message[] = '--' . $this->__boundary . '--';
 			$this->__message[] = '';
 		}
-
 
 		$_method = '_' . $this->delivery;
 		$sent = $this->$_method();
@@ -429,6 +429,7 @@ class EmailComponent extends Object{
 		$this->return = null;
 		$this->cc = array();
 		$this->bcc = array();
+		$this->headers = array();
 		$this->subject = null;
 		$this->additionalParams = null;
 		$this->date = null;
@@ -437,6 +438,7 @@ class EmailComponent extends Object{
 		$this->htmlMessage = null;
 		$this->textMessage = null;
 		$this->messageId = true;
+		$this->delivery = 'mail';
 		$this->__header = array();
 		$this->__boundary = null;
 		$this->__message = array();
@@ -491,7 +493,9 @@ class EmailComponent extends Object{
 			$htmlContent = $View->element('email' . DS . 'html' . DS . $this->template, array('content' => $htmlContent), true);
 			$View->layoutPath = 'email' . DS . 'html';
 			$htmlContent = explode("\n", $this->htmlMessage = str_replace(array("\r\n", "\r"), "\n", $View->renderLayout($htmlContent)));
+
 			$msg = array_merge($msg, $htmlContent);
+
 			$msg[] = '';
 			$msg[] = '--alt-' . $this->__boundary . '--';
 			$msg[] = '';
@@ -588,7 +592,7 @@ class EmailComponent extends Object{
 
 		if ($this->messageId !== false) {
 			if ($this->messageId === true) {
-				$headers['Message-ID'] = '<' . String::UUID() . '@' . env('HTTP_HOST') . '>';
+				$headers['Message-ID'] = '<' . str_replace('-', '', String::uuid()) . '@' . env('HTTP_HOST') . '>';
 			} else {
 				$headers['Message-ID'] = $this->messageId;
 			}
@@ -608,13 +612,13 @@ class EmailComponent extends Object{
 			}
 		}
 
-		if (!empty($this->attachments)) {
+		if (!empty($this->attachments) || $this->sendAs === 'both') {
 			$this->_createBoundary();
+		}
+
+		if (!empty($this->attachments)) {
 			$headers['MIME-Version'] = '1.0';
 			$headers['Content-Type'] = 'multipart/mixed; boundary="' . $this->__boundary . '"';
-			$headers[] = 'This part of the E-mail should never be seen. If';
-			$headers[] = 'you are reading this, consider upgrading your e-mail';
-			$headers[] = 'client to a MIME-compatible client.';
 		} elseif ($this->sendAs === 'text') {
 			$headers['Content-Type'] = 'text/plain; charset=' . $this->charset;
 		} elseif ($this->sendAs === 'html') {
@@ -780,7 +784,7 @@ class EmailComponent extends Object{
 		}
 
 		if ($hasAlias && !empty($matches[2])) {
-			return $this->_encode($matches[2]) . $this->_strip(' <' . $matches[3] . '>');
+			return $this->_encode(trim($matches[2])) . $this->_strip(' <' . $matches[3] . '>');
 		}
 		return $this->_strip($string);
 	}
@@ -796,7 +800,7 @@ class EmailComponent extends Object{
  */
 	function _strip($value, $message = false) {
 		$search  = '%0a|%0d|Content-(?:Type|Transfer-Encoding)\:';
-		$search .= '|charset\=|mime-version\:|multipart/mixed|(?:[^a-z]to|b?cc)\:.*';
+		$search .= '|charset\=|mime-version\:|multipart/mixed|(?:[\n\r]+to|b?cc)\:.*';
 
 		if ($message !== true) {
 			$search .= '|\r|\n';

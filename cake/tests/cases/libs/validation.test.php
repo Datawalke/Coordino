@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -1447,6 +1447,7 @@ class ValidationTest extends CakeTestCase {
 		$this->assertTrue(Validation::date('Dec 27 2006', array('Mdy')));
 		$this->assertFalse(Validation::date('27 Dec 2006', array('Mdy')));
 		$this->assertFalse(Validation::date('2006 December 27', array('Mdy')));
+		$this->assertTrue(Validation::date('Sep 12, 2011', array('Mdy')));
 	}
 
 /**
@@ -1508,6 +1509,8 @@ class ValidationTest extends CakeTestCase {
 		$this->assertTrue(Validation::time('12:01am'));
 		$this->assertTrue(Validation::time('12:01pm'));
 		$this->assertTrue(Validation::time('1pm'));
+		$this->assertTrue(Validation::time('1 pm'));
+		$this->assertTrue(Validation::time('1 PM'));
 		$this->assertTrue(Validation::time('01:00'));
 		$this->assertFalse(Validation::time('1:00'));
 		$this->assertTrue(Validation::time('1:00pm'));

@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -4776,7 +4776,7 @@ class ModelReadTest extends BaseModelTest {
  *
  * @return void
  */
-	function bindWithCustomPrimaryKey() {
+	function testBindWithCustomPrimaryKey() {
 		$this->loadFixtures('Story', 'StoriesTag', 'Tag');
 		$Model =& ClassRegistry::init('StoriesTag');
 		$Model->bindModel(array(
@@ -4791,7 +4791,7 @@ class ModelReadTest extends BaseModelTest {
 	}
 
 /**
- * test that calling unbindModel() with reset == true multiple times 
+ * test that calling unbindModel() with reset == true multiple times
  * leaves associations in the correct state.
  *
  * @return void
@@ -4960,6 +4960,95 @@ class ModelReadTest extends BaseModelTest {
 		$result = Set::extract($TestModel->find('all', array('callbacks' => false)), '/Author/user');
 		$expected = array('mariano', 'nate', 'larry', 'garrett');
 		$this->assertEqual($result, $expected);
+	}
+
+/**
+ * testAssociationAfterFindCallbacksDisabled method
+ *
+ * @return void
+ */
+	public function testAssociationAfterFindCalbacksDisabled() {
+		$this->loadFixtures('Post', 'Author', 'Comment');
+		$TestModel = new Post();
+		$result = $TestModel->find('all', array('callbacks' => false));
+		$expected = array(
+			array(
+				'Post' => array(
+					'id' => '1',
+					'author_id' => '1',
+					'title' => 'First Post',
+					'body' => 'First Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:39:23',
+					'updated' => '2007-03-18 10:41:31'
+				),
+				'Author' => array(
+					'id' => '1',
+					'user' => 'mariano',
+					'password' => '5f4dcc3b5aa765d61d8327deb882cf99',
+					'created' => '2007-03-17 01:16:23',
+					'updated' => '2007-03-17 01:18:31'
+			)),
+			array(
+				'Post' => array(
+					'id' => '2',
+					'author_id' => '3',
+					'title' => 'Second Post',
+					'body' => 'Second Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:41:23',
+					'updated' => '2007-03-18 10:43:31'
+				),
+				'Author' => array(
+					'id' => '3',
+					'user' => 'larry',
+					'password' => '5f4dcc3b5aa765d61d8327deb882cf99',
+					'created' => '2007-03-17 01:20:23',
+					'updated' => '2007-03-17 01:22:31'
+			)),
+			array(
+				'Post' => array(
+					'id' => '3',
+					'author_id' => '1',
+					'title' => 'Third Post',
+					'body' => 'Third Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:43:23',
+					'updated' => '2007-03-18 10:45:31'
+				),
+				'Author' => array(
+					'id' => '1',
+					'user' => 'mariano',
+					'password' => '5f4dcc3b5aa765d61d8327deb882cf99',
+					'created' => '2007-03-17 01:16:23',
+					'updated' => '2007-03-17 01:18:31'
+		)));
+		$this->assertEqual($expected, $result);
+		unset($TestModel);
+
+		$Author = new Author();
+		$Author->Post->bindModel(array(
+			'hasMany' => array(
+				'Comment' => array(
+					'className' => 'ModifiedComment',
+					'foreignKey' => 'article_id',
+				)
+		)));
+		$result = $Author->find('all', array(
+			'conditions' => array('Author.id' => 1),
+			'recursive' => 2,
+			'callbacks' => false
+		));
+		$expected = array(
+			'id' => 1,
+			'article_id' => 1,
+			'user_id' => 2,
+			'comment' => 'First Comment for First Article',
+			'published' => 'Y',
+			'created' => '2007-03-18 10:45:23',
+			'updated' => '2007-03-18 10:47:31'
+		);
+		$this->assertEqual($result[0]['Post'][0]['Comment'][0], $expected);
 	}
 
 /**
@@ -5158,7 +5247,7 @@ class ModelReadTest extends BaseModelTest {
 				'group' => null,
 				'joins' => array(array(
 					'alias' => 'ArticlesTag',
-					'table' => $this->db->fullTableName('articles_tags'),
+					'table' => 'articles_tags',
 					'conditions' => array(
 						array("ArticlesTag.article_id" => '{$__cakeID__$}'),
 						array("ArticlesTag.tag_id" => $this->db->identifier('Tag.id'))
@@ -7409,6 +7498,19 @@ class ModelReadTest extends BaseModelTest {
 	}
 
 /**
+ * Test that virtual fields work with SQL constants
+ *
+ * @return void
+ */
+	function testVirtualFieldAsAConstant() {
+		$this->loadFixtures('Post', 'Author');
+		$Post =& ClassRegistry::init('Post');
+		$Post->virtualFields = array('empty' => "NULL");
+		$result = $Post->find('first');
+		$this->assertNull($result['Post']['empty']);
+	}
+
+/**
  * test that virtual fields work when they don't contain functions.
  *
  * @return void
@@ -7435,6 +7537,7 @@ class ModelReadTest extends BaseModelTest {
 
 		$this->assertTrue($Post->isVirtualField('other_field'));
 		$this->assertTrue($Post->isVirtualField('Post.other_field'));
+		$this->assertFalse($Post->isVirtualField('Comment.other_field'), 'Other models should not match.');
 		$this->assertFalse($Post->isVirtualField('id'));
 		$this->assertFalse($Post->isVirtualField('Post.id'));
 		$this->assertFalse($Post->isVirtualField(array()));

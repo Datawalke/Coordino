@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP :  Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc.
+ * Copyright 2005-2012, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc.
  * @link          http://cakephp.org CakePHP Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.behaviors
@@ -226,7 +226,7 @@ class TreeBehavior extends ModelBehavior {
 
 		if ($id === null) {
 			return $Model->find('count', array('conditions' => $scope));
-		} elseif (isset($Model->data[$Model->alias][$left]) && isset($Model->data[$Model->alias][$right])) {
+		} elseif ($Model->id === $id && isset($Model->data[$Model->alias][$left]) && isset($Model->data[$Model->alias][$right])) {
 			$data = $Model->data[$Model->alias];
 		} else {
 			$data = $Model->find('first', array('conditions' => array($scope, $Model->escapeField() => $id), 'recursive' => $recursive));
@@ -574,7 +574,7 @@ class TreeBehavior extends ModelBehavior {
 		$Model->recursive = $recursive;
 		if ($mode == 'parent') {
 			$Model->bindModel(array('belongsTo' => array('VerifyParent' => array(
-				'className' => $Model->alias,
+				'className' => $Model->name,
 				'foreignKey' => $parent,
 				'fields' => array($Model->primaryKey, $left, $right, $parent),
 			))));
@@ -589,7 +589,6 @@ class TreeBehavior extends ModelBehavior {
 				if ($missingParentAction == 'return') {
 					foreach ($missingParents as $id => $display) {
 						$this->errors[]	= 'cannot find the parent for ' . $Model->alias . ' with id ' . $id . '(' . $display . ')';
-
 					}
 					return false;
 				} elseif ($missingParentAction == 'delete') {
@@ -600,13 +599,14 @@ class TreeBehavior extends ModelBehavior {
 			}
 			$count = 1;
 			foreach ($Model->find('all', array('conditions' => $scope, 'fields' => array($Model->primaryKey), 'order' => $left)) as $array) {
-				$Model->id = $array[$Model->alias][$Model->primaryKey];
 				$lft = $count++;
 				$rght = $count++;
+				$Model->create(false);
+				$Model->id = $array[$Model->alias][$Model->primaryKey];
 				$Model->save(array($left => $lft, $right => $rght), array('callbacks' => false));
 			}
 			foreach ($Model->find('all', array('conditions' => $scope, 'fields' => array($Model->primaryKey, $parent), 'order' => $left)) as $array) {
-				$Model->create();
+				$Model->create(false);
 				$Model->id = $array[$Model->alias][$Model->primaryKey];
 				$this->_setParent($Model, $array[$Model->alias][$parent]);
 			}
@@ -717,7 +717,7 @@ class TreeBehavior extends ModelBehavior {
 
 		$db =& ConnectionManager::getDataSource($Model->useDbConfig);
 		$Model->updateAll(
-			array($parent => $db->value($node[$parent], $parent)), 
+			array($parent => $db->value($node[$parent], $parent)),
 			array($Model->escapeField($parent) => $node[$Model->primaryKey])
 		);
 		$this->__sync($Model, 1, '-', 'BETWEEN ' . ($node[$left] + 1) . ' AND ' . ($node[$right] - 1));
@@ -785,7 +785,7 @@ class TreeBehavior extends ModelBehavior {
 		}
 
 		$Model->bindModel(array('belongsTo' => array('VerifyParent' => array(
-			'className' => $Model->alias,
+			'className' => $Model->name,
 			'foreignKey' => $parent,
 			'fields' => array($Model->primaryKey, $left, $right, $parent)
 		))));
@@ -827,6 +827,7 @@ class TreeBehavior extends ModelBehavior {
  *
  * @param AppModel $Model Model instance
  * @param mixed $parentId
+ * @param boolean $created
  * @return boolean true on success, false on failure
  * @access protected
  */
@@ -861,11 +862,10 @@ class TreeBehavior extends ModelBehavior {
 
 			if (($Model->id == $parentId)) {
 				return false;
-
 			} elseif (($node[$left] < $parentNode[$left]) && ($parentNode[$right] < $node[$right])) {
 				return false;
 			}
-			if (empty ($node[$left]) && empty ($node[$right])) {
+			if (empty($node[$left]) && empty ($node[$right])) {
 				$this->__sync($Model, 2, '+', '>= ' . $parentNode[$right], $created);
 				$result = $Model->save(
 					array($left => $parentNode[$right], $right => $parentNode[$right] + 1, $parent => $parentId),
@@ -899,6 +899,8 @@ class TreeBehavior extends ModelBehavior {
  * @param AppModel $Model
  * @param string $scope
  * @param string $right
+ * @param int $recursive
+ * @param boolean $created
  * @return int
  * @access private
  */
@@ -950,6 +952,7 @@ class TreeBehavior extends ModelBehavior {
  * @param integer $shift
  * @param string $direction
  * @param array $conditions
+ * @param boolean $created
  * @param string $field
  * @access private
  */
