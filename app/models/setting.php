@@ -17,7 +17,7 @@ class Setting extends AppModel {
                 )
             ), false
         );
-        $this->Setting->recursive = -1;
+        $this->recursive = -1;
         $this->User->recursive = -1;
         $user_rep = $this->User->find(
             'first', array(

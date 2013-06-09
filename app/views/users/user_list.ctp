@@ -1,4 +1,4 @@
-<?
+<?php
 echo $javascript->link('jquery/jquery.js');
 echo $javascript->link('jquery/jquery.bgiframe.min.js');
 echo $javascript->link('jquery/jquery.ajaxQueue.js');

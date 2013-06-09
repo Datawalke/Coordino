@@ -28,13 +28,13 @@
 <div class="wrapper" id="header">
 	<div class="wrapper">
 		<div id="top_actions" class="top_actions">
-			<? 
+			<?php
 				echo $form->create('Post', array('action' => 'display'));
 				echo $form->text('needle', array('value' => 'search', 'onclick' => 'this.value=""'));
 				echo $form->end();
 			?>
 			<ul class="tabs">
-				 <? if($session->check('Auth.User.id')) { ?>
+				 <?php if($session->check('Auth.User.id')) { ?>
 					<li>
 						<?=$html->link(
 								$session->read('Auth.User.username'),
@@ -42,8 +42,8 @@
 							);
 						?>
 					</li>
-				<? } ?>
-				<? if(!$session->check('Auth.User.id')) { ?>
+				<?php } ?>
+				<?php if(!$session->check('Auth.User.id')) { ?>
 					<li>
 					<?=$html->link(
 							__('login',true),
@@ -51,8 +51,8 @@
 						);
 					?>
 					</li>
-				<? } ?>
-				<? if(!$session->check('Auth.User.id') || $session->read('Auth.User.registered') == 0) { ?>
+				<?php } ?>
+				<?php if(!$session->check('Auth.User.id') || $session->read('Auth.User.registered') == 0) { ?>
 				<li>
 					<?=$html->link(
 							__('register',true),
@@ -60,7 +60,7 @@
 						);
 					?>
 				</li>
-				<? } ?>
+				<?php } ?>
 				<li>
 					<?=$html->link(
 							__('about',true),
@@ -68,7 +68,7 @@
 						);
 					?>
 				</li>
-				<? if($session->read('Auth.User.id')) { ?>
+				<?php if($session->read('Auth.User.id')) { ?>
 				<li>
 					<?=$html->link(
 							__('settings',true),
@@ -76,7 +76,7 @@
 						);
 					?>
 				</li>
-				<? } ?>
+				<?php } ?>
 				<li>
 				    <a href='#'><?php __('change language'); ?></a>
 				    <ul>
@@ -85,7 +85,7 @@
 				        <li><?=$html->link(__('chinese',true),'/lang/chi')?></li>
 				    </ul>
 				</li>
-				<? if($session->check('Auth.User.id') && $session->read('Auth.User.permission') != '') { ?>
+				<?php if($session->check('Auth.User.id') && $session->read('Auth.User.permission') != '') { ?>
 				<li>
 					<?=$html->link(
 							__('admin',true),
@@ -130,9 +130,9 @@
 						</li>
 					</ul>
 				</li>
-				<? } ?>
+				<?php } ?>
 				
-				<? if($session->check('Auth.User.id') && $session->read('Auth.User.registered') == 1) { ?>
+				<?php if($session->check('Auth.User.id') && $session->read('Auth.User.registered') == 1) { ?>
 				<li>
 					<?=$html->link(
 							__('logout',true),
@@ -140,7 +140,7 @@
 						);
 					?>
 				</li>
-				<? } ?>
+				<?php } ?>
 			</ul>
 		</div>
 	</div>
@@ -176,21 +176,21 @@
     </div>
     <div id="sidebar" class="wrapper">
 
-		<?
+		<?php
 			if(!empty($widgets)) {
 				foreach($widgets as $widget) {
 		?>
 		<div class="widget_box wrapper">
-			<? if(!empty($widget['Widget']['title'])) {?>
+			<?php if(!empty($widget['Widget']['title'])) {?>
 	      		<h3><?=$widget['Widget']['title'];?></h3>
-			<? } ?>
+			<?php } ?>
 			<?=$widget['Widget']['content'];?>
-		<? if(isset($admin) && $admin) { ?>
+		<?php if(isset($admin) && $admin) { ?>
 			<a href="/widgets/edit/<?=$widget['Widget']['id'];?>" title="Edit this Widget"><?php __('edit'); ?></a>	| 
 			<a href="/widgets/delete/<?=$widget['Widget']['id'];?>" title="Delete Widget"><?php __('del'); ?></a>	
-		<? } ?>
+		<?php } ?>
 		  </div>
-		<?
+		<?php
 		}
 	}
         
@@ -199,7 +199,7 @@
         <a href="/widgets/add<?php echo $_SERVER['REQUEST_URI']; ?>">
             <img src="/img/icons/plugin_edit.png" alt="Edit"/><?php __('add widgets to this page'); ?>.
         </a>
-        <? endif; ?>
+        <?php endif; ?>
 
     </div>
   </div>

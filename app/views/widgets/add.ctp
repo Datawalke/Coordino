@@ -1,4 +1,4 @@
-<?
+<?php
 	echo $html->css('wmd.css');
 	echo $javascript->link('wmd/showdown.js');
 	echo $javascript->link('wmd/wmd.js');

@@ -57,8 +57,7 @@ The following extra message details are needed:
 	-Hash
 
 Take the following example in PHP:
-<?
-/*
+<?php /*
  * Remote authentication for PHP
  *
  * This is meant to be used as a template to base the integration with your application.  

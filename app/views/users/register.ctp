@@ -1,6 +1,6 @@
 <h2>Register Yourself</h2>
 
-<? if($session->read('Auth.User.id')) {?>
+<?php if($session->read('Auth.User.id')) {?>
 	<p>
 		Currently you are an <strong>unregistered</strong> user. You may have <span class="highlight">asked or answered a question</span> but we only
 		know you through your browser cookies. If you clear your browser cache or somehow delete your cookies you will lose your account.
@@ -12,7 +12,7 @@
 
 	<?=$form->input('secret', array('type' => 'password', 'label' => 'Password', 'class' => 'large_input'));?>
 	<?=$form->end('Register');?>
-<? } else { ?>
+<?php } else { ?>
 	<p>
 		Currently you are an <strong>unregistered</strong> user. You may have <span class="highlight">asked or answered a question</span> but we only
 		know you through your browser cookies. If you clear your browser cache or somehow delete your cookies you will lose your account.
@@ -28,7 +28,7 @@
 	<?=$form->input('email', array('class' => 'large_input'));?>
 
 	<?=$form->input('secret', array('type' => 'password', 'label' => 'Password', 'class' => 'large_input'));?> 
-	<?$recaptcha->display_form('echo');?>
+
 	<?=$form->end('Register');?>
 	</div>
-<? } ?>
+<?php } ?>
