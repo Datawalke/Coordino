@@ -303,6 +303,6 @@
  */
 	Cache::config('default', array('engine' => 'File'));
 
-    Configure::write('Coordino.version', '1.0');
+    Configure::write('Coordino.version', '1.3');
 
     Configure::write('Config.language', 'eng');
