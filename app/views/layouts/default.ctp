@@ -82,6 +82,8 @@
 				    <ul>
 				        <li><?=$html->link(__('english',true),'/lang/eng')?></li>
 				        <li><?=$html->link(__('french',true),'/lang/fre')?></li>
+				        <li><?=$html->link(__('spanish',true),'/lang/esp')?></li>
+				        <li><?=$html->link(__('japanese',true),'/lang/jap')?></li>
 				        <li><?=$html->link(__('chinese',true),'/lang/chi')?></li>
 				    </ul>
 				</li>
