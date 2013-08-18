@@ -1,0 +1,257 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Coordino\n"
+"POT-Creation-Date: 2012-08-14 12:01+0200\n"
+"PO-Revision-Date: 2013-08-17 17:53-0430\n"
+"Last-Translator: Neftalí Yagua <neftali.yagua@gmail.com>\n"
+"Language-Team: Eoko <romain.dary@eoko.fr>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: /controllers/posts_controller.php:40
+msgid "You do not have permission to access that.."
+msgstr "Usted no tiene permiso para acceder a esto."
+
+#: /controllers/posts_controller.php:44
+msgid "Post deleted"
+msgstr "Contribución eliminado"
+
+#: /controllers/posts_controller.php:49 /views/layouts/default.ctp:162
+#: /views/posts/ask.ctp:68;116
+msgid "Ask a question"
+msgstr "Preguntar"
+
+#: /controllers/posts_controller.php:126
+msgid "Your question has been answered!"
+msgstr "Su pregunta fué respondida"
+
+#: /controllers/posts_controller.php:157
+msgid "Invalid reCAPTCHA entered."
+msgstr ""
+
+#: /controllers/posts_controller.php:407
+msgid "The question you are trying to view no longer exists."
+msgstr "La pregunta que está intentando ver ya no existe."
+
+#: /controllers/posts_controller.php:447
+msgid "That is not your question to edit, and you need more reputation!"
+msgstr "Eso no es una pregunta para editar, y necesitas más reputación!"
+
+#: /controllers/posts_controller.php:542
+msgid "Invalid search type."
+msgstr "No es válido el tipo de búsqueda."
+
+#: /controllers/posts_controller.php:548;550
+msgid "No results for"
+msgstr "Sin resultados para"
+
+#: /controllers/posts_controller.php:582
+msgid "What are you trying to do?"
+msgstr "¿Que intentas hacer?"
+
+#: /controllers/posts_controller.php:591
+msgid "You are not allowed to edit that."
+msgstr "Usted no está autorizado a editar eso."
+
+#: /controllers/posts_controller.php:631
+msgid "You need to be logged in to do that!"
+msgstr "Tienes que estar registrado para hacer eso!"
+
+#: /controllers/posts_controller.php:634
+msgid "You need more reputation to do that."
+msgstr "Necesitas más reputación para hacer eso."
+
+#: /controllers/posts_controller.php:639
+msgid "You have already flagged that."
+msgstr "Usted ha marcado eso."
+
+#: /controllers/posts_controller.php:642
+msgid "Post flagged."
+msgstr "Contribución marcada"
+
+#: /views/layouts/default.ctp:49
+msgid "login"
+msgstr "entrar"
+
+#: /views/layouts/default.ctp:58
+msgid "register"
+msgstr "registrar"
+
+#: /views/layouts/default.ctp:66;217
+msgid "about"
+msgstr "acerca de "
+
+#: /views/layouts/default.ctp:74;98
+msgid "settings"
+msgstr "configuración"
+
+#: /views/layouts/default.ctp:81 /views/layouts/install.ctp:14
+msgid "change language"
+msgstr "cambiar idioma"
+
+#: /views/layouts/default.ctp:83 /views/layouts/install.ctp:16
+msgid "english"
+msgstr "Inglés"
+
+#: /views/layouts/default.ctp:84 /views/layouts/install.ctp:17
+msgid "french"
+msgstr "Francés"
+
+#: /views/layouts/default.ctp:85
+msgid "chinese"
+msgstr "Chino"
+
+#: /views/layouts/default.ctp:91
+msgid "admin"
+msgstr "admin"
+
+#: /views/layouts/default.ctp:105
+msgid "Flagged Posts"
+msgstr "Contribuciónes marcados"
+
+#: /views/layouts/default.ctp:112
+msgid "User Management"
+msgstr "Gestión de miembros"
+
+#: /views/layouts/default.ctp:119
+msgid "Blacklist"
+msgstr "Lista negra"
+
+#: /views/layouts/default.ctp:126
+msgid "Remote Settings"
+msgstr "Configuración Remota"
+
+#: /views/layouts/default.ctp:138
+msgid "logout"
+msgstr "Salir"
+
+#: /views/layouts/default.ctp:153
+msgid "Questions"
+msgstr "Preguntas"
+
+#: /views/layouts/default.ctp:155 /views/posts/ask.ctp:90
+msgid "Tags"
+msgstr "Tags"
+
+#: /views/layouts/default.ctp:156
+msgid "Unsolved"
+msgstr "No resuelto"
+
+#: /views/layouts/default.ctp:157
+msgid "Users"
+msgstr "Usuarios"
+
+#: /views/layouts/default.ctp:189 /views/posts/view.ctp:55;237
+msgid "edit"
+msgstr "editar"
+
+#: /views/layouts/default.ctp:190 /views/posts/view.ctp:62
+msgid "del"
+msgstr "eliminar"
+
+#: /views/layouts/default.ctp:200
+msgid "add widgets to this page"
+msgstr "añadir widgets a esta página"
+
+#: /views/layouts/default.ctp:212
+msgid "home"
+msgstr "inicio"
+
+#: /views/layouts/default.ctp:214
+msgid "ask a question"
+msgstr "preguntar"
+
+#: /views/posts/ask.ctp:60
+msgid "Titles must be at least 10 characters long."
+msgstr "Los títulos deben tener al menos 10 caracteres de longitud."
+
+#: /views/posts/ask.ctp:62;79
+msgid "What is your question about?"
+msgstr "¿Cuál es su pregunta?"
+
+#: /views/posts/ask.ctp:76
+msgid "Title"
+msgstr "Título"
+
+#: /views/posts/ask.ctp:92
+msgid "Combine multiple words into single-words."
+msgstr "Combine diferentes palabras en una sola palabra."
+
+#: /views/posts/ask.ctp:95
+msgid "Who Are You?"
+msgstr "¿Quién es usted?"
+
+#: /views/posts/ask.ctp:96
+msgid "Have an account already?"
+msgstr "¿Tienes una cuenta ya?"
+
+#: /views/posts/ask.ctp:96
+msgid "Login before answering!"
+msgstr "Inicia sesión antes de responder!"
+
+#: /views/posts/ask.ctp:97
+msgid "Name"
+msgstr "Nombre"
+
+#: /views/posts/ask.ctp:103
+msgid "Email"
+msgstr "Email"
+
+#: /views/posts/ask.ctp:112
+msgid "Notify me when my question is answered."
+msgstr "Notificarme cuando se contesta a mi pregunta."
+
+#: /views/posts/display.ctp:8 /views/posts/view.ctp:154
+msgid "answer"
+msgid_plural "answers"
+msgstr[0] "respuesta"
+msgstr[1] "respuestas"
+
+#: /views/posts/display.ctp:12
+msgid "view"
+msgid_plural "views"
+msgstr[0] "ver"
+msgstr[1] "vistas"
+
+#: /views/posts/view.ctp:47
+msgid "flag"
+msgstr "marcar"
+
+#: /views/posts/view.ctp:146
+msgid "add comment"
+msgstr "agregar comentario"
+
+#: /views/posts/view.ctp:288
+msgid "your answer"
+msgstr "su pregunta"
+
+#: /views/users/login.ctp:2
+msgid ""
+"You are currently an anonymous user. Login below to sign into your account"
+msgstr ""
+"Usted se encuentra como usuario anónimo. Accede abajo para iniciar sesión en "
+"su cuenta"
+
+#: /views/users/user_settings.ctp:2
+msgid "Profile Image"
+msgstr "Imagen de perfil"
+
+#: /webroot/test.php:99
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
+#: /views/posts/view.ctp:312
+msgid "Answer"
+msgstr "Respuesta"
+
+#, fuzzy
+#~ msgid "Ask a Question"
+#~ msgstr "poser une question"
