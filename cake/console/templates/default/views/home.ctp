@@ -90,7 +90,7 @@ if (!empty(\$filePresent)):
 	endif;
 ?>
 </p>\n";
-$output .= "<?php endif;?>\n";
+$output .= "<?php endif; ?>\n";
 $output .= "<h3><?php __('Editing this Page') ?></h3>\n";
 $output .= "<p>\n";
 $output .= "<?php\n";

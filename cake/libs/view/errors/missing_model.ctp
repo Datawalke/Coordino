@@ -28,9 +28,9 @@
 </p>
 <pre>
 &lt;?php
-class <?php echo $model;?> extends AppModel {
+class <?php echo $model; ?> extends AppModel {
 
-	var $name = '<?php echo $model;?>';
+	var $name = '<?php echo $model; ?>';
 
 }
 ?&gt;

@@ -4,11 +4,11 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title><?=$title_for_layout;?> | Coordino</title>
-	<?=$html->css('screen.css');?>
-	<?=$html->css('prettify.css');?>
-	<?=$html->script('prettify/prettify.js');?>
-	<?=$html->css('skin.css');?>
+	<title><?php echo $title_for_layout; ?> | Coordino</title>
+	<?php echo $html->css('screen.css'); ?>
+	<?php echo $html->css('prettify.css'); ?>
+	<?php echo $html->script('prettify/prettify.js'); ?>
+	<?php echo $html->css('skin.css'); ?>
 	<!--[if IE]>
 	<style type="text/css">
 	  .wrapper {
@@ -36,7 +36,7 @@
 			<ul class="tabs">
 				 <?php if($session->check('Auth.User.id')) { ?>
 					<li>
-						<?=$html->link(
+						<?php echo $html->link(
 								$session->read('Auth.User.username'),
 								'/users/' . $session->read('Auth.User.public_key') . '/' . $session->read('Auth.User.username')
 							);
@@ -45,7 +45,7 @@
 				<?php } ?>
 				<?php if(!$session->check('Auth.User.id')) { ?>
 					<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							__('login',true),
 							array('controller' => 'users', 'action' => 'login')
 						);
@@ -54,7 +54,7 @@
 				<?php } ?>
 				<?php if(!$session->check('Auth.User.id') || $session->read('Auth.User.registered') == 0) { ?>
 				<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							__('register',true),
 							array('controller' => 'users', 'action' => 'register')
 						);
@@ -62,7 +62,7 @@
 				</li>
 				<?php } ?>
 				<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							__('about',true),
 							array('controller' => 'pages', 'action' => 'display', 'about')
 						);
@@ -70,7 +70,7 @@
 				</li>
 				<?php if($session->read('Auth.User.id')) { ?>
 				<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							__('settings',true),
 							'/users/settings/' . $session->read('Auth.User.public_key')
 						);
@@ -80,49 +80,49 @@
 				<li>
 				    <a href='#'><?php __('change language'); ?></a>
 				    <ul>
-				        <li><?=$html->link(__('english',true),'/lang/eng')?></li>
-				        <li><?=$html->link(__('french',true),'/lang/fre')?></li>
-				        <li><?=$html->link(__('chinese',true),'/lang/chi')?></li>
+				        <li><?php echo $html->link(__('english',true),'/lang/eng')?></li>
+				        <li><?php echo $html->link(__('french',true),'/lang/fre')?></li>
+				        <li><?php echo $html->link(__('chinese',true),'/lang/chi')?></li>
 				    </ul>
 				</li>
 				<?php if($session->check('Auth.User.id') && $session->read('Auth.User.permission') != '') { ?>
 				<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							__('admin',true),
 							array('controller' => 'users', 'action' => 'admin')
 						);
 					?>
 					<ul>
 						<li>
-							<?=$html->link(
+							<?php echo $html->link(
 									ucfirst(__('settings',true)),
 									array('controller' => 'users', 'action' => 'admin')
 								);
 							?>
 						</li>
 						<li>
-							<?=$html->link(
+							<?php echo $html->link(
 									ucfirst(__('Flagged Posts',true)),
 									array('controller' => 'users', 'action' => 'flagged')
 								);
 							?>
 						</li>
 						<li>
-							<?=$html->link(
+							<?php echo $html->link(
 									ucfirst(__('User Management',true)),
 									array('controller' => 'users', 'action' => 'admin_list')
 								);
 							?>
 						</li>
 						<li>
-							<?=$html->link(
+							<?php echo $html->link(
 									ucfirst(__('Blacklist',true)),
 									array('controller' => 'users', 'action' => 'list_blacklist')
 							);
 							?>
 						</li>
 						<li>
-							<?=$html->link(
+							<?php echo $html->link(
 									ucfirst(__('Remote Settings',true)),
 									array('controller' => 'users', 'action' => 'remote_settings')
 							);
@@ -134,7 +134,7 @@
 				
 				<?php if($session->check('Auth.User.id') && $session->read('Auth.User.registered') == 1) { ?>
 				<li>
-					<?=$html->link(
+					<?php echo $html->link(
 							__('logout',true),
 							array('controller' => 'users', 'action' => 'logout')
 						);
@@ -146,19 +146,19 @@
 	</div>
 
 	<div class="wrapper">
-        <a href="<?=$this->webroot; ?>"><?php echo $html->image('logo.png', array('alt' => 'Logo', 'id' => 'logo')); ?></a>
+        <a href="<?php echo $this->webroot; ?>"><?php echo $html->image('logo.png', array('alt' => 'Logo', 'id' => 'logo')); ?></a>
 
 		  <ul class="tabs">
 		    <li>
-		    	<?=$html->link(__('Questions',true),'/');?>
+		    	<?php echo $html->link(__('Questions',true),'/'); ?>
 		    </li>
-		    <li><?=$html->link(__('Tags',true),'/tags');?></li>
-		    <li><?=$html->link(__('Unsolved',true),'/questions/unanswered');?></li>
-		    <li><?=$html->link(__('Users',true),'/users');?></li>
+		    <li><?php echo $html->link(__('Tags',true),'/tags'); ?></li>
+		    <li><?php echo $html->link(__('Unsolved',true),'/questions/unanswered'); ?></li>
+		    <li><?php echo $html->link(__('Users',true),'/users'); ?></li>
 		  </ul>
 		  <ul class="tabs" style="float: right;">
 			<li>
-				<?=$html->link(
+				<?php echo $html->link(
 						__('Ask a question',true),
 						array('controller' => 'posts', 'action' => 'ask')
 					);
@@ -172,7 +172,7 @@
   <div id="body" class="wrapper">
     <?php echo $session->flash(); ?>
 	<div id="content" class="wrapper">
-		<?=$content_for_layout;?>
+		<?php echo $content_for_layout; ?>
     </div>
     <div id="sidebar" class="wrapper">
 
@@ -182,12 +182,12 @@
 		?>
 		<div class="widget_box wrapper">
 			<?php if(!empty($widget['Widget']['title'])) {?>
-	      		<h3><?=$widget['Widget']['title'];?></h3>
+	      		<h3><?php echo $widget['Widget']['title']; ?></h3>
 			<?php } ?>
-			<?=$widget['Widget']['content'];?>
+			<?php echo $widget['Widget']['content']; ?>
 		<?php if(isset($admin) && $admin) { ?>
-			<a href="/widgets/edit/<?=$widget['Widget']['id'];?>" title="Edit this Widget"><?php __('edit'); ?></a>	| 
-			<a href="/widgets/delete/<?=$widget['Widget']['id'];?>" title="Delete Widget"><?php __('del'); ?></a>	
+			<a href="/widgets/edit/<?php echo $widget['Widget']['id']; ?>" title="Edit this Widget"><?php __('edit'); ?></a>	| 
+			<a href="/widgets/delete/<?php echo $widget['Widget']['id']; ?>" title="Delete Widget"><?php __('del'); ?></a>	
 		<?php } ?>
 		  </div>
 		<?php
@@ -209,12 +209,12 @@
 	<div class="left">
     <ul class="tabs">
       <li>
-      <?=$html->link(__('home',true),'/');?></li>
+      <?php echo $html->link(__('home',true),'/'); ?></li>
 	  <li>
-      <?=$html->link(__('ask a question',true),'/questions/ask');?></li>
+      <?php echo $html->link(__('ask a question',true),'/questions/ask'); ?></li>
 
       <li>
-      <?=$html->link(__('about',true),'/about');?></li>
+      <?php echo $html->link(__('about',true),'/about'); ?></li>
     </ul>
 
 	</div>

@@ -17,14 +17,14 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div class="<?php echo $pluralVar;?> index">
-	<h2><?php echo "<?php __('{$pluralHumanName}');?>";?></h2>
+<div class="<?php echo $pluralVar; ?> index">
+	<h2><?php echo "<?php __('{$pluralHumanName}'); ?>"; ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 	<?php  foreach ($fields as $field):?>
-		<th><?php echo "<?php echo \$this->Paginator->sort('{$field}');?>";?></th>
-	<?php endforeach;?>
-		<th class="actions"><?php echo "<?php __('Actions');?>";?></th>
+		<th><?php echo "<?php echo \$this->Paginator->sort('{$field}'); ?>"; ?></th>
+	<?php endforeach; ?>
+		<th class="actions"><?php echo "<?php __('Actions'); ?>"; ?></th>
 	</tr>
 	<?php
 	echo "<?php
@@ -35,7 +35,7 @@
 			\$class = ' class=\"altrow\"';
 		}
 	?>\n";
-	echo "\t<tr<?php echo \$class;?>>\n";
+	echo "\t<tr<?php echo \$class; ?>>\n";
 		foreach ($fields as $field) {
 			$isKey = false;
 			if (!empty($associations['belongsTo'])) {
@@ -67,19 +67,19 @@
 	echo \$this->Paginator->counter(array(
 	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 	));
-	?>";?>
+	?>"; ?>
 	</p>
 
 	<div class="paging">
-	<?php echo "\t<?php echo \$this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>\n";?>
-	 | <?php echo "\t<?php echo \$this->Paginator->numbers();?>\n"?> |
-	<?php echo "\t<?php echo \$this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>\n";?>
+	<?php echo "\t<?php echo \$this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled')); ?>\n"; ?>
+	 | <?php echo "\t<?php echo \$this->Paginator->numbers(); ?>\n"?> |
+	<?php echo "\t<?php echo \$this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled')); ?>\n"; ?>
 	</div>
 </div>
 <div class="actions">
 	<h3><?php echo "<?php __('Actions'); ?>"; ?></h3>
 	<ul>
-		<li><?php echo "<?php echo \$this->Html->link(__('New " . $singularHumanName . "', true), array('action' => 'add')); ?>";?></li>
+		<li><?php echo "<?php echo \$this->Html->link(__('New " . $singularHumanName . "', true), array('action' => 'add')); ?>"; ?></li>
 <?php
 	$done = array();
 	foreach ($associations as $type => $data) {

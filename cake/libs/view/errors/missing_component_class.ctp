@@ -28,7 +28,7 @@
 </p>
 <pre>
 &lt;?php
-class <?php echo $component;?>Component extends Object {<br />
+class <?php echo $component; ?>Component extends Object {<br />
 
 }
 ?&gt;

@@ -17,7 +17,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div class="<?php echo $pluralVar;?> form">
+<div class="<?php echo $pluralVar; ?> form">
 <?php
 	echo $this->Form->create();
 	echo $this->Form->inputs($scaffoldFields, array('created', 'modified', 'updated'));
@@ -29,8 +29,8 @@
 	<ul>
 <?php if ($this->action != 'add'):?>
 		<li><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value($modelClass.'.'.$primaryKey)), null, __('Are you sure you want to delete', true).' #' . $this->Form->value($modelClass.'.'.$primaryKey)); ?></li>
-<?php endif;?>
-		<li><?php echo $this->Html->link(__('List', true).' '.$pluralHumanName, array('action' => 'index'));?></li>
+<?php endif; ?>
+		<li><?php echo $this->Html->link(__('List', true).' '.$pluralHumanName, array('action' => 'index')); ?></li>
 <?php
 		$done = array();
 		foreach ($associations as $_type => $_data) {

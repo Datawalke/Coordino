@@ -120,7 +120,7 @@ if (isset($filePresent)):
 		endif;
 	?>
 </p>
-<?php endif;?>
+<?php endif; ?>
 <h3><?php __('Editing this Page'); ?></h3>
 <p>
 <?php

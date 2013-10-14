@@ -1,5 +1,5 @@
 <div id="admin_header" class="wrapper">
-	<h2><?=$selected;?></h2>
+	<h2><?php echo $selected; ?></h2>
 <ul class="tabs">
 	<li <?php if($selected == 'Settings') { echo 'class="selected"'; } ?>><a href="/admin">Settings</a></li>
 	<li <?php if($selected == 'Flagged Posts') { echo 'class="selected"'; } ?>><a href="/admin/flagged">Flagged Posts</a></li>
