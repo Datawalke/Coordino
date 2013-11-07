@@ -1,11 +1,10 @@
-tmp/*
-config/database.php
-app/tmp/*
+app/tmp/
 app/config/database.php
 !empty
 .buildpath
 .project
-.settings/*
+.settings/
 
-app/webroot/img/thumbs/*
-app/webroot/img/uploads/*
+app/webroot/img/thumbs/
+app/webroot/img/uploads/
+nbproject

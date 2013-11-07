@@ -7,8 +7,8 @@
 	}
 ?>
 	<div style="float: left; width: 200px;">
-		<a style="float: left; margin-right: 10px;" href="/users/<?=$user['User']['public_key'];?>/<?=$user['User']['username'];?>" title="<?=$user['User']['username'];?>">
-		<?=$thumbnail->show(array(
+		<a style="float: left; margin-right: 10px;" href="/users/<?php echo $user['User']['public_key'];?>/<?php echo $user['User']['username'];?>" title="<?php echo $user['User']['username'];?>">
+		<?php echo $thumbnail->show(array(
 						        'save_path' => $_SERVER['DOCUMENT_ROOT'] . '/app/webroot/img/thumbs',
 						        'display_path' => '/img/thumbs',
 						        'error_image_path' => $this->webroot. 'img/answerAvatar.png',
@@ -19,8 +19,8 @@
 			);
 		?>
 		</a>
-		<a href="/users/<?=$user['User']['public_key'];?>/<?=$user['User']['username'];?>" title="<?=$user['User']['username'];?>" style="float: left;"><?=$user['User']['username'];?></a>
-		<strong style="float: left;">&nbsp;<?=$display;?></strong>
+		<a href="/users/<?php echo $user['User']['public_key'];?>/<?php echo $user['User']['username'];?>" title="<?php echo $user['User']['username'];?>" style="float: left;"><?php echo $user['User']['username'];?></a>
+		<strong style="float: left;">&nbsp;<?php echo $display;?></strong>
 		<div style="clear: both;"></div>
 	</div>
-<? } ?>
+<?php } ?>

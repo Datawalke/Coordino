@@ -17,16 +17,16 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo $title_for_layout;?></title>
-</head>
+    </head>
 
-<body>
+    <body>
 	<?php echo $content_for_layout;?>
-
 	<p>This email was sent using the <a href="http://cakephp.org">CakePHP Framework</a></p>
-</body>
+    </body>
 </html>

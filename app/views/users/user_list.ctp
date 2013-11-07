@@ -1,4 +1,4 @@
-<?
+<?php
 echo $javascript->link('jquery/jquery.js');
 echo $javascript->link('jquery/jquery.bgiframe.min.js');
 echo $javascript->link('jquery/jquery.ajaxQueue.js');
@@ -26,8 +26,8 @@ $(document).ready(function(){
 
 });
 </script>
-<?=$form->create('User', array('action' => '?'));?>
-<?=$form->label('username');?><br/>
- <?=$form->text('username', array('class' => 'big_input', 'autocomplete' => 'off', 'value' => $session->read('errors.data.Post.username')));?><br/>
+<?php echo $form->create('User', array('action' => '?'));?>
+<?php echo $form->label('username');?><br/>
+ <?php echo $form->text('username', array('class' => 'big_input', 'autocomplete' => 'off', 'value' => $session->read('errors.data.Post.username')));?><br/>
 <span id="title_status"class="quiet">Who are you looking for?</span>
 <div id="results" style="overflow: auto;"></div>
