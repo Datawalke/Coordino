@@ -14,7 +14,7 @@
 /* Page
 -------------------------------------------------------------- */
 
-#page { margin: 0 auto; width: 950px; }
+#page { margin: 0 auto; width: 1012px; }
 
 
 /* Header
@@ -50,7 +50,7 @@
 #content { float: left; width: 685px; margin-right: 15px; display: inline; }
 #fullWidth { float:left; display: inline;}
 
-#sidebar { float: left; width: 250px; display: inline;}
+#sidebar { float: left; width: 310px; display: inline;}
 #sidebar h3 { color: #888; }
 #sidebar ul, #resources ol { color: #888; }
 #sidebar ul a { color: #555; }
