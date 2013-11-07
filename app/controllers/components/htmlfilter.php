@@ -1,4 +1,4 @@
-<?
+<?php
 	class HtmlfilterComponent extends Object {
 		public $htmlFilter;
 		/**

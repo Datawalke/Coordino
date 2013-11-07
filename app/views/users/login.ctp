@@ -3,7 +3,7 @@
 </p>
 <p>
 	Want to get an account? 
-	<?=$html->link(
+	<?php echo $html->link(
 			'Register',
 			array('controller' => 'users', 'action' => 'register')
 		);

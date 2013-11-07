@@ -246,7 +246,7 @@ class parseHTML {
 
     if ($this->html[0] == '<') {
       $token = substr($this->html, 0, 9);
-      if (substr($token, 0, 2) == '<?') {
+      if (substr($token, 0, 2) == '<?php') {
         # xml prolog or other pi's
         /** TODO **/
         #trigger_error('this might need some work', E_USER_NOTICE);

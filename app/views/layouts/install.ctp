@@ -4,12 +4,12 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title><?=$title_for_layout;?> | Coordino</title>
-	<?=$html->css('install.css');?>
+	<title><?php echo $title_for_layout; ?> | Coordino</title>
+	<?php echo $html->css('install.css'); ?>
 </head>
 <body>
-	<?=$html->image('coordino_logo.png');?>
-	<? echo $session->flash(); ?>
-	<?=$content_for_layout;?>
+	<?php echo $html->image('coordino_logo.png'); ?>
+	<?php echo $session->flash(); ?>
+	<?php echo $content_for_layout; ?>
 <body>
 </html>

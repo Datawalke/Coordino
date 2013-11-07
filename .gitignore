@@ -9,3 +9,4 @@ app/config/database.php
 
 app/webroot/img/thumbs/*
 app/webroot/img/uploads/*
+nbproject

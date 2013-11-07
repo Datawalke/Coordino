@@ -14,28 +14,28 @@
 
 <p>Directory permission tests:</p>
 <ul>
-	<li>/app/config <?if($writeChecks['config']) { echo '<span class="success">is writable.</span>'; }
+	<li>/app/config <?php if($writeChecks['config']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>
-	<li>/app/config/database.php <?if($writeChecks['database']) { echo '<span class="success">is writable.</span>'; }
+	<li>/app/config/database.php <?php if($writeChecks['database']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>
-	<li>/app/tmp <?if($writeChecks['tmp']) { echo '<span class="success">is writable.</span>'; }
+	<li>/app/tmp <?php if($writeChecks['tmp']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>
-    <li>/app/tmp/cache <?if($writeChecks['tmp_cache']) { echo '<span class="success">is writable.</span>'; }
+    <li>/app/tmp/cache <?php if($writeChecks['tmp_cache']) { echo '<span class="success">is writable.</span>'; }
     else { echo '<span class="error">is not writable.</span>';}?>
     </li>
-	<li>/app/webroot/img/thumbs <?if($writeChecks['thumbs']) { echo '<span class="success">is writable.</span>'; }
+	<li>/app/webroot/img/thumbs <?php if($writeChecks['thumbs']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>	
-	<li>/app/webroot/img/uploads/users <?if($writeChecks['uploads']) { echo '<span class="success">is writable.</span>'; }
+	<li>/app/webroot/img/uploads/users <?php if($writeChecks['uploads']) { echo '<span class="success">is writable.</span>'; }
 		else { echo '<span class="error">is not writable.</span>';}?>
 	</li>	
 </ul>
 
-<?	if(!in_array(false, $writeChecks)) { ?>
+<?php 	if(!in_array(false, $writeChecks)) { ?>
 	<p>Looks like you are good to go. <a href="install/database-config">Lets Continue!</a></p>
-<? } else { ?>
+<?php  } else { ?>
 	<p><span class="error">Look above for errors you must fix.</span></p>
-<? } ?>
+<?php  } ?>
