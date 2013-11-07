@@ -1,15 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-
+<!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo $title_for_layout; ?> | Coordino</title>
 	<?php echo $html->css('install.css'); ?>
-</head>
-<body>
+    </head>
+
+    <body>
 	<?php echo $html->image('coordino_logo.png'); ?>
 	<?php echo $session->flash(); ?>
 	<?php echo $content_for_layout; ?>
-<body>
+    </body>
 </html>
