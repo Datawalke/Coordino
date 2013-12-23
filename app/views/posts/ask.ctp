@@ -92,8 +92,15 @@
 <span id="tag_status" class="quiet"><?= __('Combine multiple words into single-words.',true) ?></span>
 
 <? if(!$session->check('Auth.User.id')) { ?>
-<h2><?= __('Who Are You?',true) ?></h2>
-<span class="quiet"><?= __('Have an account already?',true) ?> <a href="#"><?= __('Login before answering!',true) ?></a></span><br/>
+	<h2><?= __('Who Are You?',true) ?></h2>
+	<span class="quiet">
+		<?= __('Have an account already?',true) ?>
+		<?=$html->link(
+				__('Login before answering!',true),
+				array('controller' => 'users', 'action' => 'login')
+			);
+		?>
+	</span><br/>
 	<?=$form->label(__('Name',true));?><br/>
 	<?=$form->text('User.username', array(
 		'class' => 'big_input medium_input', 
