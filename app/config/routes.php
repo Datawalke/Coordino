@@ -49,6 +49,8 @@ if (file_exists(TMP.'installed.txt')) {
 	Router::connect('/about', array('controller' => 'pages', 'action' => 'display', 'about'));
     Router::connect('/help', array('controller' => 'pages', 'action' => 'display', 'help'));
 	Router::connect('/bugs', array('controller'=> 'bugs', 'action' => 'add'));
+        
+    Router::connect('/feeds', array('controller' => 'rss', 'action' => 'feeds'));
 	
     Router::connect('/tags', array('controller' => 'tags', 'action' => 'tag_list'));
     Router::connect('/tags/:page', array('controller' => 'tags', 'action' => 'tag_list'), array('pass' => array('page'), 'page' => '[0-9-]+'));
@@ -102,6 +104,8 @@ if (file_exists(TMP.'installed.txt')) {
     Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
 
 	Router::connect('/tags/suggest.js', array('controller' => 'tags', 'action' => 'suggest'));
+        
+        Router::parseExtensions('rss');
 } else {
 	Router::connect('/', array('controller' => 'installer', 'action' => 'start'));
 	Router::connect('/install/license', array('controller' => 'installer', 'action' => 'license'));

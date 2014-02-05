@@ -53,7 +53,7 @@ foreach($questions as $question) { ?>
 			</div>
 		</div>
 		<div class="wrapper tags">
-		<? foreach($question['Tag'] as $tag) { ?>
+		<?php foreach($question['Tag'] as $tag) { ?>
 			<div class="tag wrapper">
 				<?=$html->link(
 						$tag['tag'],
@@ -61,12 +61,12 @@ foreach($questions as $question) { ?>
 					);
 				?>
 			</div>
-		<?  } ?>
+		<?php  } ?>
 		</div>
 	</div>
 	
 </div>
-<? }
+<?php }
     if((($end_page - $current) > 3) && $current > 3) { ?>
     <span class="left"><a href="/search/type:<?=$type;?>/page:1/search:<?=$search;?>"><u>1</u>&nbsp;</a></span>
     <span class="left"><a href="/search/type:<?=$type;?>/page:<?=$current-2;?>/search:<?=$search;?>"><u><?=$current-2;?></u>&nbsp;</a></span>
@@ -75,15 +75,23 @@ foreach($questions as $question) { ?>
     <span class="left"><a href="/search/type:<?=$type;?>/page:<?=$current+1;?>/search:<?=$search;?>"><u><?=$current+1;?></u>&nbsp;</a></span>
     <span class="left"><a href="/search/type:<?=$type;?>/page:<?=$current+2;?>/search:<?=$search;?>"><u><?=$current+2;?></u>&nbsp;</a></span>
     <span class="left"><a href="/search/type:<?=$type;?>/page:<?=$end_page;?>/search:<?=$search;?>"><u><?=$end_page;?></u></a></span>
-<? }elseif($current < $end_page) { ?>
+<?php }elseif($current < $end_page) { ?>
     <span class="left">page <?=$current;?> of <a href="/search/type:<?=$type;?>/page:<?=$end_page;?>/search:<?=$search;?>"><?=$end_page;?></a></span>
-<? }else { ?>
+<?php }else { ?>
     <span class="left">page <?=$current;?> of <?=$end_page;?></span>
-<? }
+<?php }
 if(isset($next)) { ?>
     <span class="right"><a href="/search/type:<?=$type;?>/page:<?=$next;?>/search:<?=$search;?>">&nbsp;&nbsp;Next >></a></span>
 <?
 }
 if(isset($previous)) { ?>
     <span class="right"><a href="/search/type:<?=$type;?>/page:<?=$previous;?>/search:<?=$search;?>"><< Previous&nbsp;&nbsp;</a></span>
-<? } ?>
+<?php } ?>
+
+<?php if ( $type == 'recent'): ?>
+    <div class="questionFeed">
+        <a href="<?php echo $html->url(array('controller' => 'rss','action' => 'feeds', 'ext' =>'rss'), true);?>">
+            recent questions feed
+        </a>
+     </div>
+<?php endif; ?>
