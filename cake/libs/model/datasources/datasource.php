@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources
@@ -375,13 +375,11 @@ class DataSource extends Object {
  * To-be-overridden in subclasses.
  *
  * @param Model $model The model class having record(s) deleted
- * @param mixed $id Primary key of the model
+ * @param mixed $conditions The conditions to use for deleting.
  * @access public
  */
-	function delete(&$model, $id = null) {
-		if ($id == null) {
-			$id = $model->id;
-		}
+	function delete(&$model, $conditions = null) {
+		return false;
 	}
 
 /**

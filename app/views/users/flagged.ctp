@@ -1,7 +1,7 @@
 <?=$this->element('admin_header',
 	array("selected" => "Flagged Posts")); 
 ?>
-<?
+<?php
 foreach($questions as $question) { ?>
 <div class="list_question wrapper">
 
@@ -19,7 +19,7 @@ foreach($questions as $question) { ?>
 
 	<div class="wrapper" style="float: left; width: 550px;">
 		<div class="list_title  wrapper">
-        <? if($question['Post']['related_id'] != 0) {
+        <?php if($question['Post']['related_id'] != 0) {
 		        echo $html->link(
 				    'View this answer (answers have no titles)',
 				    '/questions/' . $question['Post']['public_key'] . '/' . $question['Post']['url_title']
@@ -43,7 +43,7 @@ foreach($questions as $question) { ?>
 			</div>
 		</div>
 		<div class="wrapper tags">
-		<? foreach($question['Tag'] as $tag) { ?>
+		<?php foreach($question['Tag'] as $tag) { ?>
 			<div class="tag wrapper">
 				<?=$html->link(
 						$tag['tag'],
@@ -51,7 +51,7 @@ foreach($questions as $question) { ?>
 					);
 				?>
 			</div>
-            <?  } ?>
+            <?php  } ?>
 		</div>
         <div class="wrapper" style="float: right;">
             <a href="/admin/delete/<?=$question['Post']['public_key'];?>">Delete Post</a> |
@@ -59,4 +59,4 @@ foreach($questions as $question) { ?>
         </div>
 	</div>
 </div>
-<? } ?>
+<?php } ?>

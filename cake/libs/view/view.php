@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view
@@ -163,7 +163,7 @@ class View extends Object {
  * @access public
  */
 	var $subDir = null;
-	
+
 /**
  * Theme name.
  *
@@ -357,9 +357,11 @@ class View extends Object {
 			if (is_array($params['cache'])) {
 				$expires = $params['cache']['time'];
 				$key = Inflector::slug($params['cache']['key']);
-			} elseif ($params['cache'] !== true) {
-				$expires = $params['cache'];
+			} else {
 				$key = implode('_', array_keys($params));
+				if ($params['cache'] !== true) {
+					$expires = $params['cache'];
+				}
 			}
 
 			if ($expires) {
@@ -379,6 +381,9 @@ class View extends Object {
 					$file = $path . 'elements' . DS . $name . $ext;
 					break;
 				}
+			}
+			if ($file) {
+				break;
 			}
 		}
 
@@ -500,7 +505,7 @@ class View extends Object {
 	}
 
 /**
- * Fire a callback on all loaded Helpers. All helpers must implement this method, 
+ * Fire a callback on all loaded Helpers. All helpers must implement this method,
  * it is not checked before being called.  You can add additional helper callbacks in AppHelper.
  *
  * @param string $callback name of callback fire.
@@ -523,7 +528,7 @@ class View extends Object {
 	}
 
 /**
- * Render cached view. Works in concert with CacheHelper and Dispatcher to 
+ * Render cached view. Works in concert with CacheHelper and Dispatcher to
  * render cached view files.
  *
  * @param string $filename the cache file to include
@@ -754,7 +759,7 @@ class View extends Object {
 				$cache->layout = $this->layout;
 				$cache->cacheAction = $this->cacheAction;
 				$cache->viewVars = $this->viewVars;
-				$cache->cache($___viewFn, $out, $cached);
+				$out = $cache->cache($___viewFn, $out, $cached);
 			}
 		}
 		return $out;
@@ -863,7 +868,7 @@ class View extends Object {
 			}
 		}
 		$paths = $this->_paths(Inflector::underscore($this->plugin));
-		
+
 		$exts = $this->_getExtensions();
 		foreach ($exts as $ext) {
 			foreach ($paths as $path) {

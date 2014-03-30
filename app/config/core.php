@@ -303,8 +303,6 @@
  */
 	Cache::config('default', array('engine' => 'File'));
 
-    Configure::write('Coordino.version', '1.0');
+    Configure::write('Coordino.version', '1.3');
 
-    Configure::write('recaptcha.publickey', '6LcgswkAAAAAAC15Pg3j8YDKFCi-mHYO_qHpoPH6');
-    Configure::write('recaptcha.privatekey', '6LcgswkAAAAAAApN8RkAjBhu2RgDGXGwh5onuUpW');
     Configure::write('Config.language', 'eng');

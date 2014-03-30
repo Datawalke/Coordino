@@ -35,13 +35,13 @@
 
 	<div class="wrapper">
 		<div id="top_actions" class="top_actions">
-			<? 
+			<?php
 				echo $form->create('Post', array('action' => 'display'));
 				echo $form->text('needle', array('value' => 'search', 'onclick' => 'this.value=""'));
 				echo $form->end();
 			?>
 			<ul class="tabs">
-				 <? if($session->check('Auth.User.id')) { ?>
+				 <?php if($session->check('Auth.User.id')) { ?>
 					<li>
 						<?=$html->link(
 								$session->read('Auth.User.username'),
@@ -49,8 +49,8 @@
 							);
 						?>
 					</li>
-				<? } ?>
-				<? if(!$session->check('Auth.User.id') || $session->read('Auth.User.registered') == 0) { ?>
+				<?php } ?>
+				<?php if(!$session->check('Auth.User.id') || $session->read('Auth.User.registered') == 0) { ?>
 				<li>
 					<?=$html->link(
 							'register',
@@ -58,7 +58,7 @@
 						);
 					?>
 				</li>
-				<? } ?>
+				<?php } ?>
 				<li>
 					<?=$html->link(
 							'about',
@@ -73,7 +73,7 @@
 						);
 					?>
 				</li>
-				<? if($session->check('Auth.User.id') && $session->read('Auth.User.registered') == 1) { ?>
+				<?php if($session->check('Auth.User.id') && $session->read('Auth.User.registered') == 1) { ?>
 				<li>
 					<?=$html->link(
 							'logout',
@@ -81,7 +81,7 @@
 						);
 					?>
 				</li>
-				<? } ?>
+				<?php } ?>
 			</ul>
 		</div>
 	</div>

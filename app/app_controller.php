@@ -35,15 +35,6 @@
 class AppController extends Controller {
     public $pageTitle;
 
-	public function beforeFilter() {
-
-		/**
-		 * reCAPTCHA API Information
-		 */
-		$this->Recaptcha->publickey =  Configure::read('recaptcha.publickey');
-	    $this->Recaptcha->privatekey = Configure::read('recaptcha.privatekey');
-	}
-
 	public function getWidgets($page='') {
 		if(empty($page)) { $page = Router::url(null, false); }
 		//if(strpos($_SERVER['REQUEST_URI'], 'questions/') == 1) { $page = '/questions/view'; }

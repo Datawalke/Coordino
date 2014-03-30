@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -149,7 +149,7 @@ class ConfigureTest extends CakeTestCase {
 
 		Configure::write('debug', 2);
 		$result = ini_get('error_reporting');
-		$this->assertEqual($result, E_ALL & ~E_DEPRECATED);
+		$this->assertEqual($result, E_ALL & ~E_DEPRECATED & ~E_STRICT);
 
 		$result = ini_get('display_errors');
 		$this->assertEqual($result, 1);
@@ -177,7 +177,7 @@ class ConfigureTest extends CakeTestCase {
 		$this->assertEqual(ini_get('display_errors'), 0);
 
 		Configure::write('debug', 2);
-		$this->assertEqual(ini_get('error_reporting'), E_ALL & ~E_DEPRECATED);
+		$this->assertEqual(ini_get('error_reporting'), E_ALL & ~E_DEPRECATED & ~E_STRICT);
 		$this->assertEqual(ini_get('display_errors'), 1);
 
 		Configure::write('debug', 0);

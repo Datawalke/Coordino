@@ -3,8 +3,8 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	var $uses = array('User', 'Post', 'History', 'Setting', 'Widget');
-	var $components = array('Auth', 'Session', 'Cookie', 'Email', 'Recaptcha');
-	var $helpers = array('Time', 'Html', 'Form', 'Javascript', 'Number', 'Thumbnail', 'TrickyFileInput', 'Session', 'Recaptcha');
+	var $components = array('Auth', 'Session', 'Cookie', 'Email');
+	var $helpers = array('Time', 'Html', 'Form', 'Javascript', 'Number', 'Thumbnail', 'TrickyFileInput', 'Session');
 	
 	var $allowedTypes = array(
     	'image/jpeg',
@@ -203,9 +203,6 @@ class UsersController extends AppController {
 		 * If the user has an unregistered account update the password and set them to registered.
 		 */
 		if(!empty($this->data)) {
-
-			if($this->Recaptcha->valid($this->params['form']) || $this->Session->read('Auth.User.id')) {
-			
 			/**
 			 * If the user is logged in via Session or Cookie
 			 */
@@ -244,11 +241,8 @@ class UsersController extends AppController {
 				}
 			}
 			
-		} else {
-			$this->Session->setFlash('Invalid reCAPTCHA entered.', 'error');
 		}
-		
-		}
+
 	}
 
     public function admin() {

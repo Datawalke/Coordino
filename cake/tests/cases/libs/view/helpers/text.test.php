@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
@@ -113,6 +113,11 @@ class TextHelperTest extends CakeTestCase {
 		$phrases = null;
 		$result = $this->Text->highlight($text, $phrases, array('format' => '<b>\1</b>'));
 		$this->assertEqual($result, $text);
+
+		$text = 'This is a (test) text';
+		$phrases = '(test';
+		$result = $this->Text->highlight($text, $phrases, array('format' => '<b>\1</b>'));
+		$this->assertEqual('This is a <b>(test</b>) text', $result);
 
 		$text = 'Ich saß in einem Café am Übergang';
 		$expected = 'Ich <b>saß</b> in einem <b>Café</b> am <b>Übergang</b>';
@@ -357,7 +362,7 @@ class TextHelperTest extends CakeTestCase {
 	function testExcerpt() {
 		$text = 'This is a phrase with test text to play with';
 
-		$expected = '...with test text...';
+		$expected = '...ase with test text to ...';
 		$result = $this->Text->excerpt($text, 'test', 9, '...');
 		$this->assertEqual($expected, $result);
 
@@ -373,18 +378,19 @@ class TextHelperTest extends CakeTestCase {
 		$result = $this->Text->excerpt($text, null, 200, '...');
 		$this->assertEqual($expected, $result);
 
-		$expected = '...phrase...';
+		$expected = '...a phrase w...';
 		$result = $this->Text->excerpt($text, 'phrase', 2, '...');
 		$this->assertEqual($expected, $result);
 
-		$phrase = 'This is a phrase with test';
+		$phrase = 'This is a phrase with test text';
 		$expected = $text;
-		$result = $this->Text->excerpt($text, $phrase, strlen($phrase) + 3, '...');
+		$result = $this->Text->excerpt($text, $phrase, 13, '...');
 		$this->assertEqual($expected, $result);
-
-		$phrase = 'This is a phrase with text';
-		$expected = $text;
-		$result = $this->Text->excerpt($text, $phrase, 10, '...');
+		
+		$text = 'aaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaa';
+		$phrase = 'bbbbbbbb';
+		$result = $this->Text->excerpt($text, $phrase, 10);
+		$expected = '...aaaaaaaaaabbbbbbbbaaaaaaaaaa...';
 		$this->assertEqual($expected, $result);
 	}
 
@@ -397,7 +403,7 @@ class TextHelperTest extends CakeTestCase {
 	function testExcerptCaseInsensitivity() {
 		$text = 'This is a phrase with test text to play with';
 
-		$expected = '...with test text...';
+		$expected = '...ase with test text to ...';
 		$result = $this->Text->excerpt($text, 'TEST', 9, '...');
 		$this->assertEqual($expected, $result);
 

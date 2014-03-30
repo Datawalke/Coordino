@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
@@ -75,7 +75,7 @@ class TextHelper extends AppHelper {
 			$with = array();
 
 			foreach ($phrase as $key => $segment) {
-				$segment = "($segment)";
+				$segment = '(' . preg_quote($segment, '|') . ')';
 				if ($html) {
 					$segment = "(?![^<]+>)$segment(?![^<]+>)";
 				}
@@ -86,7 +86,7 @@ class TextHelper extends AppHelper {
 
 			return preg_replace($replace, $with, $text);
 		} else {
-			$phrase = "($phrase)";
+			$phrase = '(' . preg_quote($phrase, '|') . ')';
 			if ($html) {
 				$phrase = "(?![^<]+>)$phrase(?![^<]+>)";
 			}
@@ -287,34 +287,31 @@ class TextHelper extends AppHelper {
 			return $this->truncate($text, $radius * 2, array('ending' => $ending));
 		}
 
+		$append = $prepend = $ending;
+
 		$phraseLen = mb_strlen($phrase);
-		if ($radius < $phraseLen) {
-			$radius = $phraseLen;
-		}
+		$textLen = mb_strlen($text);
 
 		$pos = mb_strpos(mb_strtolower($text), mb_strtolower($phrase));
-
-		$startPos = 0;
-		if ($pos > $radius) {
-			$startPos = $pos - $radius;
+		if ($pos === false) {
+			return mb_substr($text, 0, $radius) . $ending;
 		}
 
-		$textLen = mb_strlen($text);
+		$startPos = $pos - $radius;
+		if ($startPos <= 0) {
+			$startPos = 0;
+			$prepend = '';
+		}
 
 		$endPos = $pos + $phraseLen + $radius;
 		if ($endPos >= $textLen) {
 			$endPos = $textLen;
+			$append = '';
 		}
 
 		$excerpt = mb_substr($text, $startPos, $endPos - $startPos);
-		if ($startPos != 0) {
-			$excerpt = substr_replace($excerpt, $ending, 0, $phraseLen);
-		}
-
-		if ($endPos != $textLen) {
-			$excerpt = substr_replace($excerpt, $ending, -$phraseLen);
-		}
-
+		$excerpt = $prepend . $excerpt . $append;
+		
 		return $excerpt;
 	}
 

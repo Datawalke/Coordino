@@ -3,8 +3,8 @@ class PostsController extends AppController {
 
 	var $name = 'Posts';
 	var $uses = array('Post', 'User', 'Answer', 'History', 'Setting', 'Tag', 'PostTag', 'Vote', 'Widget');
-	var $components = array('Auth', 'Session', 'Markdownify', 'Markdown', 'Cookie', 'Email', 'Recaptcha', 'Htmlfilter');
-	var $helpers = array('Javascript', 'Time', 'Cache', 'Thumbnail', 'Recaptcha', 'Session');
+	var $components = array('Auth', 'Session', 'Markdownify', 'Markdown', 'Cookie', 'Email', 'Htmlfilter');
+	var $helpers = array('Javascript', 'Time', 'Cache', 'Thumbnail', 'Session');
 	//var $cacheAction = "1 hour";
 	
 	public function beforeRender() {
@@ -49,12 +49,8 @@ class PostsController extends AppController {
 		$this->set('title_for_layout', __('Ask a question',true));
 		
 		if(!empty($this->data)) {
-			
-			/**
-			 * reCAPTCHA Check
-			 */
-				$this->data['reCAPTCHA'] = $this->params['form'];
-				$this->__validatePost($this->data, '/questions/ask', true);
+
+				$this->__validatePost($this->data, '/questions/ask');
 			
 				/**
 				 * If the user is not logged in create an account for them.
@@ -83,8 +79,7 @@ class PostsController extends AppController {
 		$question = $this->Post->findByPublicKey($public_key);
 		
 		if(!empty($this->data)) {
-				$this->data['reCAPTCHA'] = $this->params['form'];
-				$this->__validatePost($this->data, '/questions/' . $question['Post']['public_key'] . '/' . $question['Post']['url_title'] . '#user_answer', true);
+				$this->__validatePost($this->data, '/questions/' . $question['Post']['public_key'] . '/' . $question['Post']['url_title'] . '#user_answer');
 				
 				if(!empty($this->data['User'])) {
 					$user = $this->__userSave(array('User' => $this->data['User']));
@@ -145,28 +140,15 @@ class PostsController extends AppController {
 	 * @param string $redirectUrl
 	 * @return void
 	 */
-	public function __validatePost($data, $redirectUrl, $reCaptcha = false) {
+	public function __validatePost($data, $redirectUrl) {
 		$this->Post->set($data);
 		$this->User->set($data);
 		$errors = array();
-		$recaptchaErrors = array();
-		
-		if($reCaptcha == true) {
-			if(!$this->Recaptcha->valid($data['reCAPTCHA'])) {
-				$data['Post']['content'] = $this->Markdownify->parseString($data['Post']['content']);
-				$recaptchaErrors = array('recaptcha' => __('Invalid reCAPTCHA entered.',true));
-				$errors = array(
-					'errors' => $recaptchaErrors,
-					'data' => $data
-					);
-				$this->Session->write(array('errors' => $errors));
-				$this->redirect($redirectUrl);				
-			}
-		}
+
 		
 		if(!$this->Post->validates() || !$this->User->validates()) {
 			$data['Post']['content'] = $this->Markdownify->parseString($data['Post']['content']);
-			$validationErrors = array_merge($this->Post->invalidFields(), $this->User->invalidFields(), $recaptchaErrors);
+			$validationErrors = array_merge($this->Post->invalidFields(), $this->User->invalidFields());
 			$errors = array(
 				'errors' => $validationErrors,
 				'data' => $data
@@ -385,8 +367,7 @@ class PostsController extends AppController {
 		 	array('hasMany' => array('Answer'))
 		);
 		$question = $this->Post->findByPublicKey($public_key);
-		
-		
+
         /*
         *  Look up the flag limit.
         */

@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller.components
@@ -476,6 +476,27 @@ class CookieComponentTest extends CakeTestCase {
 	function testDeleteChildrenNotExist() {
 		$this->assertNull($this->Controller->Cookie->delete('NotFound'));
 		$this->assertNull($this->Controller->Cookie->delete('Not.Found'));
+	}
+
+/**
+ * Test that 1.3 can read 2.0 format codes if json_encode exists.
+ *
+ * @return void
+ */
+	function testForwardsCompatibility() {
+		if ($this->skipIf(!function_exists('json_decode'), 'no json_decode, skipping.')) {
+			return;
+		}
+		$_COOKIE['CakeTestCookie'] = array(
+			'JSON' => '{"name":"value"}',
+			'Empty' => '',
+			'String' => '{"somewhat:"broken"}'
+		);
+		$this->Controller->Cookie->startup($this->Controller);
+		$this->assertEqual(array('name' => 'value'), $this->Controller->Cookie->read('JSON'));
+		$this->assertEqual('value', $this->Controller->Cookie->read('JSON.name'));
+		$this->assertEqual('', $this->Controller->Cookie->read('Empty'));
+		$this->assertEqual('{"somewhat:"broken"}', $this->Controller->Cookie->read('String'));
 	}
 
 /**

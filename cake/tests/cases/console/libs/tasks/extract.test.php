@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP :  Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc.
+ * Copyright 2005-2012, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc.
  * @link          http://cakephp.org CakePHP Project
  * @package       cake
  * @subpackage    cake.tests.cases.console.libs.tasks
@@ -135,9 +135,21 @@ class ExtractTaskTest extends CakeTestCase {
 		$this->assertPattern($pattern, $result);
 
 		$pattern = '/\#: (\\\\|\/)extract\.ctp:14\n';
-		$pattern .= '\#: (\\\\|\/)home\.ctp:74\n';
+		$pattern .= '\#: (\\\\|\/)home\.ctp:77\n';
 		$pattern .= 'msgid "Editing this Page"\nmsgstr ""/';
 		$this->assertPattern($pattern, $result);
+
+		$pattern = '/\#: (\\\\|\/)extract\.ctp:17\nmsgid "';
+		$pattern .= 'Hot features!';
+		$pattern .= '\\\n - No Configuration: Set-up the database and let the magic begin';
+		$pattern .= '\\\n - Extremely Simple: Just look at the name...It\'s Cake';
+		$pattern .= '\\\n - Active, Friendly Community: Join us #cakephp on IRC. We\'d love to help you get started';
+		$pattern .= '"\nmsgstr ""/';
+		$this->assertPattern($pattern, $result);
+
+		$pattern = '/\#: (\\\\|\/)extract\.ctp:26\n';
+		$pattern .= 'msgid "Found "/';
+		$this->assertNoPattern($pattern, $result);
 
 		// extract.ctp - reading the domain.pot
 		$result = file_get_contents($path . DS . 'domain.pot');
@@ -154,9 +166,6 @@ class ExtractTaskTest extends CakeTestCase {
 
 		$Folder = new Folder($path);
 		$Folder->delete();
-	}
-	function getTests() {
-		return array('start', 'startCase', 'testExtractMultiplePaths', 'endCase', 'end');
 	}
 
 /**

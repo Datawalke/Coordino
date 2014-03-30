@@ -9,8 +9,8 @@
 	<div>
 		<h3>Remote Authentication Only:</h3>
 		<select name="data[1][Setting][value]">
-			<option <? echo ($settings['1']['Setting']['value'] == 'no') ? 'selected="yes"' : ''; ?>>no</option>
-			<option <? echo ($settings['1']['Setting']['value'] == 'yes') ? 'selected="yes"' : ''; ?>>yes</option>
+			<option <?php echo ($settings['1']['Setting']['value'] == 'no') ? 'selected="yes"' : ''; ?>>no</option>
+			<option <?php echo ($settings['1']['Setting']['value'] == 'yes') ? 'selected="yes"' : ''; ?>>yes</option>
 		</select>
 	</div>
 	<br/>

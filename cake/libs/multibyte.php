@@ -6,12 +6,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -1047,7 +1047,7 @@ class Multibyte extends Object {
 			$parts = array();
 			$maxchars = floor(($length * 3) / 4);
 			while (strlen($string) > $maxchars) {
-				$i = $maxchars;
+				$i = (int)$maxchars;
 				$test = ord($string[$i]);
 				while ($test >= 128 && $test <= 191) {
 					$i--;

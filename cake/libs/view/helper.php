@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view
@@ -573,20 +573,20 @@ class Helper extends Overloadable {
 	}
 
 /**
- * Returns false if given FORM field has no errors. Otherwise it returns the constant set in
+ * Returns null if given FORM field has no errors. Otherwise it returns the constant set in
  * the array Model->validationErrors.
  *
  * @param string $model Model name as a string
  * @param string $field Fieldname as a string
  * @param integer $modelID Unique index identifying this record within the form
- * @return boolean True on errors.
+ * @return mixed Null if no errors, string with error otherwhise.
  */
 	function tagIsInvalid($model = null, $field = null, $modelID = null) {
 		$view =& ClassRegistry::getObject('view');
 		$errors = $this->validationErrors;
 		$entity = $view->entity();
 		if (!empty($entity)) {
-			return Set::extract($errors, join('.', $entity));
+			return Set::extract(join('.', $entity), $errors);
 		}
 	}
 
@@ -704,7 +704,7 @@ class Helper extends Overloadable {
 
 		$entity = $view->entity();
 		if (!empty($this->data) && !empty($entity)) {
-			$result = Set::extract($this->data, join('.', $entity));
+			$result = Set::extract(join('.', $entity), $this->data);
 		}
 
 		$habtmKey = $this->field();
@@ -756,7 +756,7 @@ class Helper extends Overloadable {
 		$options = $this->_name($options);
 		$options = $this->value($options);
 		$options = $this->domId($options);
-		if ($this->tagIsInvalid()) {
+		if ($this->tagIsInvalid() !== null) {
 			$options = $this->addClass($options, 'form-error');
 		}
 		return $options;

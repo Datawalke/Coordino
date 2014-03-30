@@ -12,14 +12,14 @@
 	<tr>
 <form id="changeStatusForm" method="post">	
 	
-	<? foreach ($closedBugs as $bug => $value) : ?>
+	<?php foreach ($closedBugs as $bug => $value) : ?>
 		<tr>
 			<td>
 				<input type="checkbox" id="checkeroo" name="data[Bugs][<?=$closedBugs[$bug]['Bug']['id'];?>]" />
 			</td>
 			<td><?= $closedBugs[$bug]['Bug']['content']; ?></td>
 		</tr>
-	<? endforeach; ?>
+	<?php endforeach; ?>
 	</table>
 </table>
 

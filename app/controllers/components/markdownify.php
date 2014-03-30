@@ -1,4 +1,4 @@
-<?
+<?php
 	class MarkdownifyComponent extends Object {
 		
 		/**

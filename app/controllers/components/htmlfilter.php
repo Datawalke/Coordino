@@ -1,5 +1,4 @@
-<?
-	class HtmlfilterComponent extends Object {
+<?php 	class HtmlfilterComponent extends Object {
 		public $htmlFilter;
 		/**
 		 * Import the HTML Filter vendor files and instantiate the object.
