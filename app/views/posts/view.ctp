@@ -299,7 +299,14 @@
 
 	<?php if(!$session->check('Auth.User.id')) { ?>
 	<h2>Who Are You?</h2>
-	<span class="quiet">Have an account already? <a href="/login">Login before answering!</a></span><br/>
+	<span class="quiet">
+        <?= __('Have an account already?', true) ?>
+        <?= $html->link(
+            __('Login before answering!', true),
+            array('controller' => 'users', 'action' => 'login')
+        );
+        ?>
+        </span><br/>
 		<?=$form->label('name');?><br/>
 		<?=$form->text('User.username', array('class' => 'big_input medium_input '));?><br/>
 		<?=$form->label('email');?><br/>
