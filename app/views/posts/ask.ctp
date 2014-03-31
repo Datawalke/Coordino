@@ -72,44 +72,44 @@
 		}
 	}
 ?>
-<?=$form->create('Post', array('action' => 'ask'));?>
-<?=$form->label(__('Title',true));?><br/>
+<?php echo $form->create('Post', array('action' => 'ask')); ?>
+<?php echo $form->label(__('Title',true)); ?><br/>
 
-<?=$form->text('title', array('class' => 'wmd-panel big_input', 'value' => $session->read('errors.data.Post.title')));?><br/>
+<?php echo $form->text('title', array('class' => 'wmd-panel big_input', 'value' => $session->read('errors.data.Post.title'))); ?><br/>
 <span id="title_status"class="quiet"><?php echo __('What is your question about?',true) ?></span>
 <div id="resultsContainer"></div>
 
 <div id="wmd-button-bar" class="wmd-panel"></div>
-<?=$form->textarea('content', array(
+<?php echo $form->textarea('content', array(
 	'id' => 'wmd-input', 'class' => 'wmd-panel', 'value' => $session->read('errors.data.Post.content')
 	));
  ?>
 
 <div id="wmd-preview" class="wmd-panel"></div>
 
-<?=$form->label(__('Tags',true));?><br/>
-<?=$form->text('tags', array('id' => 'tag_input', 'class' => 'wmd-panel big_input'));?><br/>
+<?php echo $form->label(__('Tags',true)); ?><br/>
+<?php echo $form->text('tags', array('id' => 'tag_input', 'class' => 'wmd-panel big_input')); ?><br/>
 <span id="tag_status" class="quiet"><?php echo __('Combine multiple words into single-words.',true) ?></span>
 
 <?php if(!$session->check('Auth.User.id')) { ?>
 <h2><?php echo __('Who Are You?',true) ?></h2>
 <span class="quiet"><?php echo __('Have an account already?',true) ?> <a href="#"><?php echo __('Login before answering!',true) ?></a></span><br/>
-	<?=$form->label(__('Name',true));?><br/>
-	<?=$form->text('User.username', array(
+	<?php echo $form->label(__('Name',true)); ?><br/>
+	<?php echo $form->text('User.username', array(
 		'class' => 'big_input medium_input', 
 		'value' => $session->read('errors.data.User.username')
 		));
 	?><br/>
-	<?=$form->label(__('Email',true));?><br/>
-	<?=$form->text('User.email', array(
+	<?php echo $form->label(__('Email',true)); ?><br/>
+	<?php echo $form->text('User.email', array(
 		'class' => 'big_input medium_input',
 		'value' => $session->read('errors.data.User.email')
 		));
 	?><br/>		
 <?php } ?>
 <br/><br/>
-<?=$form->checkbox('Post.notify', array('checked' => true));?>
+<?php echo $form->checkbox('Post.notify', array('checked' => true)); ?>
 <span style="margin-left: 5px;"><?php echo __('Notify me when my question is answered.',true) ?></span>
 
-<?=$form->end( __('Ask a question',true));?>
+<?php echo $form->end( __('Ask a question',true)); ?>
 

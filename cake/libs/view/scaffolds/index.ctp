@@ -17,14 +17,14 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div class="<?php echo $pluralVar;?> index">
-<h2><?php echo $pluralHumanName;?></h2>
+<div class="<?php echo $pluralVar; ?> index">
+<h2><?php echo $pluralHumanName; ?></h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
 <?php foreach ($scaffoldFields as $_field):?>
-	<th><?php echo $this->Paginator->sort($_field);?></th>
-<?php endforeach;?>
-	<th><?php __('Actions');?></th>
+	<th><?php echo $this->Paginator->sort($_field); ?></th>
+<?php endforeach; ?>
+	<th><?php __('Actions'); ?></th>
 </tr>
 <?php
 $i = 0;
@@ -68,9 +68,9 @@ echo "\n";
 	));
 	?></p>
 	<div class="paging">
-	<?php echo "\t" . $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class' => 'disabled')) . "\n";?>
+	<?php echo "\t" . $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class' => 'disabled')) . "\n"; ?>
 	 | <?php echo $this->Paginator->numbers() . "\n"?>
-	<?php echo "\t ". $this->Paginator->next(__('next', true) .' >>', array(), null, array('class' => 'disabled')) . "\n";?>
+	<?php echo "\t ". $this->Paginator->next(__('next', true) .' >>', array(), null, array('class' => 'disabled')) . "\n"; ?>
 	</div>
 </div>
 <div class="actions">

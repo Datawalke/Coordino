@@ -21,7 +21,7 @@
 echo "<?php\n";
 echo "/* ". $className ." Test cases generated on: " . date('Y-m-d H:i:s') . " : ". time() . "*/\n";
 ?>
-App::import('<?php echo $type; ?>', '<?php echo $plugin . $className;?>');
+App::import('<?php echo $type; ?>', '<?php echo $plugin . $className; ?>');
 
 <?php if ($mock and strtolower($type) == 'controller'): ?>
 class Test<?php echo $fullClassName; ?> extends <?php echo $fullClassName; ?> {
@@ -43,7 +43,7 @@ class <?php echo $fullClassName; ?>TestCase extends CakeTestCase {
 	}
 
 	function endTest() {
-		unset($this-><?php echo $className;?>);
+		unset($this-><?php echo $className; ?>);
 		ClassRegistry::flush();
 	}
 
@@ -52,5 +52,5 @@ class <?php echo $fullClassName; ?>TestCase extends CakeTestCase {
 
 	}
 
-<?php endforeach;?>
+<?php endforeach; ?>
 }

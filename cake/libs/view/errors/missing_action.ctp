@@ -28,12 +28,12 @@
 </p>
 <pre>
 &lt;?php
-class <?php echo $controller;?> extends AppController {
+class <?php echo $controller; ?> extends AppController {
 
-	var $name = '<?php echo $controllerName;?>';
+	var $name = '<?php echo $controllerName; ?>';
 
 <strong>
-	function <?php echo $action;?>() {
+	function <?php echo $action; ?>() {
 
 	}
 </strong>

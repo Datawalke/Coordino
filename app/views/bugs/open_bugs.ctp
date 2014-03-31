@@ -1,7 +1,7 @@
 <h3>
 	Open ---
-	<?= $html->link("Closed", array('action'=>'closedBugs')); ?> ---
-	<?= $html->link("Invalid", array('action'=>'invalidBugs')); ?>
+	<?php echo $html->link("Closed", array('action'=>'closedBugs')); ?> ---
+	<?php echo $html->link("Invalid", array('action'=>'invalidBugs')); ?>
 </h3>
 
 <table>
@@ -16,9 +16,9 @@
 <?php foreach ($openBugs as $bug => $value) : ?>
 	<tr>
 		<td>
-			<input type="checkbox" name="data[Bugs][<?=$openBugs[$bug]['Bug']['id'];?>]" />
+			<input type="checkbox" name="data[Bugs][<?php echo $openBugs[$bug]['Bug']['id']; ?>]" />
 		</td>
-		<td><?= $openBugs[$bug]['Bug']['content']; ?></td>
+		<td><?php echo $openBugs[$bug]['Bug']['content']; ?></td>
 	</tr>
 <?php endforeach; ?>
 </table>

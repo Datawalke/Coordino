@@ -1,4 +1,4 @@
-<?=$this->element('admin_header',
+<?php echo $this->element('admin_header',
 	array("selected" => "Users")); 
 ?>
 <?php
@@ -17,9 +17,9 @@ foreach($users as $key => $value) {
         break;
     }
 ?>
-    <td><a href="/users/<?=$users[$key]['User']['public_key'];?>/<?=$users[$key]['User']['username'];?>"><?=$users[$key]['User']['username'];?></a> 
-	<?php if(empty($users[$key]['User']['permission'])) {?><a class="promote" href="/admin/promote/<?=$users[$key]['User']['public_key'];?>">promote</a><?php } else { ?>
-		<a class="demote" href="/admin/demote/<?=$users[$key]['User']['public_key'];?>">demote</a>
+    <td><a href="/users/<?php echo $users[$key]['User']['public_key']; ?>/<?php echo $users[$key]['User']['username']; ?>"><?php echo $users[$key]['User']['username']; ?></a> 
+	<?php if(empty($users[$key]['User']['permission'])) {?><a class="promote" href="/admin/promote/<?php echo $users[$key]['User']['public_key']; ?>">promote</a><?php } else { ?>
+		<a class="demote" href="/admin/demote/<?php echo $users[$key]['User']['public_key']; ?>">demote</a>
 	<?php } ?>
 	</td>
 <?php  $i++;
@@ -48,21 +48,21 @@ foreach($users as $key => $value) {
 <?php
     if((($end_page - $current) > 3) && $current > 3) { ?>
     <span style="float: left;"><a href="/admin/users/1"><u>1</u>&nbsp;</a></span>
-    <span style="float: left;"><a href="/admin/users/<?=$current-2;?>"><u><?=$current-2;?></u>&nbsp;</a></span>
-    <span style="float: left;"><a href="/admin/users/<?=$current-1;?>"><u><?=$current-1;?></u>&nbsp;</a></span>
-    <span style="float: left;"><?=$current;?>&nbsp;</span>
-    <span style="float: left;"><a href="/admin/users/<?=$current+1;?>"><u><?=$current+1;?></u>&nbsp;</a></span>
-    <span style="float: left;"><a href="/admin/users/<?=$current+2;?>"><u><?=$current+2;?></u>&nbsp;</a></span>
-    <span style="float: left;"><a href="/admin/users/<?=$end_page;?>"><u><?=$end_page;?></u></a></span>
+    <span style="float: left;"><a href="/admin/users/<?php echo $current-2; ?>"><u><?php echo $current-2; ?></u>&nbsp;</a></span>
+    <span style="float: left;"><a href="/admin/users/<?php echo $current-1; ?>"><u><?php echo $current-1; ?></u>&nbsp;</a></span>
+    <span style="float: left;"><?php echo $current; ?>&nbsp;</span>
+    <span style="float: left;"><a href="/admin/users/<?php echo $current+1; ?>"><u><?php echo $current+1; ?></u>&nbsp;</a></span>
+    <span style="float: left;"><a href="/admin/users/<?php echo $current+2; ?>"><u><?php echo $current+2; ?></u>&nbsp;</a></span>
+    <span style="float: left;"><a href="/admin/users/<?php echo $end_page; ?>"><u><?php echo $end_page; ?></u></a></span>
 <?php }elseif($current < $end_page) { ?>
-    <span style="float: left;">page <?=$current;?> of <a href="/admin/users/<?=$end_page;?>"><?=$end_page;?></a></span>
+    <span style="float: left;">page <?php echo $current; ?> of <a href="/admin/users/<?php echo $end_page; ?>"><?php echo $end_page; ?></a></span>
 <?php }else { ?>
-    <span style="float: left;">page <?=$current;?> of <?=$end_page;?></span>
+    <span style="float: left;">page <?php echo $current; ?> of <?php echo $end_page; ?></span>
 <?php }
 if(isset($next)) { ?>
-    <span style="float: right;"><a href="/admin/users/<?=$next;?>">&nbsp;&nbsp;Next >></a></span>
+    <span style="float: right;"><a href="/admin/users/<?php echo $next; ?>">&nbsp;&nbsp;Next >></a></span>
 <?php
 }
 if(isset($previous)) { ?>
-    <span style="float: right;"><a href="/admin/users/<?=$previous;?>"><< Previous&nbsp;&nbsp;</a></span>
+    <span style="float: right;"><a href="/admin/users/<?php echo $previous; ?>"><< Previous&nbsp;&nbsp;</a></span>
 <?php } ?>

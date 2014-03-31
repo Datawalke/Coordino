@@ -85,15 +85,15 @@ echo $thumbnail->show(array(
 		<table style="float: left; display: inline;">
 			<tr>
 				<td>name</td>
-				<td><?= $user['User']['username'] ?></h2>
+				<td><?php echo $user['User']['username'] ?></h2>
 			</tr>
 			<tr>
 				<td>joined</td>
-				<td><?=$time->timeAgoInWords($user['User']['joined']);?></td>
+				<td><?php echo $time->timeAgoInWords($user['User']['joined']); ?></td>
 			</tr>
 			<tr>
 				<td>reputation</td>
-				<td><?=$user['User']['reputation'];?></td>
+				<td><?php echo $user['User']['reputation']; ?></td>
 			</tr>
 		</table>
 		
@@ -111,7 +111,7 @@ echo $thumbnail->show(array(
 					<?php elseif ($time->wasYesterday($recent[$key]['History']['timestamp'])) : ?>
 						yesterday
 					<?php else : ?>
-						<?= $time->niceShort($recent[$key]['History']['timestamp']) ?>
+						<?php echo $time->niceShort($recent[$key]['History']['timestamp']) ?>
 					<?php endif; ?>
 				</td>
 				
@@ -142,44 +142,44 @@ echo $thumbnail->show(array(
 				
 				<td>
 			    <?php if(($recent[$key]['History']['type'] == 'asked') || ($recent[$key]['History']['type'] == 'edited')) : ?>
-			    	<a href="/questions/<?= $recent[$key]['Post']['public_key'] ?>/<?= $recent[$key]['Post']['url_title'] ?>">
-			             <?= $recent[$key]['Post']['title'] ?>
+			    	<a href="/questions/<?php echo $recent[$key]['Post']['public_key'] ?>/<?php echo $recent[$key]['Post']['url_title'] ?>">
+			             <?php echo $recent[$key]['Post']['title'] ?>
 					</a>
 			  	<?php elseif($recent[$key]['History']['type'] == 'commented') : ?>
 						<?php if(isset($recent[$key]['Pad'])) : ?>
-			        	<a href="/questions/<?= $recent[$key]['Pad']['Post']['public_key'] ?>/<?= $recent[$key]['Pad']['Post']['url_title'] ?>">
-				        	<?= $recent[$key]['Pad']['Post']['title'] ?>
+			        	<a href="/questions/<?php echo $recent[$key]['Pad']['Post']['public_key'] ?>/<?php echo $recent[$key]['Pad']['Post']['url_title'] ?>">
+				        	<?php echo $recent[$key]['Pad']['Post']['title'] ?>
 						</a>
 						<?php elseif(isset($recent[$key]['Real'])) : ?>
-						<a href="/questions/<?= $recent[$key]['Real']['Post']['public_key'] ?>/<?=$recent[$key]['Real']['Post']['url_title']?>">
-				        	<?= $recent[$key]['Real']['Post']['title'] ?>
+						<a href="/questions/<?php echo $recent[$key]['Real']['Post']['public_key'] ?>/<?php echo $recent[$key]['Real']['Post']['url_title']; ?>">
+				        	<?php echo $recent[$key]['Real']['Post']['title'] ?>
 						</a>	
 
 						<?php endif; ?>
 			    <?php  else : ?>
-			    	<a href="/questions/<?= $recent[$key]['Pad']['Post']['public_key'] ?>/<?= $recent[$key]['Pad']['Post']['url_title'] ?>">
-			             <?= $recent[$key]['Pad']['Post']['title'] ?>
+			    	<a href="/questions/<?php echo $recent[$key]['Pad']['Post']['public_key'] ?>/<?php echo $recent[$key]['Pad']['Post']['url_title'] ?>">
+			             <?php echo $recent[$key]['Pad']['Post']['title'] ?>
 					</a>
 			    <?php endif; ?>
 
 					
 			    <?php  if($recent[$key]['History']['type'] == 'edited') : ?>
                     <?php if(isset($recent[$key]['Pad'])) { ?>
-                        <a href="/questions/<?= $recent[$key]['Pad']['Post']['public_key'] ?>/<?= $recent[$key]['Pad']['Post']['url_title'] ?>">
-			                <?= $recent[$key]['Pad']['Post']['title'] ?>
+                        <a href="/questions/<?php echo $recent[$key]['Pad']['Post']['public_key'] ?>/<?php echo $recent[$key]['Pad']['Post']['url_title'] ?>">
+			                <?php echo $recent[$key]['Pad']['Post']['title'] ?>
 					    </a>
                     <?php }else { ?>
-                        <a href="/questions/<?=$recent[$key]['Post']['public_key'];?>/<?=$recent[$key]['Post']['url_title'];?>">
-                            <?=$recent[$key]['Post']['title'];?>
+                        <a href="/questions/<?php echo $recent[$key]['Post']['public_key']; ?>/<?php echo $recent[$key]['Post']['url_title']; ?>">
+                            <?php echo $recent[$key]['Post']['title']; ?>
                         </a>
                     <?php } ?>
 			    <?php elseif(isset($recent[$key]['Pad'])) : ?>
-                    <a href="/questions/<?=$recent[$key]['Pad']['Post']['public_key'];?>/<?=$recent[$key]['Pad']['Post']['url_title'];?>">
-                        <?=$recent[$key]['Pad']['Post']['title'];?>
+                    <a href="/questions/<?php echo $recent[$key]['Pad']['Post']['public_key']; ?>/<?php echo $recent[$key]['Pad']['Post']['url_title']; ?>">
+                        <?php echo $recent[$key]['Pad']['Post']['title']; ?>
                     </a>
                 <?php else : ?>
-                	<a href="/questions/<?=$recent[$key]['Post']['public_key'];?>/<?=$recent[$key]['Post']['url_title'];?>">
-                        <?=$recent[$key]['Post']['title'];?>
+                	<a href="/questions/<?php echo $recent[$key]['Post']['public_key']; ?>/<?php echo $recent[$key]['Post']['url_title']; ?>">
+                        <?php echo $recent[$key]['Post']['title']; ?>
                     </a>
                 <?php endif ?>
 
@@ -208,8 +208,8 @@ echo $thumbnail->show(array(
 		<?php foreach($recent as $key => $value) : ?>
 		<p>
 	    <?php if($recent[$key]['History']['type'] == 'answered') : ?>
-	        <a href="/questions/<?= $recent[$key]['Pad']['Post']['public_key'] ?>/<?= $recent[$key]['Pad']['Post']['url_title'] ?>">
-	             <?= $recent[$key]['Pad']['Post']['title'] ?>
+	        <a href="/questions/<?php echo $recent[$key]['Pad']['Post']['public_key'] ?>/<?php echo $recent[$key]['Pad']['Post']['url_title'] ?>">
+	             <?php echo $recent[$key]['Pad']['Post']['title'] ?>
 			</a>
 		<?php endif; ?>
 	    <?php if($recent[$key]['History']['type'] == 'answered') {

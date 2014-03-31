@@ -17,7 +17,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div class="<?php echo $pluralVar;?> view">
+<div class="<?php echo $pluralVar; ?> view">
 <h2><?php printf(__("View %s", true), $singularHumanName); ?></h2>
 	<dl>
 <?php
@@ -91,7 +91,7 @@ foreach ($associations['hasOne'] as $_alias => $_details): ?>
 <?php endif; ?>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(sprintf(__('Edit %s', true), Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'edit', ${$singularVar}[$_alias][$_details['primaryKey']]))."</li>\n";?>
+			<li><?php echo $this->Html->link(sprintf(__('Edit %s', true), Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'edit', ${$singularVar}[$_alias][$_details['primaryKey']]))."</li>\n"; ?>
 		</ul>
 	</div>
 </div>
@@ -152,8 +152,8 @@ $otherSingularVar = Inflector::variable($_alias);
 <?php endif; ?>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(sprintf(__("New %s", true), Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(sprintf(__("New %s", true), Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
 </div>
-<?php endforeach;?>
+<?php endforeach; ?>

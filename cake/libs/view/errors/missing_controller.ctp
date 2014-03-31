@@ -28,9 +28,9 @@
 </p>
 <pre>
 &lt;?php
-class <?php echo $controller;?> extends AppController {
+class <?php echo $controller; ?> extends AppController {
 
-	var $name = '<?php echo $controllerName;?>';
+	var $name = '<?php echo $controllerName; ?>';
 }
 ?&gt;
 </pre>

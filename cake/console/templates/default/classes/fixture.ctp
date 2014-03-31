@@ -33,9 +33,9 @@ class <?php echo $model; ?>Fixture extends CakeTestFixture {
 
 <?php if ($schema): ?>
 	var $fields = <?php echo $schema; ?>;
-<?php endif;?>
+<?php endif; ?>
 
 <?php if ($records): ?>
 	var $records = <?php echo $records; ?>;
-<?php endif;?>
+<?php endif; ?>
 }

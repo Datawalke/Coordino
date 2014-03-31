@@ -30,5 +30,5 @@
 		<input type="submit" value="Add This Widget"/>
 	</div>
 </div>
-<input type="hidden" name="data[referer]" value="<?=$referer;?>"/>
+<input type="hidden" name="data[referer]" value="<?php echo $referer; ?>"/>
 </form>

@@ -17,8 +17,8 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div class="<?php echo $pluralVar;?> form">
-<?php echo "<?php echo \$this->Form->create('{$modelClass}');?>\n";?>
+<div class="<?php echo $pluralVar; ?> form">
+<?php echo "<?php echo \$this->Form->create('{$modelClass}'); ?>\n"; ?>
 	<fieldset>
 		<legend><?php printf("<?php __('%s %s'); ?>", Inflector::humanize($action), $singularHumanName); ?></legend>
 <?php
@@ -39,7 +39,7 @@
 ?>
 	</fieldset>
 <?php
-	echo "<?php echo \$this->Form->end(__('Submit', true));?>\n";
+	echo "<?php echo \$this->Form->end(__('Submit', true)); ?>\n";
 ?>
 </div>
 <div class="actions">
@@ -47,9 +47,9 @@
 	<ul>
 
 <?php if (strpos($action, 'add') === false): ?>
-		<li><?php echo "<?php echo \$this->Html->link(__('Delete', true), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), null, sprintf(__('Are you sure you want to delete # %s?', true), \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>";?></li>
-<?php endif;?>
-		<li><?php echo "<?php echo \$this->Html->link(__('List " . $pluralHumanName . "', true), array('action' => 'index'));?>";?></li>
+		<li><?php echo "<?php echo \$this->Html->link(__('Delete', true), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), null, sprintf(__('Are you sure you want to delete # %s?', true), \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
+<?php endif; ?>
+		<li><?php echo "<?php echo \$this->Html->link(__('List " . $pluralHumanName . "', true), array('action' => 'index')); ?>"; ?></li>
 <?php
 		$done = array();
 		foreach ($associations as $type => $data) {
