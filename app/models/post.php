@@ -51,7 +51,11 @@ class Post extends AppModel {
 	                            );
 
     public function niceUrl($url) {
-		return preg_replace("/[^0-9a-zA-Z-]/", "", str_replace(' ', '-', $url));
+		$niceurl_tmp = preg_replace("/[^0-9a-zA-Z-]/", "", str_replace(' ', '-', $url));
+		if(strlen($niceurl_tmp)<=0) {
+			$niceurl_tmp = preg_replace("/[^0-9a-zA-Z-]/", "", str_replace(' ', '-', md5($url)));
+		}
+		return $niceurl_tmp;
     }
 
     public function monsterSearch($type, $page, $search) {
