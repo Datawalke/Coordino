@@ -197,7 +197,8 @@
         if(isset($admin) && $admin):
             ?>
             <a href="/widgets/add<?php echo $_SERVER['REQUEST_URI']; ?>">
-                <img src="/img/icons/plugin_edit.png" alt="Edit"/><?php __('add widgets to this page'); ?>.
+                <?php echo $html->image('icons/plugin_edit.png', array('alt' => 'Edit')); ?><?php __('add widgets to this page'); ?>
+<!--                <img src="/img/icons/plugin_edit.png" alt="Edit"/><?php __('add widgets to this page'); ?>.-->
             </a>
         <?php endif; ?>
 
