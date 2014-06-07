@@ -19,7 +19,7 @@
     </style>
     <![endif]-->
 
-    <!--[if lte IE 6]><link rel="stylesheet" href="stylesheets/lib/ie.css" type="text/css" media="screen" charset="utf-8"><![endif]-->
+    <!--[if lte IE 6]><link rel="stylesheet" href="<?=$this->webroot; ?>css/lib/ie.css" type="text/css" media="screen" charset="utf-8"><![endif]-->
 </head>
 <body onload="prettyPrint()">
 
@@ -186,8 +186,8 @@
                     <?php } ?>
                     <?=$widget['Widget']['content'];?>
                     <?php if(isset($admin) && $admin) { ?>
-                        <a href="/widgets/edit/<?=$widget['Widget']['id'];?>" title="Edit this Widget"><?php __('edit'); ?></a>	|
-                        <a href="/widgets/delete/<?=$widget['Widget']['id'];?>" title="Delete Widget"><?php __('del'); ?></a>
+                        <a href="<?=$this->webroot; ?>widgets/edit/<?=$widget['Widget']['id'];?>" title="Edit this Widget"><?php __('edit'); ?></a>	|
+                        <a href="<?=$this->webroot; ?>widgets/delete/<?=$widget['Widget']['id'];?>" title="Delete Widget"><?php __('del'); ?></a>
                     <?php } ?>
                 </div>
             <?php
@@ -196,9 +196,9 @@
 
         if(isset($admin) && $admin):
             ?>
-            <a href="/widgets/add<?php echo $_SERVER['REQUEST_URI']; ?>">
-                <?php echo $html->image('icons/plugin_edit.png', array('alt' => 'Edit')); ?><?php __('add widgets to this page'); ?>
-<!--                <img src="/img/icons/plugin_edit.png" alt="Edit"/><?php __('add widgets to this page'); ?>.-->
+            <a href="<?=$this->webroot; ?>widgets/add">
+                <?php echo $html->image('icons/plugin_edit.png', array('alt' => 'Edit')); ?>
+                <?php __('add widgets to this page'); ?>
             </a>
         <?php endif; ?>
 
