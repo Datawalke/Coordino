@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases
@@ -1205,6 +1205,31 @@ class DispatcherTest extends CakeTestCase {
 		$this->assertEqual($expected, $result);
 		$expectedWebroot = '/dbhauser/app/webroot/';
 		$this->assertEqual($expectedWebroot, $Dispatcher->webroot);
+	}
+
+/**
+ * Check that a sub-directory containing app|webroot doesn't get mishandled when re-writing is off.
+ *
+ * @return void
+ */
+	function testBaseUrlWithAppAndWebrootInDirname() {
+		Configure::write('App.baseUrl', '/approval/index.php');
+		$_SERVER['DOCUMENT_ROOT'] = '/Users/markstory/Sites/';
+		$_SERVER['SCRIPT_FILENAME'] = '/Users/markstory/Sites/approval/index.php';
+		$Dispatcher =& new Dispatcher();
+		$result = $Dispatcher->baseUrl();
+
+		$this->assertEqual('/approval/index.php', $result);
+		$this->assertEqual('/approval/app/webroot/', $Dispatcher->webroot);
+
+		Configure::write('App.baseUrl', '/webrootable/index.php');
+		$_SERVER['DOCUMENT_ROOT'] = '/Users/markstory/Sites/';
+		$_SERVER['SCRIPT_FILENAME'] = '/Users/markstory/Sites/webrootable/index.php';
+		$Dispatcher =& new Dispatcher();
+		$result = $Dispatcher->baseUrl();
+
+		$this->assertEqual('/webrootable/index.php', $result);
+		$this->assertEqual('/webrootable/app/webroot/', $Dispatcher->webroot);
 	}
 
 /**

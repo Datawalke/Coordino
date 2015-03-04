@@ -49,12 +49,13 @@ class PostsController extends AppController {
 		$this->set('title_for_layout', __('Ask a question',true));
 		
 		if(!empty($this->data)) {
+
+			$this->__validatePost($this->data, '/questions/ask', true);
 			
 			/**
 			 * reCAPTCHA Check
 			 */
-				$this->data['reCAPTCHA'] = $this->params['form'];
-				$this->__validatePost($this->data, '/questions/ask', true);
+			$this->data['reCAPTCHA'] = $this->params['form'];
 			
 				/**
 				 * If the user is not logged in create an account for them.
@@ -385,8 +386,7 @@ class PostsController extends AppController {
 		 	array('hasMany' => array('Answer'))
 		);
 		$question = $this->Post->findByPublicKey($public_key);
-		
-		
+
         /*
         *  Look up the flag limit.
         */

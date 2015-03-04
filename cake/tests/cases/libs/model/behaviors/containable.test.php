@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.behaviors
@@ -36,7 +36,7 @@ class ContainableBehaviorTest extends CakeTestCase {
  */
 	var $fixtures = array(
 		'core.article', 'core.article_featured', 'core.article_featureds_tags', 'core.articles_tag', 'core.attachment', 'core.category',
-		'core.comment', 'core.featured', 'core.tag', 'core.user'
+		'core.comment', 'core.featured', 'core.tag', 'core.user', 'core.join_a', 'core.join_b', 'core.join_c', 'core.join_a_c', 'core.join_a_b'
 	);
 
 /**
@@ -242,6 +242,20 @@ class ContainableBehaviorTest extends CakeTestCase {
 
 		$r = $this->Article->find('all');
 		$this->assertFalse(Set::matches('/Comment/User', $r));
+	}
+
+/**
+ * Test that mixing contain() and the contain find option.
+ *
+ * @access public
+ * @return void
+ */
+	function testContainAndContainOption() {
+		$this->Article->contain();
+		$r = $this->Article->find('all', array(
+			'contain' => array('Comment')
+		));
+		$this->assertTrue(isset($r[0]['Comment']), 'No comment returned');
 	}
 
 /**
@@ -3406,6 +3420,21 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->assertEqual($expected, array_keys($result));
 
 		$this->assertTrue(empty($this->Article->hasMany['ArticlesTag']));
+		
+		$this->JoinA =& ClassRegistry::init('JoinA');
+		$this->JoinB =& ClassRegistry::init('JoinB');
+		$this->JoinC =& ClassRegistry::init('JoinC');
+		
+		$this->JoinA->Behaviors->attach('Containable');
+		$this->JoinB->Behaviors->attach('Containable');
+		$this->JoinC->Behaviors->attach('Containable');
+		
+		$this->JoinA->JoinB->find('all', array('contain' => array('JoinA')));
+		$this->JoinA->bindModel(array('hasOne' => array('JoinAsJoinC' => array('joinTable' => 'as_cs'))), false);
+		$result = $this->JoinA->hasOne;
+		$this->JoinA->find('all');
+		$resultAfter = $this->JoinA->hasOne;
+		$this->assertEqual($result, $resultAfter);
 	}
 
 /**
@@ -3591,6 +3620,41 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$expected = $this->Article->hasAndBelongsToMany;
 		$this->Article->find('all', array('contain' => array('ShortTag' => array('fields' => array('ShortTag.tag', 'ShortTag.created')))));
 		$this->assertEqual($expected, $this->Article->hasAndBelongsToMany);
+	}
+
+/**
+ * test that bindModel and unbindModel work with find() calls in between.
+ */
+	function testBindMultipleTimesWithFind() {
+		$binding = array(
+			'hasOne' => array(
+				'ArticlesTag' => array(
+					'foreignKey' => false,
+					'type' => 'INNER',
+					'conditions' => array(
+						'ArticlesTag.article_id = Article.id'
+					)
+				),
+				'Tag' => array(
+					'type' => 'INNER',
+					'foreignKey' => false,
+					'conditions' => array(
+						'ArticlesTag.tag_id = Tag.id'
+					)
+				)
+			)
+		);
+		$this->Article->unbindModel(array('hasAndBelongsToMany' => array('Tag')));
+		$this->Article->bindModel($binding);
+		$result = $this->Article->find('all', array('limit' => 1, 'contain' => array('ArticlesTag', 'Tag')));
+
+		$this->Article->unbindModel(array('hasAndBelongsToMany' => array('Tag')));
+		$this->Article->bindModel($binding);
+		$result = $this->Article->find('all', array('limit' => 1, 'contain' => array('ArticlesTag', 'Tag')));
+
+		$associated = $this->Article->getAssociated();
+		$this->assertEqual('hasAndBelongsToMany', $associated['Tag']);
+		$this->assertFalse(isset($associated['ArticleTag']));
 	}
 
 /**

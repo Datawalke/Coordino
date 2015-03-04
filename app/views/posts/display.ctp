@@ -1,4 +1,5 @@
-<?php foreach ($questions as $question) { ?>
+<?php
+foreach($questions as $question) { ?>
     <div class="list_question wrapper">
         <?php //var_dump($question); die(count($question['Answer']));  ?>
         <div class="wrapper" style="float: left;">

@@ -203,9 +203,7 @@ class UsersController extends AppController {
 		 * If the user has an unregistered account update the password and set them to registered.
 		 */
 		if(!empty($this->data)) {
-
 			if($this->Recaptcha->valid($this->params['form']) || $this->Session->read('Auth.User.id')) {
-			
 			/**
 			 * If the user is logged in via Session or Cookie
 			 */
@@ -243,12 +241,12 @@ class UsersController extends AppController {
 					$this->redirect('/');
 				}
 			}
+			} else {
+				$this->Session->setFlash('Invalid reCAPTCHA entered.', 'error');
+			}
 			
-		} else {
-			$this->Session->setFlash('Invalid reCAPTCHA entered.', 'error');
 		}
-		
-		}
+
 	}
 
     public function admin() {

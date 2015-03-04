@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -644,6 +644,48 @@ class ModelValidationTest extends BaseModelTest {
 	}
 
 /**
+ * test that saveAll and with models at initial insert (no id has set yet)
+ * with validation interact well
+ *
+ * @return void
+ */
+	function testValidatesWithModelsAndSaveAllWithoutId() {
+		$data = array(
+			'Article' => array(
+				'title' => 'Extra Fields',
+				'body' => 'Extra Fields Body',
+				'published' => '1'
+			),
+			'Comment' => array(
+				array('word' => 'Hello'),
+				array('word' => 'World'),
+			)
+		);
+		$Article =& new Article();
+		$Comment =& $Article->Comment;
+
+		$Comment->validate = array('article_id' => array('rule' => 'numeric'));
+
+		$Article->create();
+		$result = $Article->saveAll($data, array('validate' => 'only'));
+		$this->assertTrue($result);
+
+		$Article->create();
+		$result = $Article->saveAll($data, array('validate' => 'first'));
+		$this->assertTrue($result);
+		$this->assertFalse(is_null($Article->id));
+
+		$id = $Article->id;
+		$count = $Article->find('count', array('conditions' => array('Article.id' => $id)));
+		$this->assertIdentical($count, 1);
+
+		$count = $Comment->find('count', array(
+			'conditions' => array('Comment.article_id' => $id)
+		));
+		$this->assertEqual($count, count($data['Comment']));
+	}
+
+/**
  * Test that missing validation methods trigger errors in development mode.
  * Helps to make developement easier.
  *
@@ -668,6 +710,73 @@ class ModelValidationTest extends BaseModelTest {
 		$this->assertNoErrors();
 		$TestModel->invalidFields(array('fieldList' => array('title')));
 		Configure::write('debug', $restore);
+	}
+
+/**
+ * Test for 'on' => [create|update] in validation rules.
+ *
+ * @return void
+ */
+	function testStateValidation() {
+		$Article =& new Article();
+
+		$data = array(
+			'Article' => array(
+				'title' => '',
+				'body' => 'Extra Fields Body',
+				'published' => '1'
+			)
+		);
+
+		$Article->validate = array(
+			'title' => array(
+				'notempty' => array(
+					'rule' => 'notEmpty',
+					'on' => 'create'
+				)
+			),
+			'published' => array(
+				'notempty' => array(
+					'rule' => 'notEmpty',
+				)
+			)
+		);
+
+		$Article->create($data);
+		$this->assertFalse($Article->validates());
+
+		$Article->save(null, array('validate' => false));
+		$data['Article']['id'] = $Article->id;
+		$Article->set($data);
+		$this->assertTrue($Article->validates());
+
+		$Article->data['Article']['published'] = null;
+		$this->assertFalse($Article->validates());
+
+		unset($data['Article']['id']);
+		$Article->data['Article']['published'] = '1';
+		$Article->validate = array(
+			'title' => array(
+				'notempty' => array(
+					'rule' => 'notEmpty',
+					'on' => 'update'
+				)
+			),
+			'published' => array(
+				'notempty' => array(
+					'rule' => 'notEmpty',
+				)
+			)
+		);
+
+		$Article->create($data);
+		$this->assertTrue($Article->validates());
+
+		$Article->save(null, array('validate' => false));
+		$data['Article']['id'] = $Article->id;
+		$Article->set($data);
+		$this->assertFalse($Article->validates());
+
 	}
 
 }

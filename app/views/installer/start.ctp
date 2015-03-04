@@ -10,7 +10,7 @@
 			<span class="highlight">/app/config/database_same.php</span> with your favorite text editor and edit these settings manually. Once you are done editing save the file as: <span class="highlight">database.php</span>.
 </strong></p>
 
-<p><strong>Note:</strong> To use the automatic instillation process you must have the <span class="highlight">/app/config</span> directory writable. If you do not wish to make this directory writable and wish to edit the <span class="highlight">/app/config/database.php</span> file manually ignore any errors related to the <span class="highlight">/app/config</span> directory below.</p>
+<p><strong>Note:</strong> To use the automatic instillation process you must have write permissions to the <span class="highlight">/app/config/database.php</span>  writable. If you do not wish to make this directory writable and wish to edit the <span class="highlight">/app/config/database.php</span> file manually ignore any errors related to the <span class="highlight">/app/config</span> directory below.</p>
 
 <p>Directory permission tests:</p>
 <ul>
@@ -34,8 +34,8 @@
 	</li>	
 </ul>
 
-<?php 	if(!in_array(false, $writeChecks)) { ?>
+<?php	if(!in_array(false, $writeChecks)) { ?>
 	<p>Looks like you are good to go. <a href="install/database-config">Lets Continue!</a></p>
-<?php  } else { ?>
+<?php } else { ?>
 	<p><span class="error">Look above for errors you must fix.</span></p>
-<?php  } ?>
+<?php } ?>

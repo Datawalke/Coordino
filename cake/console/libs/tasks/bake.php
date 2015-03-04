@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc.
+ * Copyright 2005-2012, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.console.libs.tasks
@@ -41,6 +41,17 @@ class BakeTask extends Shell {
  * @var boolean
  */
 	var $interactive = false;
+
+/**
+ * Disable caching for baking.
+ * This forces the most current database schema to be used.
+ *
+ * @return void
+ */
+	function startup() {
+		Configure::write('Cache.disable', 1);
+		parent::startup();
+	}
 
 /**
  * Gets the path for output.  Checks the plugin property

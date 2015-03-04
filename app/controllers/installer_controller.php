@@ -3,11 +3,9 @@ class InstallerController extends AppController {
 
 	var $name = 'Installer';
     var $helpers = array('Form', 'Time', 'Html', 'Javascript', 'Session');
-	var $components = array('Session');
 	
 	public function beforeFilter() {
 		$this->layout = 'install';
-		//$this->Auth->allow('*');
 	}
 	
     public function start() {
@@ -48,7 +46,6 @@ class InstallerController extends AppController {
 
             $filePath = APP.'/config/database.php';
 
-            if(filesize($filePath) <= 0) {
 
 			$file = fopen($filePath, "w");
 			$data = "
@@ -70,11 +67,7 @@ class DATABASE_CONFIG {
 			fclose($file);
 		$this->Session->setFlash('Connection to database established.', 'success');
 		$this->redirect('/install/run-sql');
-            } else {
-                $this->Session->setFlash($filePath . ' already exists. Please clear the contents of this file and ensure
-                it is writable.', 'error');
-                $this->redirect('/install/database-config');
-            }
+
 		}
 	}
 	
@@ -113,10 +106,11 @@ class DATABASE_CONFIG {
 	
 	public function admin_account() {
 		if(!empty($this->data['User'])) {
-            App::import('Component', 'Auth');
             App::import('Component', 'Session');
+            App::import('Component', 'Auth');
             $this->Session = new SessionComponent();
             $this->Auth = new AuthComponent();
+            $this->Auth->Session = $this->Session;
             $this->Auth->allow('*');
 			$user = $this->__userSave($this->Auth->hashPasswords($this->data));
 			file_put_contents(TMP.'installed.txt', date('Y-m-d, H:i:s'));

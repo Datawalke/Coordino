@@ -77,15 +77,15 @@
  *
  */
 class DATABASE_CONFIG {
-	
-	var $default = array(
-		'driver' => 'mysql',
-		'host' => 'localhost',
-		'login' => 'username',
-		'password' => '',
-		'database' => '',
-		'encoding' => 'utf8',
-	);
+
+    var $default = array(
+        'driver' => 'mysql',
+        'host' => 'localhost',
+        'login' => 'username',
+        'password' => '',
+        'database' => '',
+        'encoding' => 'utf8',
+    );
 
 }
 ?>

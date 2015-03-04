@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *	Licensed under The Open Group Test Suite License
  *	Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
@@ -1459,8 +1459,10 @@ class DboSourceTest extends CakeTestCase {
 			'offset' => array(),
 			'conditions' => array(),
 			'order' => array(),
-			'group' => null
+			'group' => null,
+			'callbacks' => null
 		);
+		$queryData['joins'][0]['table'] = $this->testDb->fullTableName($queryData['joins'][0]['table']);
 		$this->assertEqual($queryData, $expected);
 
 		$result = $this->testDb->generateAssociationQuery($this->Model, $null, null, null, null, $queryData, false, $null);
@@ -2395,6 +2397,12 @@ class DboSourceTest extends CakeTestCase {
 		$result = $this->testDb->conditions($conditions);
 		$expected = " WHERE `Artist`.`name` = 'JUDY AND MARY'";
 		$this->assertEqual($result, $expected);
+
+		$conditions = array('Company.name similar to ' => 'a word');
+		$result = $this->testDb->conditions($conditions);
+		$expected = " WHERE `Company`.`name` similar to 'a word'";
+		$this->assertEqual($result, $expected);
+
 	}
 
 /**
@@ -2548,11 +2556,11 @@ class DboSourceTest extends CakeTestCase {
 		$this->assertEqual($result, $expected);
 
 		$result = $this->testDb->conditions(array('score BETWEEN ? AND ?' => array(90.1, 95.7)));
-		$expected = " WHERE `score` BETWEEN 90.100000 AND 95.700000";
+		$expected = " WHERE `score` BETWEEN 90.1 AND 95.7";
 		$this->assertEqual($result, $expected);
 
 		$result = $this->testDb->conditions(array('Post.title' => 1.1));
-		$expected = " WHERE `Post`.`title` = 1.100000";
+		$expected = " WHERE `Post`.`title` = 1.1";
 		$this->assertEqual($result, $expected);
 
 		$result = $this->testDb->conditions(array('Post.title' => 1.1), true, true, new Post());
@@ -2565,6 +2573,10 @@ class DboSourceTest extends CakeTestCase {
 
 		$result = $this->testDb->conditions(array('MAX(Post.rating) >' => '50'));
 		$expected = " WHERE MAX(`Post`.`rating`) > '50'";
+		$this->assertEqual($result, $expected);
+
+		$result = $this->testDb->conditions(array('lower(Article.title)' =>  'secrets'));
+		$expected = " WHERE lower(`Article`.`title`) = 'secrets'";
 		$this->assertEqual($result, $expected);
 
 		$result = $this->testDb->conditions(array('title LIKE' => '%hello'));
@@ -3512,7 +3524,7 @@ class DboSourceTest extends CakeTestCase {
 		$result = $this->testDb->order(array('Property.sale_price IS NULL'));
 		$expected = ' ORDER BY `Property`.`sale_price` IS NULL ASC';
 		$this->assertEqual($result, $expected);
-		
+
 		$result = $this->testDb->order(array('Export.column-name' => 'ASC'));
 		$expected = ' ORDER BY `Export`.`column-name` ASC';
 		$this->assertEqual($result, $expected, 'Columns with -s are not working with order()');
@@ -4166,7 +4178,6 @@ class DboSourceTest extends CakeTestCase {
 		Configure::write('debug', 2);
 
 		$this->testDb->error = true;
-		$this->expectError();
 		ob_start();
 		$this->testDb->showQuery('Error 2');
 		$contents = ob_get_clean();
@@ -4237,6 +4248,25 @@ class DboSourceTest extends CakeTestCase {
 		$query = "DROP TABLE {$name};";
 		$result = $this->db->fetchAll($query);
 		$this->assertTrue($result, 'Query did not return a boolean. %s');
+	}
+
+/**
+ * test that query propery caches/doesn't cache selects
+ *
+ * @return void
+ * @author David Kullmann
+ */
+	function testFetchAllCaching() {
+		$query = "SELECT NOW() as TIME";
+		$result = $this->db->fetchAll($query);
+		
+		$this->assertTrue(is_array($this->db->_queryCache[$query]));
+		$this->assertEqual($this->db->_queryCache[$query][0][0]['TIME'], $result[0][0]['TIME']);
+
+		$query = "DROP TABLE IF EXISTS select_test";
+		$result = $this->db->fetchAll($query);
+		
+		$this->assertTrue(!isset($this->db->_queryCache[$query]));
 	}
 
 /**
@@ -4468,12 +4498,12 @@ class DboSourceTest extends CakeTestCase {
  */
 	function testVirtualFieldsComplexRead() {
 		$this->loadFixtures('DataTest', 'Article', 'Comment');
-		
+
 		$Article =& ClassRegistry::init('Article');
 		$commentTable = $this->db->fullTableName('comments');
 		$Article =& ClassRegistry::init('Article');
 		$Article->virtualFields = array(
-			'comment_count' => 'SELECT COUNT(*) FROM ' . $commentTable . 
+			'comment_count' => 'SELECT COUNT(*) FROM ' . $commentTable .
 				' AS Comment WHERE Article.id = Comment.article_id'
 		);
 		$result = $Article->find('all');
@@ -4578,7 +4608,7 @@ class DboSourceTest extends CakeTestCase {
 		$Article->tablePrefix = 'tbl_';
 		$result = $this->testDb->fullTableName($Article, false);
 		$this->assertEqual($result, 'tbl_articles');
-		
+
 		$Article->useTable = $Article->table = 'with spaces';
 		$Article->tablePrefix = '';
 		$result = $this->testDb->fullTableName($Article);

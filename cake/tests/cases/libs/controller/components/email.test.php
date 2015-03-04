@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.cake.tests.cases.libs.controller.components
@@ -559,6 +559,7 @@ This is the body of the message
 
 </pre>
 MSGBLOC;
+
 		$this->Controller->EmailTest->sendAs = 'text';
 		$expect = str_replace('{CONTENTTYPE}', 'text/plain; charset=UTF-8', $message);
 		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
@@ -571,9 +572,10 @@ MSGBLOC;
 
 		// TODO: better test for format of message sent?
 		$this->Controller->EmailTest->sendAs = 'both';
-		$expect = str_replace('{CONTENTTYPE}', 'multipart/alternative; boundary="alt-"', $message);
-
 		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
+		$boundary = $this->Controller->EmailTest->getBoundary();
+
+		$expect = str_replace('{CONTENTTYPE}', 'multipart/alternative; boundary="alt-' . $boundary . '"', $message);
 		$this->assertEqual($this->Controller->Session->read('Message.email.message'), $this->__osFix($expect));
 	}
 
@@ -649,13 +651,23 @@ HTMLBLOC;
 		$this->assertEqual($this->Controller->Session->read('Message.email.message'), $this->__osFix($expect));
 
 		$this->Controller->EmailTest->sendAs = 'both';
-		$expect = str_replace('{CONTENTTYPE}', 'multipart/alternative; boundary="alt-"', $header);
-		$expect .= '--alt-' . "\n" . 'Content-Type: text/plain; charset=UTF-8' . "\n" . 'Content-Transfer-Encoding: 7bit' . "\n\n" . $text . "\n\n";
-		$expect .= '--alt-' . "\n" . 'Content-Type: text/html; charset=UTF-8' . "\n" . 'Content-Transfer-Encoding: 7bit' . "\n\n" . $html . "\n\n";
-		$expect = '<pre>' . $expect . '--alt---' . "\n\n" . '</pre>';
-
 		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
+		$boundary = $this->Controller->EmailTest->getBoundary();
+
+		$expect = str_replace('{CONTENTTYPE}', 'multipart/alternative; boundary="alt-' . $boundary . '"', $header);
+		$expect .= '--alt-' . $boundary . "\n" . 'Content-Type: text/plain; charset=UTF-8' . "\n" . 'Content-Transfer-Encoding: 7bit' . "\n\n" . $text . "\n\n";
+		$expect .= '--alt-' . $boundary . "\n" . 'Content-Type: text/html; charset=UTF-8' . "\n" . 'Content-Transfer-Encoding: 7bit' . "\n\n" . $html . "\n\n";
+		$expect = '<pre>' . $expect . "--alt-$boundary--" . "\n\n" . '</pre>';
 		$this->assertEqual($this->Controller->Session->read('Message.email.message'), $this->__osFix($expect));
+
+		$this->Controller->EmailTest->reset();
+		$this->Controller->EmailTest->to = 'postmaster@localhost';
+		$this->Controller->EmailTest->from = 'noreply@example.com';
+		$this->Controller->EmailTest->subject = 'Cake SMTP test';
+		$this->Controller->EmailTest->replyTo = 'noreply@example.com';
+
+		$this->Controller->EmailTest->delivery = 'debug';
+		$this->Controller->EmailTest->messageId = false;
 
 		$html = <<<HTMLBLOC
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
@@ -674,8 +686,11 @@ HTMLBLOC;
 HTMLBLOC;
 
 		$this->Controller->EmailTest->sendAs = 'html';
-		$expect = '<pre>' . str_replace('{CONTENTTYPE}', 'text/html; charset=UTF-8', $header) . $html . '</pre>';
 		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message', 'default', 'thin'));
+
+		$boundary = $this->Controller->EmailTest->getBoundary();
+		$expect = str_replace('{CONTENTTYPE}', 'text/html; charset=UTF-8', $header) . $html;
+		$expect = '<pre>' . $expect . '</pre>';
 		$this->assertEqual($this->Controller->Session->read('Message.email.message'), $this->__osFix($expect));
 		
 		$result = ClassRegistry::getObject('view');
@@ -962,6 +977,11 @@ HTMLBLOC;
 		$result  = $this->Controller->EmailTest->strip($content, true);
 		$expected = $content;
 		$this->assertEqual($result, $expected);
+
+		$content = 'This is a test email to: you and whomever you forward it to';
+		$result  = $this->Controller->EmailTest->strip($content, true);
+		$expected = $content;
+		$this->assertEqual($result, $expected);
 	}
 
 /**
@@ -1161,6 +1181,7 @@ HTMLBLOC;
 		$this->assertIdentical($this->Controller->EmailTest->attachments, array());
 		$this->assertNull($this->Controller->EmailTest->textMessage);
 		$this->assertTrue($this->Controller->EmailTest->messageId);
+		$this->assertEqual('mail', $this->Controller->EmailTest->delivery);
 	}
 
 	function testPluginCustomViewClass() {
@@ -1211,7 +1232,7 @@ HTMLBLOC;
 		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
 		$result = $this->Controller->Session->read('Message.email.message');
 
-		$this->assertPattern('/Message-ID: \<[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}@' . env('HTTP_HOST') . '\>\n/', $result);
+		$this->assertPattern('/Message-ID: \<[a-f0-9]{32}@' . env('HTTP_HOST') . '\>\n/', $result);
 
 		$this->Controller->EmailTest->messageId = '<22091985.998877@localhost>';
 
@@ -1299,7 +1320,7 @@ HTMLBLOC;
 	function testFormatAddressMultibyte() {
 		$this->Controller->EmailTest->charset = 'UTF-8';
 		$result = $this->Controller->EmailTest->formatAddress('ÄÖÜTest <email@domain.de>');
-		$this->assertEqual($result, '=?UTF-8?B?w4TDlsOcVGVzdCA=?= <email@domain.de>');
+		$this->assertEqual($result, '=?UTF-8?B?w4TDlsOcVGVzdA==?= <email@domain.de>');
 		
 		$result = $this->Controller->EmailTest->formatAddress('ÄÖÜTest<email@domain.de>');
 		$this->assertEqual($result, '=?UTF-8?B?w4TDlsOcVGVzdA==?= <email@domain.de>');
