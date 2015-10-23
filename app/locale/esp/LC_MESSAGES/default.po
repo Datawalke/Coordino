@@ -101,6 +101,10 @@ msgstr "Cambiar idioma"
 msgid "english"
 msgstr "ingles"
 
+#: /views/layouts/default.ctp:83 /views/layouts/install.ctp:16
+msgid "spanish"
+msgstr "español"
+
 #: /views/layouts/default.ctp:84 /views/layouts/install.ctp:17
 msgid "french"
 msgstr "frances"

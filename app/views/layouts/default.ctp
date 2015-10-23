@@ -81,6 +81,7 @@
                     <a href='#'><?php __('change language'); ?></a>
                     <ul>
                         <li><?=$html->link(__('english',true),'/lang/eng')?></li>
+                        <li><?=$html->link(__('spanish',true),'/lang/esp')?></li>
                         <li><?=$html->link(__('french',true),'/lang/fre')?></li>
                         <li><?=$html->link(__('chinese',true),'/lang/chi')?></li>
                     </ul>
