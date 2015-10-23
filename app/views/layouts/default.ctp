@@ -84,6 +84,7 @@
                         <li><?=$html->link(__('spanish',true),'/lang/esp')?></li>
                         <li><?=$html->link(__('french',true),'/lang/fre')?></li>
                         <li><?=$html->link(__('chinese',true),'/lang/chi')?></li>
+                        <li><?=$html->link(__('japanese',true),'/lang/jap')?></li>
                     </ul>
                 </li>
                 <?php if($session->check('Auth.User.id') && $session->read('Auth.User.permission') != '') { ?>

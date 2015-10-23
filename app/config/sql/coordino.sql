@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `badges` (
   `user_id` int(12) NOT NULL,
   `image` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `badges`
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `bugs` (
   `status` enum('open','closed','invalid') NOT NULL DEFAULT 'open',
   `submitted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `bugs`
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `votes` smallint(5) NOT NULL,
   `user_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `comments`
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `histories` (
   `user_id` int(25) NOT NULL,
   `timestamp` int(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `histories`
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `notify` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   FULLTEXT KEY `title` (`title`,`content`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `posts`
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `posts_revs` (
   `tags` text NOT NULL,
   `flags` smallint(3) DEFAULT NULL,
   PRIMARY KEY (`version_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `posts_revs`
@@ -156,7 +156,7 @@ INSERT INTO `posts_revs` (`version_id`, `version_created`, `id`, `type`, `relate
 CREATE TABLE IF NOT EXISTS `post_tags` (
   `post_id` int(255) NOT NULL,
   `tag_id` int(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `post_tags`
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `autoload` smallint(1) NOT NULL DEFAULT '0',
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `settings`
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `tag` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `tags`
@@ -246,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `question_count` int(12) NOT NULL,
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users`
@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `votes` (
   `timestamp` int(100) NOT NULL,
   `type` enum('up','down','flag') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `votes`
@@ -289,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   `content` text NOT NULL,
   `global` smallint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `widgets`
