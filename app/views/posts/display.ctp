@@ -23,7 +23,7 @@ foreach($questions as $question) { ?>
 		?>
 		</div>
 		<div class="wrapper">
-			<div style="float: right;">
+			<div class="question_item">
 				<div class="thumb_with_border">
 		
 				<?php echo $html->link( $thumbnail->get(array(

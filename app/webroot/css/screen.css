@@ -527,3 +527,9 @@ font.error_text {
 #coordino_logo {
 	margin-top: 10px;
 }
+
+
+.question_item {
+	min-width: 120px;
+	float: right;
+}
