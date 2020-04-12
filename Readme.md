@@ -116,11 +116,11 @@ Run this command in the root path of Coordino :
 Contributors - Thank you!
 ==================================
 
-* [pderaaij] (https://github.com/pderaaij)
-* [bones418] (https://github.com/bones418)
-* [do9iigane] (https://github.com/do9iigane)
+* [pderaaij](https://github.com/pderaaij)
+* [bones418](https://github.com/bones418)
+* [do9iigane](https://github.com/do9iigane)
 * [iam-merlin](https://github.com/iam-merlin)
-* [ultramundane] (https://github.com/ultramundane)
-* [datawalke] (https://github.com/datawalke)
+* [ultramundane](https://github.com/ultramundane)
+* [datawalke](https://github.com/datawalke)
 
 Don't see yourself Just edit the Readme!
