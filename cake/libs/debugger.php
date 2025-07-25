@@ -24,7 +24,7 @@
  * Included libraries.
  *
  */
-if (!class_exists('Object')) {
+if (!class_exists('CakeObject')) {
 	require_once LIBS . 'object.php';
 }
 if (!class_exists('CakeLog')) {

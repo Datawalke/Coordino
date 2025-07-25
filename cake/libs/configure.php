@@ -78,7 +78,7 @@ class Configure extends CakeObject {
  * @return boolean True if write was successful
  * @access public
  */
-	function write($config, $value = null) {
+	static function write($config, $value = null) {
 		$_this =& Configure::getInstance();
 
 		if (!is_array($config)) {
@@ -159,7 +159,7 @@ class Configure extends CakeObject {
  * @return string value of Configure::$var
  * @access public
  */
-	function read($var = 'debug') {
+	static function read($var = 'debug') {
 		$_this =& Configure::getInstance();
 
 		if ($var === 'debug') {
@@ -647,8 +647,8 @@ class App extends CakeObject {
  * @return void
  * @access public
  */
-	function build($paths = array(), $reset = false) {
-		$_this =& App::getInstance();
+	static function build($paths = array(), $reset = false) {
+		$_this = App::getInstance();
 		$defaults = array(
 			'models' => array(MODELS),
 			'behaviors' => array(BEHAVIORS),
@@ -743,7 +743,7 @@ class App extends CakeObject {
  * @return array numeric keyed array of core lib paths
  * @access public
  */
-	function core($type = null) {
+	static function core($type = null) {
 		static $paths = false;
 		if ($paths === false) {
 			$paths = Cache::read('core_paths', '_cake_core_');
@@ -863,7 +863,7 @@ class App extends CakeObject {
  * @return boolean true if Class is already in memory or if file is found and loaded, false if not
  * @access public
  */
-	function import($type = null, $name = null, $parent = true, $search = array(), $file = null, $return = false) {
+	static function import($type = null, $name = null, $parent = true, $search = array(), $file = null, $return = false) {
 		$plugin = $directory = null;
 
 		if (is_array($type)) {
@@ -914,7 +914,7 @@ class App extends CakeObject {
 			list($plugin, $name) = explode('.', $name);
 			$plugin = Inflector::camelize($plugin);
 		}
-		$_this =& App::getInstance();
+		$_this = App::getInstance();
 		$_this->return = $return;
 
 		if (isset($ext)) {
