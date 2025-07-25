@@ -33,7 +33,7 @@ if (!class_exists('Object')) {
  * @package       cake
  * @subpackage    cake.cake.libs
  */
-class Folder extends Object {
+class Folder extends CakeObject {
 
 /**
  * Path to Folder.

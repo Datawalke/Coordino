@@ -24,7 +24,7 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  */
-class Security extends Object {
+class Security extends CakeObject {
 
 /**
  * Default hash method
@@ -41,10 +41,10 @@ class Security extends Object {
  * @access public
  * @static
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 		if (!$instance) {
-			$instance[0] =& new Security;
+			$instance[0] = new Security;
 		}
 		return $instance[0];
 	}

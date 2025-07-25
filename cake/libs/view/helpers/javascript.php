@@ -325,7 +325,7 @@ class JavascriptHelper extends AppHelper {
 		$length = strlen($string);
 		$return = '';
 		for ($i = 0; $i < $length; ++$i) {
-			$ord = ord($string{$i});
+			$ord = ord($string[$i]);
 			switch (true) {
 				case $ord == 0x08:
 					$return .= '\b';
@@ -346,10 +346,10 @@ class JavascriptHelper extends AppHelper {
 				case $ord == 0x2F:
 				case $ord == 0x5C:
 				case $ord == 0x27:
-					$return .= '\\' . $string{$i};
+					$return .= '\\' . $string[$i];
 					break;
 				case (($ord >= 0x20) && ($ord <= 0x7F)):
-					$return .= $string{$i};
+					$return .= $string[$i];
 					break;
 				case (($ord & 0xE0) == 0xC0):
 					if ($i + 1 >= $length) {
@@ -357,7 +357,7 @@ class JavascriptHelper extends AppHelper {
 						$return .= '?';
 						break;
 					}
-					$charbits = $string{$i} . $string{$i + 1};
+					$charbits = $string[$i] . $string[$i + 1];
 					$char = Multibyte::utf8($charbits);
 					$return .= sprintf('\u%04s', dechex($char[0]));
 					$i += 1;
@@ -368,7 +368,7 @@ class JavascriptHelper extends AppHelper {
 						$return .= '?';
 						break;
 					}
-					$charbits = $string{$i} . $string{$i + 1} . $string{$i + 2};
+					$charbits = $string[$i] . $string[$i + 1] . $string[$i + 2];
 					$char = Multibyte::utf8($charbits);
 					$return .= sprintf('\u%04s', dechex($char[0]));
 					$i += 2;
@@ -379,7 +379,7 @@ class JavascriptHelper extends AppHelper {
 					   $return .= '?';
 					   break;
 					}
-					$charbits = $string{$i} . $string{$i + 1} . $string{$i + 2} . $string{$i + 3};
+					$charbits = $string[$i] . $string[$i + 1] . $string[$i + 2] . $string[$i + 3];
 					$char = Multibyte::utf8($charbits);
 					$return .= sprintf('\u%04s', dechex($char[0]));
 					$i += 3;
@@ -390,7 +390,7 @@ class JavascriptHelper extends AppHelper {
 					   $return .= '?';
 					   break;
 					}
-					$charbits = $string{$i} . $string{$i + 1} . $string{$i + 2} . $string{$i + 3} . $string{$i + 4};
+					$charbits = $string[$i] . $string[$i + 1] . $string[$i + 2] . $string[$i + 3] . $string[$i + 4];
 					$char = Multibyte::utf8($charbits);
 					$return .= sprintf('\u%04s', dechex($char[0]));
 					$i += 4;
@@ -401,7 +401,7 @@ class JavascriptHelper extends AppHelper {
 					   $return .= '?';
 					   break;
 					}
-					$charbits = $string{$i} . $string{$i + 1} . $string{$i + 2} . $string{$i + 3} . $string{$i + 4} . $string{$i + 5};
+					$charbits = $string[$i] . $string[$i + 1] . $string[$i + 2] . $string[$i + 3] . $string[$i + 4] . $string[$i + 5];
 					$char = Multibyte::utf8($charbits);
 					$return .= sprintf('\u%04s', dechex($char[0]));
 					$i += 5;

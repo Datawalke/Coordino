@@ -1,5 +1,5 @@
 <?php
-	class MarkdownComponent extends Object {
+	class MarkdownComponent extends CakeObject {
 		
 		/**
 		 * Import the Markdownify vendor files and instantiate the object.

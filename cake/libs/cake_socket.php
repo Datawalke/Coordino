@@ -27,7 +27,7 @@ App::import('Core', 'Validation');
  * @package       cake
  * @subpackage    cake.cake.libs
  */
-class CakeSocket extends Object {
+class CakeSocket extends CakeObject {
 
 /**
  * Object description

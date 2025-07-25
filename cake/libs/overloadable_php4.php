@@ -26,7 +26,7 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  */
-class Overloadable extends Object {
+class Overloadable extends CakeObject {
 
 /**
  * Constructor.
@@ -86,7 +86,7 @@ Overloadable::overload('Overloadable');
  * @package       cake
  * @subpackage    cake.cake.libs
  */
-class Overloadable2 extends Object {
+class Overloadable2 extends CakeObject {
 
 /**
  * Constructor

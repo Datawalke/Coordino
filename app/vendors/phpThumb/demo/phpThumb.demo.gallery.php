@@ -55,7 +55,7 @@ if (@$_REQUEST['pic']) {
 		$folders = array();
 		$pictures = array();
 		while ($file = readdir($dh)) {
-			if (is_dir($currentdir.'/'.$file) && ($file{0} != '.')) {
+			if (is_dir($currentdir.'/'.$file) && ($file[0] != '.')) {
 				$folders[] = $file;
 			} elseif (eregi('\.(jpe?g|gif|png|bmp|tiff?)$', $file)) {
 				$pictures[] = $file;

@@ -296,11 +296,11 @@ class Inflector {
  * @return object
  * @access public
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 
 		if (!$instance) {
-			$instance[0] =& new Inflector();
+			$instance[0] = new Inflector();
 		}
 		return $instance[0];
 	}

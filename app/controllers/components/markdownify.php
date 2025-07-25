@@ -1,5 +1,5 @@
 <?php
-	class MarkdownifyComponent extends Object {
+	class MarkdownifyComponent extends CakeObject {
 		
 		/**
 		 * Define the Markdownify varaible.

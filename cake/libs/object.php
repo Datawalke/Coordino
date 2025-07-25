@@ -1,11 +1,11 @@
 <?php
 /**
- * Object class, allowing __construct and __destruct in PHP4.
+ * CakeObject class, allowing __construct and __destruct in PHP4.
  *
  * Also includes methods for logging and the special method RequestAction,
  * to call other Controllers' Actions from anywhere.
  *
- * PHP versions 4 and 5
+ * PHP 8.3+
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -22,7 +22,7 @@
  */
 
 /**
- * Object class, allowing __construct and __destruct in PHP4.
+ * CakeObject class, allowing __construct and __destruct in PHP4.
  *
  * Also includes methods for logging and the special method RequestAction,
  * to call other Controllers' Actions from anywhere.
@@ -30,7 +30,7 @@
  * @package cake
  * @subpackage cake.cake.libs
  */
-class Object {
+class CakeObject {
 
 /**
  * A hack to support __construct() on PHP 4
@@ -38,9 +38,9 @@ class Object {
  * so this constructor gets called first and calls the top-layer __construct()
  * which (if present) should call parent::__construct()
  *
- * @return Object
+ * @return CakeObject
  */
-	function Object() {
+	function CakeObject() {
 		$args = func_get_args();
 		if (method_exists($this, '__destruct')) {
 			register_shutdown_function (array(&$this, '__destruct'));

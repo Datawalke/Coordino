@@ -44,7 +44,7 @@ class TagBehavior extends ModelBehavior {
      */
     function beforeSave(&$model) {
     // Define the new tag model
-    $Tag =& new Tag;
+    $Tag = new Tag;
         if ($model->hasField($this->settings[$model->name]['table_label']) 
         && $Tag->hasField($this->settings[$model->name]['tag_label'])) {
 

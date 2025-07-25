@@ -1,5 +1,5 @@
 <?php 
- class RecaptchaComponent extends Object {
+ class RecaptchaComponent extends CakeObject {
 	var $publickey = "";
 	var $privatekey= "";
 	

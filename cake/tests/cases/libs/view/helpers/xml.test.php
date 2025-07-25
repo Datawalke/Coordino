@@ -28,7 +28,7 @@ App::import('Helper', 'Xml');
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
  */
-class TestXml extends Object {
+class TestXml extends CakeObject {
 
 /**
  * content property
@@ -75,7 +75,7 @@ class XmlHelperTest extends CakeTestCase {
  * @return void
  */
 	function setUp() {
-		$this->Xml =& new XmlHelper();
+		$this->Xml = new XmlHelper();
 		$this->Xml->beforeRender();
 		$manager =& XmlManager::getInstance();
 		$manager->namespaces = array();

@@ -24,7 +24,7 @@
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources
  */
-class DataSource extends Object {
+class DataSource extends CakeObject {
 
 /**
  * Are we connected to the DataSource?

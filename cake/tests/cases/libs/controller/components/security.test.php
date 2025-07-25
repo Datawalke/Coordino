@@ -144,7 +144,7 @@ class SecurityComponentTest extends CakeTestCase {
  * @return void
  */
 	function startTest() {
-		$this->Controller =& new SecurityTestController();
+		$this->Controller = new SecurityTestController();
 		$this->Controller->Component->init($this->Controller);
 		$this->Controller->Security =& $this->Controller->TestSecurity;
 		$this->Controller->Security->blackHoleCallback = 'fail';

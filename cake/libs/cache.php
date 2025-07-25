@@ -67,10 +67,10 @@ class Cache {
  * @access public
  * @static
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 		if (!$instance) {
-			$instance[0] =& new Cache();
+			$instance[0] = new Cache();
 		}
 		return $instance[0];
 	}
@@ -111,7 +111,7 @@ class Cache {
  * @access public
  * @static
  */
-	function config($name = null, $settings = array()) {
+	static function config($name = null, $settings = array()) {
 		$self =& Cache::getInstance();
 		if (is_array($name)) {
 			$settings = $name;
@@ -162,7 +162,7 @@ class Cache {
 			return false;
 		}
 		$cacheClass = $class . 'Engine';
-		$this->_engines[$name] =& new $cacheClass();
+		$this->_engines[$name] = new $cacheClass();
 		if ($this->_engines[$name]->init($config)) {
 			if ($this->_engines[$name]->settings['probability'] && time() % $this->_engines[$name]->settings['probability'] === 0) {
 				$this->_engines[$name]->gc();
@@ -177,7 +177,7 @@ class Cache {
  *
  * @return array Array of configured Cache config names.
  */
-	function configured() {
+	static function configured() {
 		$self =& Cache::getInstance();
 		return array_keys($self->__config);
 	}
@@ -295,7 +295,7 @@ class Cache {
  * @access public
  * @static
  */
-	function write($key, $value, $config = null) {
+	static function write($key, $value, $config = null) {
 		$self =& Cache::getInstance();
 
 		if (!$config) {
@@ -341,7 +341,7 @@ class Cache {
  * @access public
  * @static
  */
-	function read($key, $config = null) {
+	static function read($key, $config = null) {
 		$self =& Cache::getInstance();
 
 		if (!$config) {
@@ -378,7 +378,7 @@ class Cache {
  *    or if there was an error fetching it.
  * @access public
  */
-	function increment($key, $offset = 1, $config = null) {
+	static function increment($key, $offset = 1, $config = null) {
 		$self =& Cache::getInstance();
 
 		if (!$config) {
@@ -412,7 +412,7 @@ class Cache {
  *   or if there was an error fetching it
  * @access public
  */
-	function decrement($key, $offset = 1, $config = null) {
+	static function decrement($key, $offset = 1, $config = null) {
 		$self =& Cache::getInstance();
 
 		if (!$config) {
@@ -456,7 +456,7 @@ class Cache {
  * @access public
  * @static
  */
-	function delete($key, $config = null) {
+	static function delete($key, $config = null) {
 		$self =& Cache::getInstance();
 		if (!$config) {
 			$config = $self->__name;
@@ -488,7 +488,7 @@ class Cache {
  * @access public
  * @static
  */
-	function clear($check = false, $config = null) {
+	static function clear($check = false, $config = null) {
 		$self =& Cache::getInstance();
 		if (!$config) {
 			$config = $self->__name;
@@ -618,7 +618,7 @@ class CacheEngine {
  * @return boolean True if the data was succesfully cached, false on failure
  * @access public
  */
-	function write($key, &$value, $duration) {
+	static function write($key, &$value, $duration) {
 		trigger_error(sprintf(__('Method write() not implemented in %s', true), get_class($this)), E_USER_ERROR);
 	}
 
@@ -629,7 +629,7 @@ class CacheEngine {
  * @return mixed The cached data, or false if the data doesn't exist, has expired, or if there was an error fetching it
  * @access public
  */
-	function read($key) {
+	static function read($key) {
 		trigger_error(sprintf(__('Method read() not implemented in %s', true), get_class($this)), E_USER_ERROR);
 	}
 
@@ -641,7 +641,7 @@ class CacheEngine {
  * @return New incremented value, false otherwise
  * @access public
  */
-	function increment($key, $offset = 1) {
+	static function increment($key, $offset = 1) {
 		trigger_error(sprintf(__('Method increment() not implemented in %s', true), get_class($this)), E_USER_ERROR);
 	}
 /**
@@ -652,7 +652,7 @@ class CacheEngine {
  * @return New incremented value, false otherwise
  * @access public
  */
-	function decrement($key, $offset = 1) {
+	static function decrement($key, $offset = 1) {
 		trigger_error(sprintf(__('Method decrement() not implemented in %s', true), get_class($this)), E_USER_ERROR);
 	}
 /**
@@ -662,7 +662,7 @@ class CacheEngine {
  * @return boolean True if the value was succesfully deleted, false if it didn't exist or couldn't be removed
  * @access public
  */
-	function delete($key) {
+	static function delete($key) {
 	}
 
 /**
@@ -672,7 +672,7 @@ class CacheEngine {
  * @return boolean True if the cache was succesfully cleared, false otherwise
  * @access public
  */
-	function clear($check) {
+	static function clear($check) {
 	}
 
 /**

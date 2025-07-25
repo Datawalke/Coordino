@@ -146,12 +146,12 @@ class HttpSocket extends CakeSocket {
  * You can use a url string to set the url and use default configurations for
  * all other options:
  *
- * `$http =& new HttpSocket('http://cakephp.org/');`
+ * `$http = new HttpSocket('http://cakephp.org/');`
  *
  * Or use an array to configure multiple options:
  *
  * {{{
- * $http =& new HttpSocket(array(
+ * $http = new HttpSocket(array(
  *    'host' => 'cakephp.org',
  *    'timeout' => 20
  * ));
@@ -431,7 +431,7 @@ class HttpSocket extends CakeSocket {
 			$url = '/';
 		}
 		if (is_string($url)) {
-			if ($url{0} == '/') {
+			if ($url[0] == '/') {
 				$url = $this->config['request']['uri']['host'].':'.$this->config['request']['uri']['port'] . $url;
 			}
 			if (!preg_match('/^.+:\/\/|\*|^\//', $url)) {

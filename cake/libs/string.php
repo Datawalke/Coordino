@@ -140,21 +140,21 @@ class String {
 			}
 			if ($tmpOffset !== -1) {
 				$buffer .= substr($data, $offset, ($tmpOffset - $offset));
-				if ($data{$tmpOffset} == $separator && $depth == 0) {
+				if ($data[$tmpOffset] == $separator && $depth == 0) {
 					$results[] = $buffer;
 					$buffer = '';
 				} else {
-					$buffer .= $data{$tmpOffset};
+					$buffer .= $data[$tmpOffset];
 				}
 				if ($leftBound != $rightBound) {
-					if ($data{$tmpOffset} == $leftBound) {
+					if ($data[$tmpOffset] == $leftBound) {
 						$depth++;
 					}
-					if ($data{$tmpOffset} == $rightBound) {
+					if ($data[$tmpOffset] == $rightBound) {
 						$depth--;
 					}
 				} else {
-					if ($data{$tmpOffset} == $leftBound) {
+					if ($data[$tmpOffset] == $leftBound) {
 						if (!$open) {
 							$depth++;
 							$open = true;

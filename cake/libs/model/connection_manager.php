@@ -28,7 +28,7 @@ include_once CONFIGS . 'database.php';
  * @package       cake
  * @subpackage    cake.cake.libs.model
  */
-class ConnectionManager extends Object {
+class ConnectionManager extends CakeObject {
 
 /**
  * Holds a loaded instance of the Connections object
@@ -60,7 +60,7 @@ class ConnectionManager extends Object {
  */
 	function __construct() {
 		if (class_exists('DATABASE_CONFIG')) {
-			$this->config =& new DATABASE_CONFIG();
+			$this->config = new DATABASE_CONFIG();
 			$this->_getConnectionObjects();
 		}
 	}
@@ -72,11 +72,11 @@ class ConnectionManager extends Object {
  * @access public
  * @static
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 
 		if (!$instance) {
-			$instance[0] =& new ConnectionManager();
+			$instance[0] = new ConnectionManager();
 		}
 
 		return $instance[0];
@@ -111,7 +111,7 @@ class ConnectionManager extends Object {
 			$null = null;
 			return $null;
 		}
-		$_this->_dataSources[$name] =& new $class($_this->config->{$name});
+		$_this->_dataSources[$name] = new $class($_this->config->{$name});
 		$_this->_dataSources[$name]->configKeyName = $name;
 
 		$return =& $_this->_dataSources[$name];

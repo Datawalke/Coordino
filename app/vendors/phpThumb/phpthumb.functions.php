@@ -209,7 +209,7 @@ class phpthumb_functions {
 		$len = strlen($string);
 		$output = '';
 		for ($i = 0; $i < $len; $i++) {
-			$output .= ' 0x'.str_pad(dechex(ord($string{$i})), 2, '0', STR_PAD_LEFT);
+			$output .= ' 0x'.str_pad(dechex(ord($string[$i])), 2, '0', STR_PAD_LEFT);
 		}
 		return $output;
 	}
@@ -984,7 +984,7 @@ if (!function_exists('preg_quote')) {
 		if (empty($preg_quote_array)) {
 			$escapeables = '.\\+*?[^]$(){}=!<>|:';
 			for ($i = 0; $i < strlen($escapeables); $i++) {
-				$strtr_preg_quote[$escapeables{$i}] = $delimiter.$escapeables{$i};
+				$strtr_preg_quote[$escapeables[$i]] = $delimiter.$escapeables[$i];
 			}
 		}
 		return strtr($string, $strtr_preg_quote);

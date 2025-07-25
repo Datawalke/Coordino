@@ -24,7 +24,7 @@
  * @package       cake
  * @subpackage    cake.cake.console
  */
-class ErrorHandler extends Object {
+class ErrorHandler extends CakeObject {
 
 /**
  * Standard output stream.
