@@ -202,8 +202,8 @@ class Router {
  * @see Router::$__named
  * @static
  */
-	function getNamedExpressions() {
-		$self =& Router::getInstance();
+	static function getNamedExpressions() {
+		$self = Router::getInstance();
 		return $self->__named;
 	}
 
@@ -260,8 +260,8 @@ class Router {
  * @access public
  * @static
  */
-	function connect($route, $defaults = array(), $options = array()) {
-		$self =& Router::getInstance();
+	static function connect($route, $defaults = array(), $options = array()) {
+		$self = Router::getInstance();
 
 		foreach ($self->__prefixes as $prefix) {
 			if (isset($defaults[$prefix])) {
@@ -443,8 +443,8 @@ class Router {
  * @access public
  * @static
  */
-	function parse($url) {
-		$self =& Router::getInstance();
+	static function parse($url) {
+		$self = Router::getInstance();
 		if (!$self->__defaultsMapped && $self->__connectDefaults) {
 			$self->__connectDefaultRoutes();
 		}
@@ -620,8 +620,8 @@ class Router {
  * @access public
  * @static
  */
-	function setRequestInfo($params) {
-		$self =& Router::getInstance();
+	static function setRequestInfo($params) {
+		$self = Router::getInstance();
 		$defaults = array('plugin' => null, 'controller' => null, 'action' => null);
 		$params[0] = array_merge($defaults, (array)$params[0]);
 		$params[1] = array_merge($defaults, (array)$params[1]);

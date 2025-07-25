@@ -2,7 +2,7 @@ Requirements
 ==================================
 All that is required is your basic LAMP/WAMP stack. 
 However the best-case conditions:
-* PHP5+
+* PHP 8.3+
 * MySQL 5.1+
 	
 

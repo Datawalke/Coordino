@@ -789,7 +789,7 @@ class App extends CakeObject {
  * @return mixed Either false on incorrect / miss.  Or an array of found objects.
  * @access public
  */
-	function objects($type, $path = null, $cache = true) {
+	static function objects($type, $path = null, $cache = true) {
 		$objects = array();
 		$extension = false;
 		$name = $type;
